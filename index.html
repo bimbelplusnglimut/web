@@ -1,0 +1,1581 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bimbel PLUS - Karena Potensimu Layak Dapat PLUS</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome untuk Ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Quicksand:wght@400..700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        fredoka: ['Fredoka', 'sans-serif'],
+                        quicksand: ['Quicksand', 'sans-serif'],
+                    },
+                    colors: {
+                        plusPurple: {
+                            50: '#f5f3ff',
+                            100: '#ede9fe',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            DEFAULT: '#5d51a0', // Warna ungu logo
+                        },
+                        plusOrange: {
+                            100: '#ffedd5',
+                            400: '#fb923c',
+                            500: '#f97316',
+                            DEFAULT: '#f08a5d', // Warna oranye huruf A
+                        },
+                        plusGreen: {
+                            100: '#f0fdf4',
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            DEFAULT: '#b4f8c8', // Warna hijau bunga
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #f7f9fc;
+        }
+        h1, h2, h3, .brand-font {
+            font-family: 'Fredoka', sans-serif;
+        }
+
+        /* --- ANIMASI MASKOT ALAMI & HIDUP --- */
+        
+        /* 1. Efek Bernapas Halus pada Badan Huruf A */
+        @keyframes soft-breathe {
+            0%, 100% { transform: scale(1) translateY(0); }
+            50% { transform: scale(0.98, 1.02) translateY(-2px); }
+        }
+        .mascot-body {
+            transform-origin: bottom center;
+            animation: soft-breathe 4s ease-in-out infinite;
+        }
+
+        /* 2. Lambaian Tangan Kiri */
+        @keyframes wave-left {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(-18deg); }
+        }
+        .mascot-arm-left {
+            transform-origin: 38px 48px;
+            animation: wave-left 2.5s ease-in-out infinite;
+        }
+
+        /* 3. Lambaian Tangan Kanan */
+        @keyframes wave-right {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(18deg); }
+        }
+        .mascot-arm-right {
+            transform-origin: 62px 48px;
+            animation: wave-right 2.2s ease-in-out infinite;
+        }
+
+        /* 4. Kedipan Mata Otomatis */
+        @keyframes eye-blink {
+            0%, 90%, 100% { transform: scaleY(1); }
+            95% { transform: scaleY(0.1); }
+        }
+        .mascot-eye {
+            transform-origin: center;
+            animation: eye-blink 4.5s infinite;
+        }
+
+        /* 5. Kelopak Bunga Latar Belakang Berputar Sangat Lambat */
+        @keyframes bg-spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .mascot-bg-flower {
+            transform-origin: 50px 50px;
+            animation: bg-spin 40s linear infinite;
+        }
+
+        /* 6. Hover Jump & Getar Gembira */
+        .interactive-mascot-group {
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+        .interactive-mascot-group:hover {
+            transform: translateY(-8px) scale(1.03);
+        }
+        .interactive-mascot-group:hover .mascot-arm-left {
+            animation: wave-left 0.8s ease-in-out infinite;
+        }
+        .interactive-mascot-group:hover .mascot-arm-right {
+            animation: wave-right 0.7s ease-in-out infinite;
+        }
+        /* Senyuman melebar saat dihover */
+        .mascot-smile {
+            transition: d 0.3s ease-in-out, stroke-width 0.3s;
+        }
+        .interactive-mascot-group:hover .mascot-smile {
+            d: path("M 43,62 Q 50,68 57,62");
+            stroke-width: 2.5px;
+        }
+
+        /* Efek Hover Tab Navigasi */
+        .tab-active {
+            border-bottom: 4px solid #f08a5d;
+            color: #5d51a0;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body class="text-slate-700 min-h-screen flex flex-col">
+
+    <!-- KONFIGURASI INTEGRASI API GOOGLE SHEETS -->
+    <script>
+        // Tempelkan URL Web App Google Apps Script Anda yang sudah dideploy di sini
+        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbysf-OibajDY4tUQIQSlB5YycNXH0SLvsCgk_R7Xjj_cS14XPhngBXPCi6OL7ehWWB1HA/exec"; 
+    </script>
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- LOGO ZONE (INTERAKTIF) -->
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('home')">
+                    <div class="relative w-14 h-14" id="interactive-logo">
+                        <!-- SVG Huruf A Lucu dengan kacamata & tangan (Versi Navbar) -->
+                        <svg viewBox="0 0 100 100" class="w-full h-full">
+                            <g class="interactive-mascot-group">
+                                <!-- Bunga Hijau Latar Belakang -->
+                                <path class="mascot-bg-flower" d="M 50,15 C 38,15 35,35 45,45 C 35,35 15,38 15,50 C 15,62 35,65 45,55 C 35,65 38,85 50,85 C 62,85 65,65 55,55 C 65,65 85,62 85,50 C 85,38 65,35 55,45 C 65,35 62,15 50,15 Z" fill="#b4f8c8" opacity="0.8"/>
+                                <!-- Papan Seluncur/Garis Ungu -->
+                                <ellipse cx="50" cy="82" rx="25" ry="4" fill="#5d51a0" />
+                                
+                                <!-- Kelompok Karakter Utama (Bisa Bernapas) -->
+                                <g class="mascot-body">
+                                    <!-- Tangan Kiri (Melambai) -->
+                                    <path class="mascot-arm-left" d="M 38,48 Q 23,45 25,52" stroke="#f08a5d" stroke-width="4.5" stroke-linecap="round" fill="none" />
+                                    <!-- Tangan Kanan (Melambai) -->
+                                    <path class="mascot-arm-right" d="M 62,48 Q 77,38 75,44" stroke="#f08a5d" stroke-width="4.5" stroke-linecap="round" fill="none" />
+                                    
+                                    <!-- Kaki -->
+                                    <line x1="43" y1="72" x2="41" y2="82" stroke="#1e293b" stroke-width="3" stroke-linecap="round" />
+                                    <line x1="57" y1="72" x2="59" y2="82" stroke="#1e293b" stroke-width="3" stroke-linecap="round" />
+                                    
+                                    <!-- Badan Huruf 'A' Oranye -->
+                                    <path d="M 50,23 L 35,72 L 45,72 L 50,55 L 55,72 L 65,72 Z" fill="#f08a5d" stroke="#f08a5d" stroke-width="1" stroke-linejoin="round" />
+                                    <rect x="42" y="52" width="16" height="6" fill="#f08a5d" />
+                                    
+                                    <!-- Kacamata Bulat Hitam -->
+                                    <circle cx="43" cy="43" r="7.5" stroke="#1e293b" stroke-width="2.5" fill="white" />
+                                    <circle cx="57" cy="43" r="7.5" stroke="#1e293b" stroke-width="2.5" fill="white" />
+                                    <line x1="48" y1="43" x2="52" y2="43" stroke="#1e293b" stroke-width="2.5" />
+                                    
+                                    <!-- Mata Kedip Otomatis (Pupil Tenang) -->
+                                    <g class="mascot-eye">
+                                        <circle cx="43" cy="43" r="3.2" fill="#1e293b" />
+                                        <circle cx="57" cy="43" r="3.2" fill="#1e293b" />
+                                    </g>
+                                    
+                                    <!-- Senyuman -->
+                                    <path class="mascot-smile" d="M 45,62 Q 50,66 55,62" stroke="#1e293b" stroke-width="2" stroke-linecap="round" fill="none" />
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="text-xs uppercase tracking-wider text-slate-400 block font-semibold leading-none">Bimbingan Belajar</span>
+                        <span class="text-2xl font-bold text-plusPurple tracking-wide brand-font leading-none flex items-center">
+                            PLUS
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation Menu -->
+                <nav class="hidden md:flex space-x-8 h-full">
+                    <button onclick="switchTab('home')" id="tab-home" class="nav-tab h-full px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-slate-500 hover:text-plusPurple hover:border-plusPurple transition duration-150 ease-in-out focus:outline-none flex items-center gap-2">
+                        <i class="fa-solid fa-house"></i> Dashboard
+                    </button>
+                    <button onclick="switchTab('daftar')" id="tab-daftar" class="nav-tab h-full px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-slate-500 hover:text-plusPurple hover:border-plusPurple transition duration-150 ease-in-out focus:outline-none flex items-center gap-2">
+                        <i class="fa-solid fa-user-plus"></i> Pendaftaran
+                    </button>
+                    <button onclick="switchTab('jadwal')" id="tab-jadwal" class="nav-tab h-full px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-slate-500 hover:text-plusPurple hover:border-plusPurple transition duration-150 ease-in-out focus:outline-none flex items-center gap-2">
+                        <i class="fa-solid fa-calendar-days"></i> Jadwal Kelas
+                    </button>
+                    <button onclick="switchTab('testimoni')" id="tab-testimoni" class="nav-tab h-full px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-slate-500 hover:text-plusPurple hover:border-plusPurple transition duration-150 ease-in-out focus:outline-none flex items-center gap-2">
+                        <i class="fa-solid fa-comments"></i> Testimoni
+                    </button>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <div class="flex items-center md:hidden">
+                    <button onclick="toggleMobileMenu()" class="inline-flex items-center justify-center p-2 rounded-md text-slate-400 hover:text-plusPurple hover:bg-slate-100 focus:outline-none focus:bg-slate-100 focus:text-plusPurple transition duration-150 ease-in-out">
+                        <i id="menu-icon" class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 transition-all duration-300 ease-in-out">
+            <div class="pt-2 pb-4 space-y-1 px-4">
+                <button onclick="switchTab('home')" class="mobile-nav-tab block w-full text-left px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:text-plusPurple hover:bg-plusPurple-100 transition duration-150">
+                    <i class="fa-solid fa-house mr-2"></i> Dashboard
+                </button>
+                <button onclick="switchTab('daftar')" class="mobile-nav-tab block w-full text-left px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:text-plusPurple hover:bg-plusPurple-100 transition duration-150">
+                    <i class="fa-solid fa-user-plus mr-2"></i> Pendaftaran
+                </button>
+                <button onclick="switchTab('jadwal')" class="mobile-nav-tab block w-full text-left px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:text-plusPurple hover:bg-plusPurple-100 transition duration-150">
+                    <i class="fa-solid fa-calendar-days mr-2"></i> Jadwal Kelas
+                </button>
+                <button onclick="switchTab('testimoni')" class="mobile-nav-tab block w-full text-left px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:text-plusPurple hover:bg-plusPurple-100 transition duration-150">
+                    <i class="fa-solid fa-comments mr-2"></i> Testimoni
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTENT WRAPPER -->
+    <main class="flex-grow">
+
+        <!-- TAB: HOME / DASHBOARD -->
+        <section id="content-home" class="tab-content py-8 md:py-16">
+            <!-- Hero Section -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <!-- Hero Info -->
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                        <span class="inline-block px-4 py-1.5 bg-plusOrange-100 text-plusOrange-500 font-bold text-sm rounded-full tracking-wide uppercase">⚡ Bimbingan Belajar Berkualitas</span>
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-plusPurple tracking-tight leading-tight">
+                            Karena Potensimu Layak Dapat <span class="text-plusOrange">"PLUS"</span>
+                        </h1>
+                        <p class="text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                            <strong>"PLUS"</strong> adalah lembaga bimbingan belajar yang berkomitmen memberikan <span class="font-bold text-plusPurple">"nilai tambah"</span> untuk setiap siswa. Kami tidak hanya fokus mengejar nilai akademis, melainkan juga berdedikasi membangun pola pikir kritis, kreatif, serta rasa percaya diri yang tinggi untuk menghadapi masa depan.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
+                            <button onclick="switchTab('daftar')" class="px-8 py-4 bg-plusPurple text-white font-bold text-lg rounded-full shadow-lg hover:bg-plusPurple-700 transition transform hover:-translate-y-1 flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-rocket"></i> Daftar Sekarang
+                            </button>
+                            <a href="#keunggulan" class="px-8 py-4 bg-white text-plusPurple border-2 border-plusPurple font-bold text-lg rounded-full shadow-md hover:bg-slate-50 transition transform hover:-translate-y-1 flex items-center justify-center gap-2">
+                                Pelajari Lebih Lanjut <i class="fa-solid fa-arrow-down"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Hero Visual (Mascot Gembira Lebih Besar & Hidup) -->
+                    <div class="lg:col-span-5 flex justify-center">
+                        <div class="relative w-72 h-72 sm:w-96 sm:h-96 md:w-[420px] md:h-[420px]">
+                            <!-- SVG Dekorasi Besar Interaktif -->
+                            <svg viewBox="0 0 100 100" class="w-full h-full drop-shadow-2xl">
+                                <g class="interactive-mascot-group">
+                                    <!-- Kelopak Bunga Latar Belakang (Berputar Lambat) -->
+                                    <path class="mascot-bg-flower" d="M 50,10 C 35,10 30,30 40,40 C 30,30 10,35 10,50 C 10,65 30,70 40,60 C 30,70 35,90 50,90 C 65,90 70,70 60,60 C 70,70 90,65 90,50 C 90,35 70,30 60,40 C 70,30 65,10 50,10 Z" fill="#b4f8c8" opacity="0.6"/>
+                                    <!-- Garis Seluncur Ungu -->
+                                    <ellipse cx="50" cy="85" rx="35" ry="6" fill="#5d51a0" opacity="0.9" />
+                                    
+                                    <!-- Kelompok Karakter Utama (Efek Squash/Breathe) -->
+                                    <g class="mascot-body">
+                                        <!-- Tangan Kiri Lentur (Waving) -->
+                                        <path class="mascot-arm-left" d="M 38,48 Q 20,44 22,54" stroke="#f08a5d" stroke-width="5" stroke-linecap="round" fill="none" />
+                                        <circle class="mascot-arm-left" cx="21" cy="54" r="3.5" fill="#f08a5d" />
+                                        
+                                        <!-- Tangan Kanan Lentur (Waving) -->
+                                        <path class="mascot-arm-right" d="M 62,48 Q 80,36 78,44" stroke="#f08a5d" stroke-width="5" stroke-linecap="round" fill="none" />
+                                        <circle class="mascot-arm-right" cx="79" cy="42" r="3.5" fill="#f08a5d" />
+                                        
+                                        <!-- Kaki Karakter -->
+                                        <line x1="40" y1="78" x2="38" y2="85" stroke="#1e293b" stroke-width="4.5" stroke-linecap="round"/>
+                                        <line x1="60" y1="78" x2="62" y2="85" stroke="#1e293b" stroke-width="4.5" stroke-linecap="round"/>
+                                        
+                                        <!-- Tubuh Huruf 'A' Oranye Tebal -->
+                                        <path d="M 50,20 L 28,78 L 40,78 L 50,55 L 60,78 L 72,78 Z" fill="#f08a5d" stroke="#f08a5d" stroke-width="1.5" stroke-linejoin="round" />
+                                        <rect x="38" y="52" width="24" height="8" fill="#f08a5d" />
+                                        
+                                        <!-- Kacamata Bulat Tebal -->
+                                        <circle cx="41" cy="44" r="10" stroke="#1e293b" stroke-width="3" fill="white" />
+                                        <circle cx="59" cy="44" r="10" stroke="#1e293b" stroke-width="3" fill="white" />
+                                        <line x1="47" y1="44" x2="53" y2="44" stroke="#1e293b" stroke-width="3" />
+                                        
+                                        <!-- Mata Kedip Otomatis (Pupil Tenang) -->
+                                        <g class="mascot-eye">
+                                            <circle cx="41" cy="44" r="4.2" fill="#1e293b" />
+                                            <circle cx="59" cy="44" r="4.2" fill="#1e293b" />
+                                        </g>
+                                        
+                                        <!-- Senyuman Hangat -->
+                                        <path class="mascot-smile" d="M 45,64 Q 50,70 55,64" stroke="#1e293b" stroke-width="2.5" stroke-linecap="round" fill="none" />
+                                    </g>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Keunggulan Utama Section -->
+            <div id="keunggulan" class="bg-white py-16 mt-20 border-t border-slate-100">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+                        <span class="text-plusOrange font-bold tracking-wider uppercase text-sm block">✨ Mengapa Memilih Kami?</span>
+                        <h2 class="text-3xl sm:text-4xl font-bold text-plusPurple">Keunggulan Utama Bimbel PLUS</h2>
+                        <div class="w-24 h-1 bg-plusOrange-500 mx-auto rounded-full"></div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <!-- Rasio Kelas Ideal -->
+                        <div class="bg-plusPurple-50 p-8 rounded-3xl border border-plusPurple-100 shadow-sm hover:shadow-md transition duration-300">
+                            <div class="w-14 h-14 bg-plusPurple text-white rounded-2xl flex items-center justify-center text-2xl mb-6">
+                                <i class="fa-solid fa-users"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-plusPurple mb-3">Rasio Kelas Ideal</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Maksimal 4 anak per kelas demi menjamin interaksi dan fokus pengajar yang optimal ke setiap anak.
+                            </p>
+                        </div>
+
+                        <!-- Materi Terstruktur -->
+                        <div class="bg-orange-50 p-8 rounded-3xl border border-orange-100 shadow-sm hover:shadow-md transition duration-300">
+                            <div class="w-14 h-14 bg-plusOrange text-white rounded-2xl flex items-center justify-center text-2xl mb-6">
+                                <i class="fa-solid fa-book-open"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-plusOrange-500 mb-3">Materi Terstruktur</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Kurikulum telah disusun serta dievaluasi berkala agar materi mudah dipahami namun tetap menyenangkan.
+                            </p>
+                        </div>
+
+                        <!-- Monitoring Akademik -->
+                        <div class="bg-green-50 p-8 rounded-3xl border border-green-100 shadow-sm hover:shadow-md transition duration-300">
+                            <div class="w-14 h-14 bg-emerald-500 text-white rounded-2xl flex items-center justify-center text-2xl mb-6">
+                                <i class="fa-solid fa-chart-line"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-emerald-600 mb-3">Monitoring Akademik</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Laporan dikirim ke ortu tiap selesai 2x kelas review, mencakup kemampuan kognitif & perkembangan sikap anak.
+                            </p>
+                        </div>
+
+                        <!-- Bimbingan Lanjutan -->
+                        <div class="bg-blue-50 p-8 rounded-3xl border border-blue-100 shadow-sm hover:shadow-md transition duration-300">
+                            <div class="w-14 h-14 bg-blue-500 text-white rounded-2xl flex items-center justify-center text-2xl mb-6">
+                                <i class="fa-solid fa-comments"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-blue-600 mb-3">Bimbingan Lanjutan</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Layanan konsultasi di luar jam kelas reguler untuk membantu pemahaman materi sekolah yang dirasa sulit secara mendalam.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Program Bimbel Section -->
+            <div class="py-16 bg-[#faf9f6]">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+                        <span class="text-plusOrange font-bold tracking-wider uppercase text-sm block">🎓 Kelas Pendidikan</span>
+                        <h2 class="text-3xl sm:text-4xl font-bold text-plusPurple">Pilihan Program Bimbel PLUS</h2>
+                        <div class="w-24 h-1 bg-plusOrange-500 mx-auto rounded-full"></div>
+                        <p class="text-slate-500">Kami menawarkan program bimbingan terarah dari usia dini hingga persiapan tingkat akhir sekolah menengah.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <!-- Pra TK / TK -->
+                        <div class="bg-white rounded-3xl border border-slate-100 shadow-lg overflow-hidden flex flex-col justify-between hover:scale-[1.02] transition duration-300">
+                            <div class="p-8">
+                                <div class="bg-emerald-100 text-emerald-600 font-bold text-xs uppercase px-3 py-1 rounded-full inline-block mb-4">Pra TK & TK</div>
+                                <h3 class="text-2xl font-bold text-slate-800 mb-4">Kelas Tunas Cerdas</h3>
+                                <p class="text-slate-500 text-sm mb-6">Fokus pada motorik, bahasa dasar, logika sederhana, dan eksplorasi lingkungan secara menyenangkan.</p>
+                                <ul class="space-y-3">
+                                    <li class="flex items-center text-sm text-slate-700 gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> Sains Dasar Sehari-hari</li>
+                                    <li class="flex items-center text-sm text-slate-700 gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> Jarimatika Dasar</li>
+                                    <li class="flex items-center text-sm text-slate-700 gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> B. Inggris Dasar Sehari-hari</li>
+                                </ul>
+                            </div>
+                            <div class="p-8 bg-slate-50 border-t border-slate-100">
+                                <button onclick="switchTab('daftar')" class="w-full py-3 bg-emerald-500 text-white font-bold rounded-2xl hover:bg-emerald-600 transition text-sm">Daftar Kelas TK</button>
+                            </div>
+                        </div>
+
+                        <!-- SD -->
+                        <div class="bg-white rounded-3xl border border-plusPurple-100 shadow-xl overflow-hidden flex flex-col justify-between hover:scale-[1.02] transition duration-300 relative">
+                            <div class="absolute top-0 right-0 bg-plusOrange text-white text-xs font-bold uppercase px-4 py-1.5 rounded-bl-2xl">Terpopuler</div>
+                            <div class="p-8">
+                                <div class="bg-plusPurple-100 text-plusPurple font-bold text-xs uppercase px-3 py-1 rounded-full inline-block mb-4">SD (Kelas 1 - 6)</div>
+                                <h3 class="text-2xl font-bold text-slate-800 mb-4">Kelas Pintar Utama</h3>
+                                <p class="text-slate-500 text-sm mb-6">Membantu memperkuat konsep ilmu dasar di sekolah dasar, logika berhitung taktis, dan rasa cinta sains.</p>
+                                <ul class="space-y-3">
+                                    <li class="flex items-center text-sm text-slate-700 gap-2"><i class="fa-solid fa-circle-check text-plusPurple"></i> Jarimatika Mahir</li>
+                                    <li class="flex items-center text-sm text-slate-700 gap-2"><i class="fa-solid fa-circle-check text-plusPurple"></i> Pelajaran Umum Sekolah (MTK/B.Inggris)</li>
+                                    <li class="flex items-center text-sm text-slate-700 gap-2"><i class="fa-solid fa-circle-check text-plusPurple"></i> B. Inggris Speaking Dasar</li>
+                                    <li class="flex items-center text-sm text-slate-700 gap-2"><i class="fa-solid fa-circle-check text-plusPurple"></i> Sains Praktik Dasar</li>
+                                </ul>
+                            </div>
+                            <div class="p-8 bg-plusPurple-50 border-t border-plusPurple-100">
+                                <button onclick="switchTab('daftar')" class="w-full py-3 bg-plusPurple text-white font-bold rounded-2xl hover:bg-plusPurple-700 transition text-sm">Daftar Kelas SD</button>
+                            </div>
+                        </div>
+
+                        <!-- SMP & SMA -->
+                        <div class="bg-white rounded-3xl border border-slate-100 shadow-lg overflow-hidden flex flex-col justify-between hover:scale-[1.02] transition duration-300">
+                            <div class="p-8">
+                                <div class="bg-indigo-100 text-indigo-600 font-bold text-xs uppercase px-3 py-1 rounded-full inline-block mb-4">SMP & SMA</div>
+                                <h3 class="text-2xl font-bold text-slate-800 mb-4">Kelas Prestasi Unggul</h3>
+                                <p class="text-slate-500 text-sm mb-6">Pendalaman materi sekolah menengah untuk peningkatan nilai rapor, persiapan ujian sekolah, hingga kemampuan cakap berbahasa.</p>
+                                <ul class="space-y-3">
+                                    <li class="flex items-center text-sm text-slate-700 gap-2"><i class="fa-solid fa-circle-check text-indigo-500"></i> Pelajaran Umum Sekolah (MTK/B.Inggris)</li>
+                                    <li class="flex items-center text-sm text-slate-700 gap-2"><i class="fa-solid fa-circle-check text-indigo-500"></i> Jarimatika</li>
+                                    <li class="flex items-center text-sm text-slate-700 gap-2"><i class="fa-solid fa-circle-check text-indigo-500"></i> Bahasa Inggris Speaking Dasar</li>
+                                </ul>
+                            </div>
+                            <div class="p-8 bg-slate-50 border-t border-slate-100">
+                                <button onclick="switchTab('daftar')" class="w-full py-3 bg-indigo-600 text-white font-bold rounded-2xl hover:bg-indigo-700 transition text-sm">Daftar SMP / SMA</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fasilitas Section -->
+            <div class="bg-white py-16">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div class="space-y-6">
+                            <span class="text-plusOrange font-bold tracking-wider uppercase text-sm block">🏫 Ruang & Sarana</span>
+                            <h2 class="text-3xl sm:text-4xl font-bold text-plusPurple">Fasilitas Penunjang Belajar</h2>
+                            <p class="text-slate-600 leading-relaxed">
+                                Kami percaya lingkungan sangat mempengaruhi kenyamanan belajar anak. Oleh karena itu, Bimbel PLUS dilengkapi dengan berbagai fasilitas pendukung modern demi menghadirkan proses KBM yang ideal:
+                            </p>
+                            <div class="space-y-4">
+                                <div class="flex items-start gap-4">
+                                    <div class="w-10 h-10 rounded-xl bg-plusOrange-100 text-plusOrange flex items-center justify-center shrink-0"><i class="fa-solid fa-maximize"></i></div>
+                                    <div>
+                                        <h4 class="font-bold text-slate-800">Ruang Kelas Luas</h4>
+                                        <p class="text-sm text-slate-500">Sirkulasi udara baik dan pencahayaan yang pas, bebas dari rasa gerah sehingga fokus anak tetap terjaga.</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-4">
+                                    <div class="w-10 h-10 rounded-xl bg-plusPurple-100 text-plusPurple flex items-center justify-center shrink-0"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+                                    <div>
+                                        <h4 class="font-bold text-slate-800">Alat Pembelajaran Lengkap & Praktis</h4>
+                                        <p class="text-sm text-slate-500">Bahan ajar fisik, alat peraga jarimatika, serta kit percobaan sains sederhana yang aman.</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-4">
+                                    <div class="w-10 h-10 rounded-xl bg-green-100 text-emerald-600 flex items-center justify-center shrink-0"><i class="fa-solid fa-laptop"></i></div>
+                                    <div>
+                                        <h4 class="font-bold text-slate-800">Sarana Pengajaran Interaktif</h4>
+                                        <p class="text-sm text-slate-500">Pemanfaatan media visual interaktif di kelas untuk memudahkan penggambaran konsep sulit.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <!-- SVG Representasi Fasilitas -->
+                            <div class="bg-[#b4f8c8] bg-opacity-30 p-8 rounded-3xl flex flex-col justify-between h-48 hover:scale-[1.05] transition-all duration-300">
+                                <i class="fa-solid fa-school text-4xl text-emerald-600"></i>
+                                <span class="font-bold text-slate-800 text-lg">Kelas Nyaman</span>
+                            </div>
+                            <div class="bg-plusOrange-100 bg-opacity-50 p-8 rounded-3xl flex flex-col justify-between h-48 hover:scale-[1.05] transition-all duration-300">
+                                <i class="fa-solid fa-flask text-4xl text-plusOrange-500"></i>
+                                <span class="font-bold text-slate-800 text-lg">Eksperimen Praktis</span>
+                            </div>
+                            <div class="bg-plusPurple-100 bg-opacity-50 p-8 rounded-3xl flex flex-col justify-between h-48 hover:scale-[1.05] transition-all duration-300">
+                                <i class="fa-solid fa-tv text-4xl text-plusPurple"></i>
+                                <span class="font-bold text-slate-800 text-lg">Media Interaktif</span>
+                            </div>
+                            <div class="bg-blue-100 bg-opacity-50 p-8 rounded-3xl flex flex-col justify-between h-48 hover:scale-[1.05] transition-all duration-300">
+                                <i class="fa-solid fa-user-graduate text-4xl text-blue-600"></i>
+                                <span class="font-bold text-slate-800 text-lg">Maks. 4 Anak</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB: FORM PENDAFTARAN -->
+        <section id="content-daftar" class="tab-content py-8 md:py-16 hidden">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6">
+                <!-- Info Banner pendaftaran -->
+                <div class="bg-plusPurple rounded-3xl p-8 text-white mb-8 relative overflow-hidden shadow-xl">
+                    <div class="relative z-10 space-y-2">
+                        <span class="px-3 py-1 bg-plusOrange rounded-full text-xs font-bold uppercase tracking-wide">Formulir Penerimaan</span>
+                        <h2 class="text-3xl font-bold">Pendaftaran Murid Bimbel PLUS</h2>
+                        <p class="text-plusPurple-100 text-sm max-w-xl">Lengkapi formulir pendaftaran ini secara saksama. Setelah pengiriman, admin kami akan melakukan konfirmasi jadwal kelas terpilih.</p>
+                    </div>
+                    <!-- Hiasan Bulat -->
+                    <div class="absolute -right-10 -bottom-10 w-44 h-44 bg-plusOrange rounded-full opacity-25"></div>
+                </div>
+
+                <!-- Form Card -->
+                <div class="bg-white rounded-3xl shadow-xl border border-slate-100 p-8 md:p-12">
+                    <form id="registrationForm" onsubmit="submitForm(event)" class="space-y-8">
+                        
+                        <!-- SEKSI DATA DIRI -->
+                        <div class="space-y-6">
+                            <h3 class="text-xl font-bold text-plusPurple border-b pb-2"><i class="fa-solid fa-id-card mr-2"></i> Data Diri Calon Murid</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-semibold text-slate-700 mb-2">Nama Lengkap Murid *</label>
+                                    <input type="text" id="reg-nama" required class="w-full px-4 py-3 border border-slate-200 rounded-2xl focus:outline-none focus:border-plusPurple transition" placeholder="Masukkan nama lengkap anak">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-semibold text-slate-700 mb-2">Pilih Jenjang / Kelas saat ini *</label>
+                                    <select id="reg-kelas" required onchange="updateClassOptions()" class="w-full px-4 py-3 border border-slate-200 rounded-2xl focus:outline-none focus:border-plusPurple transition">
+                                        <option value="">-- Pilih Kelas --</option>
+                                        <option value="Pra TK-TK">Pra TK & TK</option>
+                                        <option value="SD-1">SD Kelas 1</option>
+                                        <option value="SD-2">SD Kelas 2</option>
+                                        <option value="SD-3">SD Kelas 3</option>
+                                        <option value="SD-4">SD Kelas 4</option>
+                                        <option value="SD-5">SD Kelas 5</option>
+                                        <option value="SD-6">SD Kelas 6</option>
+                                        <option value="SMP-7">SMP Kelas 7</option>
+                                        <option value="SMP-8">SMP Kelas 8</option>
+                                        <option value="SMP-9">SMP Kelas 9</option>
+                                        <option value="SMA-10">SMA Kelas 10</option>
+                                        <option value="SMA-11">SMA Kelas 11</option>
+                                        <option value="SMA-12">SMA Kelas 12</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-semibold text-slate-700 mb-2">Alamat Rumah Lengkap *</label>
+                                    <textarea id="reg-alamat" required rows="3" class="w-full px-4 py-3 border border-slate-200 rounded-2xl focus:outline-none focus:border-plusPurple transition" placeholder="Alamat rumah, RT, RW, Kelurahan, Kecamatan"></textarea>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-semibold text-slate-700 mb-2">Minat & Hobi Anak</label>
+                                    <textarea id="reg-minat" rows="3" class="w-full px-4 py-3 border border-slate-200 rounded-2xl focus:outline-none focus:border-plusPurple transition" placeholder="Misal: Suka menggambar, bermain sepak bola, bereksperimen"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SEKSI METODE & TIPE BELAJAR -->
+                        <div class="space-y-6 bg-slate-50 p-6 rounded-2xl border border-slate-100">
+                            <h3 class="text-xl font-bold text-slate-800"><i class="fa-solid fa-brain mr-2"></i> Preferensi & Cara Belajar</h3>
+                            
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-3">Bagaimana cara/metode belajar yang paling disukai anak? (Bisa pilih lebih dari satu)</label>
+                                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                                    <label class="flex items-center gap-2 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:border-plusPurple transition">
+                                        <input type="checkbox" name="metode" value="Mendengarkan" class="rounded text-plusPurple focus:ring-plusPurple">
+                                        <span class="text-sm">🗣️ Dengar</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:border-plusPurple transition">
+                                        <input type="checkbox" name="metode" value="Menulis" class="rounded text-plusPurple focus:ring-plusPurple">
+                                        <span class="text-sm">✏️ Tulis</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:border-plusPurple transition">
+                                        <input type="checkbox" name="metode" value="Praktik" class="rounded text-plusPurple focus:ring-plusPurple">
+                                        <span class="text-sm">🧪 Praktik</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:border-plusPurple transition">
+                                        <input type="checkbox" name="metode" value="Visual/Gambar" class="rounded text-plusPurple focus:ring-plusPurple">
+                                        <span class="text-sm">👁️ Visual</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SEKSI TIPE KELAS (DENGAN INFORMASI DETAIL) -->
+                        <div class="space-y-6">
+                            <div class="flex items-center justify-between border-b pb-2">
+                                <h3 class="text-xl font-bold text-plusPurple"><i class="fa-solid fa-graduation-cap mr-2"></i> Pilihan Opsi Layanan Kelas</h3>
+                                <!-- Tombol Bantuan Info Kelas -->
+                                <button type="button" onclick="openModal('modal-info-kelas')" class="text-xs font-bold text-plusPurple hover:text-plusPurple-700 underline flex items-center gap-1">
+                                    <i class="fa-solid fa-circle-info"></i> Panduan Perbedaan Kelas
+                                </button>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <!-- REGULER CLASS -->
+                                <label class="relative flex flex-col justify-between p-5 border-2 border-slate-200 rounded-2xl cursor-pointer hover:border-plusPurple transition-all" id="label-class-reguler">
+                                    <input type="radio" name="tipe-kelas" value="REGULER CLASS" required class="absolute top-4 right-4 text-plusPurple focus:ring-plusPurple" onclick="highlightClassType('reguler')">
+                                    <div class="space-y-2 pr-6">
+                                        <span class="px-2 py-0.5 bg-green-100 text-emerald-700 text-xs font-bold rounded-md">Max 4 Anak</span>
+                                        <h4 class="font-bold text-slate-800 text-base">REGULER CLASS</h4>
+                                        <p class="text-xs text-slate-500">Belajar tatap muka di lokasi Bimbel PLUS secara berkelompok kecil.</p>
+                                    </div>
+                                </label>
+
+                                <!-- PRIVATE CLASS -->
+                                <label class="relative flex flex-col justify-between p-5 border-2 border-slate-200 rounded-2xl cursor-pointer hover:border-plusPurple transition-all" id="label-class-private">
+                                    <input type="radio" name="tipe-kelas" value="PRIVATE CLASS" class="absolute top-4 right-4 text-plusPurple focus:ring-plusPurple" onclick="highlightClassType('private')">
+                                    <div class="space-y-2 pr-6">
+                                        <span class="px-2 py-0.5 bg-orange-100 text-plusOrange-500 text-xs font-bold rounded-md">1 on 1 Eksklusif</span>
+                                        <h4 class="font-bold text-slate-800 text-base">PRIVATE CLASS</h4>
+                                        <p class="text-xs text-slate-500">Pendampingan penuh secara personal dan intensif khusus 1 siswa saja.</p>
+                                    </div>
+                                </label>
+
+                                <!-- VIRTUAL CLASS -->
+                                <label class="relative flex flex-col justify-between p-5 border-2 border-slate-200 rounded-2xl cursor-pointer hover:border-plusPurple transition-all" id="label-class-virtual">
+                                    <input type="radio" name="tipe-kelas" value="VIRTUAL CLASS" class="absolute top-4 right-4 text-plusPurple focus:ring-plusPurple" onclick="highlightClassType('virtual')">
+                                    <div class="space-y-2 pr-6">
+                                        <span class="px-2 py-0.5 bg-blue-100 text-blue-600 text-xs font-bold rounded-md">Online Interaktif</span>
+                                        <h4 class="font-bold text-slate-800 text-base">VIRTUAL CLASS</h4>
+                                        <p class="text-xs text-slate-500">Belajar interaktif dari mana saja melalui telekonferensi video dengan alat visual.</p>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- SEKSI DAFTAR KELAS & MAPEL DIAMBIL (DINAMIS) -->
+                        <div class="space-y-6 bg-slate-50 p-6 rounded-2xl border border-slate-100">
+                            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                                <div>
+                                    <h3 class="text-xl font-bold text-slate-800"><i class="fa-solid fa-list-check mr-2"></i> Kelas & Mapel yang Diambil</h3>
+                                    <p class="text-xs text-slate-500 mt-1">Silakan tambahkan satu atau beberapa kelas pelajaran yang ingin diikuti.</p>
+                                </div>
+                                <button type="button" onclick="addClassRow()" class="px-4 py-2 bg-plusPurple text-white text-xs font-bold rounded-xl hover:bg-plusPurple-700 transition flex items-center gap-1">
+                                    <i class="fa-solid fa-plus"></i> Tambah Kelas/Mapel
+                                </button>
+                            </div>
+
+                            <!-- Container Row Kelas Dinamis -->
+                            <div id="class-rows-container" class="space-y-4">
+                                <!-- Row 1 Default -->
+                                <div class="class-row bg-white p-4 rounded-xl border border-slate-200 grid grid-cols-1 md:grid-cols-2 gap-4 relative">
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-500 mb-1">Mata Pelajaran / Program</label>
+                                        <select required class="row-mapel w-full px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-plusPurple">
+                                            <option value="">-- Pilih Mata Pelajaran --</option>
+                                            <option value="Sains Dasar Sehari-hari">Sains Dasar Sehari-hari</option>
+                                            <option value="Jarimatika">Jarimatika</option>
+                                            <option value="Bahasa Inggris Dasar Sehari-hari">Bahasa Inggris Dasar Sehari-hari</option>
+                                            <option value="Pelajaran Umum Sekolah - Matematika">Pelajaran Umum Sekolah - Matematika</option>
+                                            <option value="Pelajaran Umum Sekolah - Bahasa Inggris">Pelajaran Umum Sekolah - Bahasa Inggris</option>
+                                            <option value="Bahasa Inggris Speaking Dasar">Bahasa Inggris Speaking Dasar</option>
+                                            <option value="Bahasa Inggris (UJI)">Bahasa Inggris (UJI)</option>
+                                            <option value="Sains Praktik Dasar">Sains Praktik Dasar</option>
+                                        </select>
+                                    </div>
+                                    <div class="flex items-end gap-2">
+                                        <div class="flex-grow">
+                                            <label class="block text-xs font-bold text-slate-500 mb-1">Catatan</label>
+                                            <input type="text" class="row-catatan w-full px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-plusPurple" placeholder="Keterangan kesulitannya">
+                                        </div>
+                                        <!-- Hapus Button (Disabled untuk Row pertama) -->
+                                        <button type="button" disabled class="px-3 py-2 text-slate-300 bg-slate-100 rounded-xl cursor-not-allowed">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CATATAN JADWAL REFERENSI -->
+                        <div class="space-y-4">
+                            <h3 class="text-xl font-bold text-slate-800 border-b pb-2"><i class="fa-solid fa-clock-rotate-left mr-2"></i> Usulan Jadwal Belajar</h3>
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">Pilih Preferensi Hari & Jam Belajar (Referensi Admin) *</label>
+                                <textarea id="reg-jadwal-note" required rows="2" class="w-full px-4 py-3 border border-slate-200 rounded-2xl focus:outline-none focus:border-plusPurple transition" placeholder="Contoh: Senin & Rabu jam 15.00 sore, atau Sabtu Pagi."></textarea>
+                                <p class="text-xs text-plusOrange font-medium mt-2">
+                                    <i class="fa-solid fa-circle-exclamation"></i> Note: Kepastian jadwal kelas yang tersedia akan diinfokan kembali oleh admin segera setelah pendaftaran Anda diverifikasi dan dikonfirmasi.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- SUBMIT BUTTON -->
+                        <div class="pt-4 border-t flex flex-col sm:flex-row justify-between items-center gap-4">
+                            <p class="text-xs text-slate-400">Pastikan seluruh data wajib (*) telah terisi sebelum menekan tombol daftar.</p>
+                            <button type="submit" id="btn-submit-pendaftaran" class="w-full sm:w-auto px-10 py-4 bg-plusOrange text-white font-bold text-lg rounded-2xl shadow-md hover:bg-plusOrange-500 transition duration-300 flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-paper-plane"></i> Kirim Formulir Pendaftaran
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB: JADWAL KELAS -->
+        <section id="content-jadwal" class="tab-content py-8 md:py-16 hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto space-y-4 mb-12">
+                    <span class="text-plusOrange font-bold tracking-wider uppercase text-sm block">🗓️ Cek Sesi Belajar</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-plusPurple">Jadwal Kelas Aktif</h2>
+                    <div class="w-24 h-1 bg-plusOrange-500 mx-auto rounded-full"></div>
+                    <p class="text-slate-500 text-sm">Menampilkan jadwal belajar rutin mingguan yang sedang berjalan di Bimbel PLUS.</p>
+                </div>
+
+                <!-- Live Search dan Kode Murid Filter -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-md max-w-2xl mx-auto mb-12">
+                    <h3 class="font-bold text-slate-800 text-base mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-magnifying-glass text-plusPurple"></i> Cari Jadwal Belajar Siswa
+                    </h3>
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <input type="text" id="search-kode-murid" class="flex-grow px-4 py-3 border border-slate-200 rounded-2xl focus:outline-none focus:border-plusPurple text-sm" placeholder="Masukkan KODE MURID Anda (misal: MPS-001)">
+                        <button onclick="cariJadwal()" class="px-6 py-3 bg-plusPurple text-white font-bold rounded-2xl hover:bg-plusPurple-700 transition text-sm flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-search"></i> Cari Jadwal
+                        </button>
+                    </div>
+                    <p class="text-[11px] text-slate-400 mt-2">Dapatkan kode murid Anda saat admin melakukan konfirmasi pendaftaran pertama kali.</p>
+                </div>
+
+                <!-- Informasi Box Pencarian (Hidden default) -->
+                <div id="search-result-box" class="hidden max-w-2xl mx-auto mb-8 p-4 bg-emerald-50 border border-emerald-100 rounded-2xl flex items-start gap-3">
+                    <i class="fa-solid fa-circle-check text-emerald-500 text-lg mt-0.5"></i>
+                    <div>
+                        <h4 class="font-bold text-emerald-800 text-sm">Jadwal Ditemukan untuk: <span id="res-nama-murid" class="underline">Siswa</span></h4>
+                        <p class="text-xs text-slate-600 mt-1">Status Keanggotaan: <span class="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded text-[10px] font-bold">AKTIF</span></p>
+                    </div>
+                </div>
+
+                <!-- JADWAL TABEL KELAS (DINAMIS DARI GOOGLE SHEETS) -->
+                <div class="space-y-8" id="schedules-tables-container">
+                    <div class="text-center py-8 text-slate-400" id="schedule-loading-text">
+                        <i class="fa-solid fa-spinner fa-spin mr-2"></i> Mengambil data jadwal dari Google Sheets...
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- TAB: TESTIMONI -->
+        <section id="content-testimoni" class="tab-content py-8 md:py-16 hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+                    <span class="text-plusOrange font-bold tracking-wider uppercase text-sm block">💬 Kata Mereka</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-plusPurple">Testimoni Wali & Siswa</h2>
+                    <div class="w-24 h-1 bg-plusOrange-500 mx-auto rounded-full"></div>
+                    <p class="text-slate-500">Membaca cerita sukses dan kepuasan belajar dari para wali murid dan siswa kami di Bimbel PLUS.</p>
+                </div>
+
+                <!-- Grid Testimoni -->
+                <div id="testimonis-container" class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                    <div class="col-span-full text-center py-8 text-slate-400" id="testi-loading-text">
+                        <i class="fa-solid fa-spinner fa-spin mr-2"></i> Memuat testimoni...
+                    </div>
+                </div>
+
+                <!-- Form untuk Tambah Testimoni Baru -->
+                <div class="bg-white max-w-3xl mx-auto rounded-3xl shadow-xl p-8 md:p-12 border border-slate-100">
+                    <h3 class="text-2xl font-bold text-plusPurple text-center mb-2">Tuliskan Kesan & Pengalaman Belajar Anda</h3>
+                    <p class="text-xs text-slate-400 text-center mb-8">Berikan tanggapan jujur untuk membantu kami terus meningkatkan kualitas pengajaran di PLUS.</p>
+                    
+                    <form onsubmit="submitTestimoni(event)" class="space-y-6" id="testimoniForm">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">Nama Pengirim *</label>
+                                <input type="text" id="testi-nama" required class="w-full px-4 py-3 border border-slate-200 rounded-2xl focus:outline-none focus:border-plusPurple text-sm" placeholder="Contoh: Ibu Linda / Riko">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">Wali Siswa / Siswa (Kelas) *</label>
+                                <input type="text" id="testi-sub" required class="w-full px-4 py-3 border border-slate-200 rounded-2xl focus:outline-none focus:border-plusPurple text-sm" placeholder="Contoh: Wali dari Clara (Kelas 4 SD)">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">Nilai Kepuasan (Bintang) *</label>
+                            <div class="flex gap-2 text-2xl text-slate-300">
+                                <button type="button" onclick="setRating(1)" class="star-btn transition hover:scale-110" data-star="1"><i class="fa-solid fa-star"></i></button>
+                                <button type="button" onclick="setRating(2)" class="star-btn transition hover:scale-110" data-star="2"><i class="fa-solid fa-star"></i></button>
+                                <button type="button" onclick="setRating(3)" class="star-btn transition hover:scale-110" data-star="3"><i class="fa-solid fa-star"></i></button>
+                                <button type="button" onclick="setRating(4)" class="star-btn transition hover:scale-110" data-star="4"><i class="fa-solid fa-star"></i></button>
+                                <button type="button" onclick="setRating(5)" class="star-btn transition hover:scale-110" data-star="5"><i class="fa-solid fa-star text-amber-400"></i></button>
+                            </div>
+                            <input type="hidden" id="testi-rating" value="5">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">Pesan Testimoni Anda *</label>
+                            <textarea id="testi-pesan" required rows="4" class="w-full px-4 py-3 border border-slate-200 rounded-2xl focus:outline-none focus:border-plusPurple text-sm" placeholder="Ceritakan bagaimana perkembangan belajar anak bersama kami..."></textarea>
+                        </div>
+
+                        <button type="submit" id="btn-submit-testimoni" class="w-full py-4 bg-plusPurple text-white font-bold rounded-2xl hover:bg-plusPurple-700 shadow-md transition">Kirim Testimoni</button>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER INFORMASI LENGKAP -->
+    <footer class="bg-slate-900 text-slate-300 pt-16 pb-8 border-t-8 border-plusPurple">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-12">
+                
+                <!-- Identitas Brand -->
+                <div class="md:col-span-4 space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-white p-1 rounded-full flex items-center justify-center">
+                            <i class="fa-solid fa-graduation-cap text-plusPurple text-xl"></i>
+                        </div>
+                        <span class="text-xl font-bold text-white brand-font tracking-wider">PLUS</span>
+                    </div>
+                    <p class="text-xs leading-relaxed text-slate-400">
+                        Kami berkomitmen memberikan bimbingan dengan kurikulum yang terarah, menyenangkan, serta interaksi yang dipersonalisasi maksimal demi menumbuhkan potensi belajar anak.
+                    </p>
+                    <div class="flex gap-3">
+                        <a href="#" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-plusPurple flex items-center justify-center text-sm transition"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-plusPurple flex items-center justify-center text-sm transition"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-plusPurple flex items-center justify-center text-sm transition"><i class="fa-brands fa-tiktok"></i></a>
+                    </div>
+                </div>
+
+                <!-- Hubungi Kami -->
+                <div class="md:col-span-4 space-y-4">
+                    <h4 class="text-white font-bold text-sm uppercase tracking-wider">Hubungi Kami</h4>
+                    <div class="space-y-3 text-xs text-slate-400">
+                        <p class="flex items-start gap-3">
+                            <i class="fa-solid fa-location-dot text-plusOrange-500 text-base shrink-0 mt-0.5"></i>
+                            <span>Jl. Gonoharjo Rt 01 Rw 01 Nglimut, Limbangan, Jawa Tengah</span>
+                        </p>
+                        <p class="flex items-center gap-3">
+                            <i class="fa-solid fa-phone text-plusOrange-500 shrink-0"></i>
+                            <span>0857-4092-0249</span>
+                        </p>
+                        <p class="flex items-center gap-3">
+                            <i class="fa-brands fa-whatsapp text-plusOrange-500 text-sm shrink-0"></i>
+                            <span>WA: 0857-4092-0249</span>
+                        </p>
+                    </div>
+                    <div class="pt-2">
+                        <a href="https://wa.me/6285740920249?text=Halo%20Admin%20Bimbel%20PLUS,%20saya%20ingin%20bertanya%20informasi%20kelas." target="_blank" class="px-4 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs rounded-xl transition inline-flex items-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-base"></i> Tanya Kami via WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Google Maps Embed -->
+                <div class="md:col-span-4 space-y-4">
+                    <h4 class="text-white font-bold text-sm uppercase tracking-wider flex items-center gap-2">
+                        <i class="fa-solid fa-map-location-dot text-plusOrange-500"></i> Google Maps Lokasi
+                    </h4>
+                    <div class="rounded-2xl overflow-hidden border border-slate-700 h-44 shadow-lg">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3959.049448834925!2d110.2604758!3d-7.1197943!2m3!1f0!2f0!3f0!3m2!1i1024!2i1024!3m4!1s0x2e707dc879008bc5%3A0xe5432d0c265a7e6b!2sLittle%20Kitchen%20Houses!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                    <p class="text-[11px] text-slate-500 italic">Pencarian Peta: Little Kitchen Houses</p>
+                </div>
+
+            </div>
+
+            <!-- Bagian Hak Cipta -->
+            <div class="pt-8 border-t border-slate-800 text-center text-xs text-slate-500">
+                <p>&copy; 2026 Bimbel by PLUS. All Rights Reserved. Potensimu Layak Dapat "PLUS".</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- POPUP MODAL: INFORMASI DETAIL TIPE KELAS -->
+    <div id="modal-info-kelas" class="fixed inset-0 bg-black bg-opacity-50 z-[100] flex items-center justify-center p-4 hidden">
+        <div class="bg-white w-full max-w-2xl rounded-3xl overflow-hidden shadow-2xl transition duration-300">
+            <!-- Header Modal -->
+            <div class="bg-plusPurple p-6 text-white flex justify-between items-center">
+                <h3 class="font-bold text-lg flex items-center gap-2"><i class="fa-solid fa-circle-info"></i> Panduan Opsi Tipe Kelas Bimbel PLUS</h3>
+                <button onclick="closeModal('modal-info-kelas')" class="text-white hover:text-slate-200"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <!-- Isi Konten Modal -->
+            <div class="p-6 md:p-8 space-y-6 max-h-[70vh] overflow-y-auto">
+                <div class="space-y-4">
+                    <div class="p-4 bg-emerald-50 rounded-2xl border border-emerald-100">
+                        <span class="px-2.5 py-1 bg-emerald-500 text-white font-bold text-[10px] rounded uppercase">REGULER CLASS</span>
+                        <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                            <strong>Deskripsi:</strong> Siswa berkumpul langsung di ruang kelas Bimbel PLUS secara luring. 
+                            <br><strong>Kelebihan:</strong> Interaksi sosial yang baik dengan teman sebaya. Dengan batasan maksimal 4 anak per kelas, pembelajaran tetap berlangsung fokus dan terarah tanpa bising.
+                        </p>
+                    </div>
+
+                    <div class="p-4 bg-orange-50 rounded-2xl border border-orange-100">
+                        <span class="px-2.5 py-1 bg-plusOrange text-white font-bold text-[10px] rounded uppercase">PRIVATE CLASS</span>
+                        <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                            <strong>Deskripsi:</strong> Kelas bimbingan eksklusif tatap muka tatap muka, yang berfokus penuh pada 1 anak saja bersama tutor. 
+                            <br><strong>Kelebihan:</strong> Anak bebas menanyakan PR sekolah apa saja secara detail, kecepatan penjelasan menyesuaikan penangkapan anak, dan jadwal lebih fleksibel.
+                        </p>
+                    </div>
+
+                    <div class="p-4 bg-blue-50 rounded-2xl border border-blue-100">
+                        <span class="px-2.5 py-1 bg-blue-600 text-white font-bold text-[10px] rounded uppercase">VIRTUAL CLASS</span>
+                        <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                            <strong>Deskripsi:</strong> Sesi bimbingan jarak jauh interaktif menggunakan konferensi video digital.
+                            <br><strong>Kelebihan:</strong> Menghemat waktu perjalanan anak, sarana media visual interaktif berlimpah, materi digital gampang dibagikan, sangat cocok untuk siswa luar kota.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer Modal -->
+            <div class="p-4 bg-slate-50 border-t flex justify-end">
+                <button onclick="closeModal('modal-info-kelas')" class="px-6 py-2 bg-plusPurple text-white font-bold rounded-xl hover:bg-plusPurple-700 transition text-xs">Paham, Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- NOTIFIKASI POPUP (CUSTOM ALERT) -->
+    <div id="toast-message" class="fixed bottom-6 right-6 bg-slate-900 text-white py-3.5 px-6 rounded-2xl shadow-2xl z-[100] flex items-center gap-3 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+        <span id="toast-icon" class="text-emerald-400 text-lg"><i class="fa-solid fa-circle-check"></i></span>
+        <span id="toast-text" class="text-sm font-semibold">Tindakan berhasil!</span>
+    </div>
+
+    <!-- SCRIPT LOGIC JAVASCRIPT -->
+    <script>
+        // MOCK / FALLBACK DATA (Dipakai otomatis jika WEB_APP_URL belum dikonfigurasi)
+        const mockSchedules = [
+            { hari: "Senin & Kamis", waktu: "14.00 - 15.30", program: "Jarimatika", tingkat: "SD (1-3)", nama_siswa: "Aira, Rayyan, Budi", tutor_platform: "Kak Dian", tipe_kelas: "Reguler Class", kode_siswa: "MPS-001,MPS-004" },
+            { hari: "Senin & Kamis", waktu: "16.00 - 17.30", program: "Pelajaran Umum (MTK)", tingkat: "SD (4-6)", nama_siswa: "Dimas, Clara, Kayla", tutor_platform: "Kak Soni", tipe_kelas: "Reguler Class", kode_siswa: "MPS-002" },
+            { hari: "Selasa & Jumat", waktu: "15.00 - 16.30", program: "Sains Praktik Dasar", tingkat: "Pra TK-TK", nama_siswa: "Naufal, Rania", tutor_platform: "Kak Angga", tipe_kelas: "Reguler Class", kode_siswa: "MPS-003" },
+            { hari: "Selasa", waktu: "16.30 - 18.00", program: "B. Inggris Akademik", tingkat: "SMP (Kelas 8)", nama_siswa: "Ahmad Farhan", tutor_platform: "Miss Lutfi", tipe_kelas: "Private Class", kode_siswa: "MPS-101" },
+            { hari: "Rabu", waktu: "15.00 - 16.30", program: "Pelajaran Umum (MTK)", tingkat: "SMA (Kelas 11)", nama_siswa: "Gita Amalia", tutor_platform: "Kak Rudi", tipe_kelas: "Private Class", kode_siswa: "MPS-102" },
+            { hari: "Rabu & Sabtu", waktu: "19.00 - 20.30", program: "B. Inggris Speaking Dasar", tingkat: "SD (5-6)", nama_siswa: "Rico, Jasmine, Evan", tutor_platform: "Google Meet", tipe_kelas: "Virtual Class", kode_siswa: "MPS-201" }
+        ];
+
+        const mockTestimonis = [
+            { nama: "Ibu Ratna", subjek: "Wali dari Rayyan (Kelas 2 SD)", rating: 5, pesan: "Semenjak anak saya les di Bimbel PLUS kelas reguler, nilai ulangannya meningkat drastis. Yang paling menakjubkan, rasio 4 anak di kelas membuat dia diperhatikan maksimal oleh gurunya!" },
+            { nama: "Bp. Hermawan", subjek: "Wali dari Kayla (Kelas 5 SD)", rating: 5, pesan: "Anak saya paling suka sesi Jarimatika dan Sains Praktiknya. Belajarnya asyik dan menyenangkan sekali, dia tidak merasa terbebani seperti belajar biasa. Sangat rekomended bagi orang tua yang ingin nilai tambah." },
+            { nama: "Ahmad Farhan", subjek: "Siswa Kelas 8 SMP", rating: 5, pesan: "Belajar matematika luring di private class sungguh membantu mempersiapkan ulangan harian. Kakaknya sabar dan menjelaskannya memakai analogi sehari-hari sehingga sangat gampang ditangkap." }
+        ];
+
+        // State Penyimpanan Lokal Data Aktif
+        let activeSchedules = [];
+        let activeTestimonis = [];
+
+        // DOM LOAD
+        document.addEventListener("DOMContentLoaded", function() {
+            switchTab('home');
+            loadInitialData();
+        });
+
+        // Membaca Data Awal dari API Google Sheets atau Fallback ke Mock Data
+        async function loadInitialData() {
+            if (!WEB_APP_URL) {
+                console.warn("WEB_APP_URL belum diisi. Menggunakan mock data untuk visualisasi halaman.");
+                activeSchedules = mockSchedules;
+                activeTestimonis = mockTestimonis;
+                renderSchedules(activeSchedules);
+                renderTestimonis(activeTestimonis);
+                return;
+            }
+
+            // Ambil Data Jadwal
+            try {
+                const response = await fetch(`${WEB_APP_URL}?action=get_schedules`);
+                const result = await response.json();
+                if (result.status === "success" && result.data.length > 0) {
+                    activeSchedules = result.data;
+                } else {
+                    activeSchedules = mockSchedules;
+                }
+            } catch (err) {
+                console.error("Gagal terhubung ke Google Sheets API Jadwal:", err);
+                activeSchedules = mockSchedules;
+            }
+            renderSchedules(activeSchedules);
+
+            // Ambil Data Testimoni
+            try {
+                const response = await fetch(`${WEB_APP_URL}?action=get_testimonis`);
+                const result = await response.json();
+                if (result.status === "success" && result.data.length > 0) {
+                    activeTestimonis = result.data;
+                } else {
+                    activeTestimonis = mockTestimonis;
+                }
+            } catch (err) {
+                console.error("Gagal terhubung ke Google Sheets API Testimoni:", err);
+                activeTestimonis = mockTestimonis;
+            }
+            renderTestimonis(activeTestimonis);
+        }
+
+        // Render Tabel Jadwal secara Dinamis berdasarkan Kelas Layanan
+        function renderSchedules(schedules) {
+            const container = document.getElementById("schedules-tables-container");
+            container.innerHTML = ""; // Bersihkan loading text
+
+            const categories = [
+                { id: "reguler", title: "REGULER CLASS (Belajar Kelompok Luring)", bg: "bg-[#b4f8c8]", icon: "fa-users", info: "Max 4 Siswa/Kelas", filterKey: "REGULER CLASS" },
+                { id: "private", title: "PRIVATE CLASS (Eksklusif 1-On-1)", bg: "bg-orange-100", icon: "fa-graduation-cap", info: "Fokus & Intensif", filterKey: "PRIVATE CLASS" },
+                { id: "virtual", title: "VIRTUAL CLASS (Belajar Daring Interaktif)", bg: "bg-blue-100", icon: "fa-display", info: "Dari Mana Saja", filterKey: "VIRTUAL CLASS" }
+            ];
+
+            categories.forEach(cat => {
+                const filtered = schedules.filter(s => 
+                    s.tipe_kelas && s.tipe_kelas.toUpperCase() === cat.filterKey
+                );
+
+                if (filtered.length === 0) return; // Sembunyikan tabel jika tidak ada data
+
+                let rowsHtml = filtered.map(row => `
+                    <tr class="hover:bg-slate-50 transition duration-150 border-b border-slate-100" data-siswa-ids="${row.kode_siswa || ''}">
+                        <td class="p-4 font-bold text-slate-800">${row.hari || '-'}</td>
+                        <td class="p-4">${row.waktu || '-'}</td>
+                        <td class="p-4">
+                            <span class="px-2.5 py-1 ${cat.id === 'reguler' ? 'bg-green-50 text-emerald-700' : cat.id === 'private' ? 'bg-orange-50 text-plusOrange-500' : 'bg-blue-50 text-blue-700'} rounded-lg text-xs font-semibold">
+                                ${row.program || row.mata_pelajaran || '-'}
+                            </span>
+                        </td>
+                        <td class="p-4">${row.tingkat || '-'}</td>
+                        <td class="p-4 font-medium text-slate-700">${row.nama_siswa || '-'}</td>
+                        <td class="p-4">
+                            ${cat.id === 'virtual' 
+                                ? `<span class="text-xs bg-slate-100 text-slate-700 px-2 py-1 rounded border"><i class="fa-solid fa-video mr-1"></i> ${row.tutor_platform || '-'}</span>`
+                                : row.tutor_platform || '-'
+                            }
+                        </td>
+                    </tr>
+                `).join('');
+
+                const tableHtml = `
+                    <div class="bg-white rounded-3xl border border-slate-100 shadow-lg overflow-hidden schedule-card mb-8" id="schedule-${cat.id}">
+                        <div class="${cat.bg} px-6 py-4 flex items-center justify-between">
+                            <h3 class="font-bold text-slate-800 flex items-center gap-2">
+                                <i class="fa-solid ${cat.icon} text-slate-700"></i> ${cat.title}
+                            </h3>
+                            <span class="text-xs bg-white text-slate-700 font-bold px-3 py-1 rounded-full">${cat.info}</span>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-slate-50 border-b border-slate-100 text-slate-500 text-xs font-bold uppercase">
+                                        <th class="p-4">Hari</th>
+                                        <th class="p-4">Waktu (WIB)</th>
+                                        <th class="p-4">Program / Mapel</th>
+                                        <th class="p-4">Tingkat</th>
+                                        <th class="p-4">Nama Siswa</th>
+                                        <th class="p-4">${cat.id === 'virtual' ? 'Platform Web' : 'Pengajar (Tutor)'}</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-100 text-sm text-slate-600">
+                                    ${rowsHtml}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', tableHtml);
+            });
+        }
+
+        // Render Grid Testimoni secara Dinamis
+        function renderTestimonis(testimonis) {
+            const container = document.getElementById("testimonis-container");
+            container.innerHTML = ""; // Bersihkan loading text
+
+            testimonis.forEach(t => {
+                const inisial = t.nama ? t.nama.substring(0, 2).toUpperCase() : "AN";
+                const ratingVal = parseInt(t.rating) || 5;
+                
+                let starsHtml = "";
+                for (let i = 0; i < 5; i++) {
+                    starsHtml += `<i class="fa-solid fa-star ${i < ratingVal ? 'text-amber-400' : 'text-slate-200'}"></i>`;
+                }
+
+                const cardHtml = `
+                    <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-md flex flex-col justify-between transform hover:scale-[1.02] transition duration-300">
+                        <div class="space-y-4">
+                            <div class="flex text-amber-400 gap-1">
+                                ${starsHtml}
+                            </div>
+                            <p class="text-slate-600 text-sm italic leading-relaxed">
+                                "${t.pesan}"
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-4 pt-6 border-t mt-6">
+                            <div class="w-12 h-12 rounded-full bg-plusPurple-100 flex items-center justify-center text-plusPurple font-bold">
+                                ${inisial}
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-800 text-sm">${t.nama}</h4>
+                                <p class="text-[11px] text-slate-400">${t.subjek || t.sub}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', cardHtml);
+            });
+        }
+
+        // Toggle mobile menu hamburger
+        function toggleMobileMenu() {
+            const menu = document.getElementById("mobile-menu");
+            const icon = document.getElementById("menu-icon");
+            if (menu.classList.contains("hidden")) {
+                menu.classList.remove("hidden");
+                icon.className = "fa-solid fa-xmark text-xl";
+            } else {
+                menu.classList.add("hidden");
+                icon.className = "fa-solid fa-bars text-xl";
+            }
+        }
+
+        // Switch Antar Tab Menu Utama
+        function switchTab(tabId) {
+            // Sembunyikan semua tab content
+            const contents = document.querySelectorAll(".tab-content");
+            contents.forEach(content => content.classList.add("hidden"));
+
+            // Tampilkan tab yang dipilih
+            const targetContent = document.getElementById(`content-${tabId}`);
+            if (targetContent) {
+                targetContent.classList.remove("hidden");
+            }
+
+            // Update status visual tombol navigasi Desktop
+            const tabs = document.querySelectorAll(".nav-tab");
+            tabs.forEach(tab => {
+                tab.classList.remove("text-plusPurple", "font-bold", "border-plusOrange-500");
+                tab.classList.add("text-slate-500", "border-transparent");
+            });
+
+            const activeTab = document.getElementById(`tab-${tabId}`);
+            if (activeTab) {
+                activeTab.classList.remove("text-slate-500", "border-transparent");
+                activeTab.classList.add("text-plusPurple", "font-bold", "border-plusOrange-500");
+            }
+
+            // Sembunyikan mobile menu setelah klik
+            document.getElementById("mobile-menu").classList.add("hidden");
+            document.getElementById("menu-icon").className = "fa-solid fa-bars text-xl";
+
+            // Scroll ke atas otomatis
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Buka modal pembantu
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove("hidden");
+                document.body.style.overflow = "hidden"; // Disable scroll body belakang
+            }
+        }
+
+        // Tutup modal pembantu
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add("hidden");
+                document.body.style.overflow = ""; // Enable scroll
+            }
+        }
+
+        // Efek Visual Aktif pada Tipe Kelas Radio yang dipilih
+        function highlightClassType(type) {
+            const reguler = document.getElementById("label-class-reguler");
+            const private = document.getElementById("label-class-private");
+            const virtual = document.getElementById("label-class-virtual");
+
+            // Reset borders
+            reguler.className = reguler.className.replace("border-plusPurple border-plusPurple-100 bg-emerald-50", "border-slate-200");
+            private.className = private.className.replace("border-plusPurple border-plusPurple-100 bg-orange-50", "border-slate-200");
+            virtual.className = virtual.className.replace("border-plusPurple border-plusPurple-100 bg-blue-50", "border-slate-200");
+
+            // Set Border Baru
+            if (type === 'reguler') {
+                reguler.className = reguler.className.replace("border-slate-200", "border-plusPurple border-plusPurple-100 bg-emerald-50");
+                showToast("Memilih Reguler Class (Luring)");
+            } else if (type === 'private') {
+                private.className = private.className.replace("border-slate-200", "border-plusPurple border-plusPurple-100 bg-orange-50");
+                showToast("Memilih Private Class (Eksklusif)");
+            } else if (type === 'virtual') {
+                virtual.className = virtual.className.replace("border-slate-200", "border-plusPurple border-plusPurple-100 bg-blue-50");
+                showToast("Memilih Virtual Class (Daring)");
+            }
+        }
+
+        // Opsi Kelas Dinamis berdasarkan pilihan jenjang (TK, SD, SMP, SMA)
+        function updateClassOptions() {
+            const jenjangVal = document.getElementById("reg-kelas").value;
+            const rowsSelects = document.querySelectorAll(".row-mapel");
+            
+            rowsSelects.forEach(select => {
+                const mapelOptions = select.options;
+                
+                // Reset ketersediaan pilihan terlebih dahulu
+                for (let i = 0; i < mapelOptions.length; i++) {
+                    mapelOptions[i].disabled = false;
+                }
+
+                // Filter berdasarkan jenjang yang dipilih
+                if (jenjangVal === "Pra TK-TK") {
+                    for (let i = 0; i < mapelOptions.length; i++) {
+                        const optVal = mapelOptions[i].value;
+                        if (optVal && !["Sains Dasar Sehari-hari", "Jarimatika", "Bahasa Inggris Dasar Sehari-hari"].includes(optVal)) {
+                            mapelOptions[i].disabled = true;
+                        }
+                    }
+                } else if (jenjangVal.startsWith("SD")) {
+                    for (let i = 0; i < mapelOptions.length; i++) {
+                        const optVal = mapelOptions[i].value;
+                        if (optVal && ["Bahasa Inggris (UJI)"].includes(optVal)) {
+                            mapelOptions[i].disabled = true;
+                        }
+                    }
+                } else if (jenjangVal.startsWith("SMP") || jenjangVal.startsWith("SMA")) {
+                    for (let i = 0; i < mapelOptions.length; i++) {
+                        const optVal = mapelOptions[i].value;
+                        if (optVal && ["Sains Dasar Sehari-hari", "Jarimatika", "Sains Praktik Dasar"].includes(optVal)) {
+                            mapelOptions[i].disabled = true;
+                        }
+                    }
+                }
+            });
+        }
+
+        // Tambah baris input kelas pelajaran dinamis
+        function addClassRow() {
+            const container = document.getElementById("class-rows-container");
+            const rowCount = container.children.length;
+            
+            // Limit maksimal penambahan (misal maks 5 kelas)
+            if (rowCount >= 5) {
+                showToast("Maksimal pengambilan 5 kelas sekaligus!", "error");
+                return;
+            }
+
+            const newRow = document.createElement("div");
+            newRow.className = "class-row bg-white p-4 rounded-xl border border-slate-200 grid grid-cols-1 md:grid-cols-2 gap-4 relative";
+            newRow.innerHTML = `
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 mb-1">Mata Pelajaran / Program</label>
+                    <select required class="row-mapel w-full px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-plusPurple">
+                        <option value="">-- Pilih Mata Pelajaran --</option>
+                        <option value="Sains Dasar Sehari-hari">Sains Dasar Sehari-hari</option>
+                        <option value="Jarimatika">Jarimatika</option>
+                        <option value="Bahasa Inggris Dasar Sehari-hari">Bahasa Inggris Dasar Sehari-hari</option>
+                        <option value="Pelajaran Umum Sekolah - Matematika">Pelajaran Umum Sekolah - Matematika</option>
+                        <option value="Pelajaran Umum Sekolah - Bahasa Inggris">Pelajaran Umum Sekolah - Bahasa Inggris</option>
+                        <option value="Bahasa Inggris Speaking Dasar">Bahasa Inggris Speaking Dasar</option>
+                        <option value="Bahasa Inggris (UJI)">Bahasa Inggris (UJI)</option>
+                        <option value="Sains Praktik Dasar">Sains Praktik Dasar</option>
+                    </select>
+                </div>
+                <div class="flex items-end gap-2">
+                    <div class="flex-grow">
+                        <label class="block text-xs font-bold text-slate-500 mb-1">Catatan</label>
+                        <input type="text" class="row-catatan w-full px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-plusPurple" placeholder="Keterangan kesulitannya">
+                    </div>
+                    <!-- Hapus Button -->
+                    <button type="button" onclick="removeClassRow(this)" class="px-3 py-2 text-rose-500 bg-rose-50 border border-rose-100 rounded-xl hover:bg-rose-100 transition">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
+            `;
+            container.appendChild(newRow);
+            updateClassOptions();
+            showToast("Berhasil menambahkan baris kelas baru!");
+        }
+
+        // Hapus baris kelas dinamis
+        function removeClassRow(btn) {
+            const row = btn.closest(".class-row");
+            row.remove();
+            showToast("Baris kelas berhasil dihapus");
+        }
+
+        // Mengirim Formulir Pendaftaran (Sinkronisasi Nyata ke Spreadsheet)
+        async function submitForm(event) {
+            event.preventDefault();
+
+            const btnSubmit = document.getElementById("btn-submit-pendaftaran");
+            const originalBtnContent = btnSubmit.innerHTML;
+            
+            // Atur visual tombol memuat/loading
+            btnSubmit.disabled = true;
+            btnSubmit.innerHTML = `<i class="fa-solid fa-spinner fa-spin mr-2"></i> Mengirim data...`;
+
+            // Ambil data nilai form
+            const nama = document.getElementById("reg-nama").value;
+            const alamat = document.getElementById("reg-alamat").value;
+            const minat = document.getElementById("reg-minat").value;
+            const kelas = document.getElementById("reg-kelas").value;
+            const tipeKelas = document.querySelector('input[name="tipe-kelas"]:checked').value;
+            const jadwalNote = document.getElementById("reg-jadwal-note").value;
+
+            // Ambil cara belajar terpilih
+            const metodeCheckboxes = document.querySelectorAll('input[name="metode"]:checked');
+            let metodeBelajar = [];
+            metodeCheckboxes.forEach(cb => metodeBelajar.push(cb.value));
+
+            // Ambil seluruh kelas pelajaran dinamis yang diisi
+            const rowsMapel = document.querySelectorAll(".row-mapel");
+            const rowsCatatan = document.querySelectorAll(".row-catatan");
+            let daftarKelasDiambil = [];
+
+            for (let i = 0; i < rowsMapel.length; i++) {
+                if (rowsMapel[i].value) {
+                    daftarKelasDiambil.push({
+                        mapel: rowsMapel[i].value,
+                        catatan: rowsCatatan[i].value || '-'
+                    });
+                }
+            }
+
+            // Gabungkan objek pendaftaran murid
+            const payloadMurid = {
+                action: "register",
+                nama: nama,
+                kelas_jenjang: kelas,
+                alamat: alamat,
+                minat_hobi: minat,
+                cara_belajar: metodeBelajar.join(", ") || "-",
+                opsi_layanan: tipeKelas,
+                kelas_diambil: JSON.stringify(daftarKelasDiambil),
+                jadwal_referensi: jadwalNote
+            };
+
+            let studentID = "MPS-" + Math.floor(100 + Math.random() * 900); // Id cadangan
+
+            if (WEB_APP_URL) {
+                try {
+                    const response = await fetch(WEB_APP_URL, {
+                        method: 'POST',
+                        mode: 'no-cors', // Penting untuk melewati pembatasan CORS web app bawaan Google
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(payloadMurid)
+                    });
+                    
+                    // Karena mode 'no-cors' tidak membalas body (opaque response), kita menginfokan data tersimpan.
+                    showToast("Formulir sukses dikirim!");
+                } catch (error) {
+                    console.error("Kesalahan pengiriman Google Sheets:", error);
+                    showToast("Pengiriman bermasalah, menggunakan registrasi offline.", "error");
+                }
+            } else {
+                console.warn("WEB_APP_URL belum dikonfigurasi. Menggunakan penyimpanan simulasi lokal.");
+            }
+
+            // Menampilkan Custom Modal Konfirmasi Berhasil
+            const dialogBox = document.createElement("div");
+            dialogBox.className = "fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 z-[999]";
+            dialogBox.innerHTML = `
+                <div class="bg-white rounded-3xl max-w-md w-full p-8 text-center space-y-6 shadow-2xl transform scale-100 transition duration-300">
+                    <div class="w-20 h-20 bg-emerald-100 text-emerald-500 rounded-full flex items-center justify-center text-4xl mx-auto">
+                        <i class="fa-solid fa-clipboard-check"></i>
+                    </div>
+                    <div class="space-y-2">
+                        <h3 class="font-bold text-2xl text-slate-800">Pendaftaran Terkirim!</h3>
+                        <p class="text-sm text-slate-500">Formulir pendaftaran ananda <strong class="text-plusPurple">${nama}</strong> berhasil disimpan.</p>
+                    </div>
+                    <div class="bg-purple-50 p-4 rounded-2xl border border-purple-100">
+                        <span class="text-xs text-slate-400 block font-semibold uppercase">Kode Murid Sementara</span>
+                        <span class="text-2xl font-black text-plusPurple tracking-wider">${studentID}</span>
+                        <p class="text-[10px] text-slate-500 mt-2">Gunakan kode sementara ini untuk mengecek jadwal rutin berkala jika telah disetujui.</p>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <a href="https://wa.me/6285740920249?text=Halo%20Admin%20Bimbel%20PLUS,%20saya%20sudah%20mendaftar%20untuk%20siswa%20${encodeURIComponent(nama)}.%20Kode%20Murid%20Sementara:%20${studentID}" target="_blank" class="w-full py-3 bg-emerald-500 text-white font-bold text-sm rounded-xl hover:bg-emerald-600 transition flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-lg"></i> Konfirmasi via WhatsApp
+                        </a>
+                        <button onclick="closeSuccessDialog(this)" class="w-full py-3 bg-slate-100 text-slate-600 font-bold text-sm rounded-xl hover:bg-slate-200 transition">Kembali ke Beranda</button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(dialogBox);
+            
+            // Pulihkan Tombol
+            btnSubmit.disabled = false;
+            btnSubmit.innerHTML = originalBtnContent;
+
+            // Reset Form Pendaftaran
+            document.getElementById("registrationForm").reset();
+            // Reset highlights visual
+            document.getElementById("label-class-reguler").className = document.getElementById("label-class-reguler").className.replace("border-plusPurple bg-emerald-50", "border-slate-200");
+            document.getElementById("label-class-private").className = document.getElementById("label-class-private").className.replace("border-plusPurple bg-orange-50", "border-slate-200");
+            document.getElementById("label-class-virtual").className = document.getElementById("label-class-virtual").className.replace("border-plusPurple bg-blue-50", "border-slate-200");
+        }
+
+        function closeSuccessDialog(btn) {
+            const dialog = btn.closest(".fixed");
+            dialog.remove();
+            switchTab('home');
+        }
+
+        // CARI JADWAL AKTIF MENGGUNAKAN KODE MURID (SINKRON DATA NYATA)
+        function cariJadwal() {
+            const queryKode = document.getElementById("search-kode-murid").value.trim().toUpperCase();
+            const resultBox = document.getElementById("search-result-box");
+            const resNamaMurid = document.getElementById("res-nama-murid");
+
+            if (!queryKode) {
+                showToast("Mohon masukkan kode murid terlebih dahulu", "error");
+                return;
+            }
+
+            // Temukan di dalam activeSchedules (terintegrasi Google Sheets / Mock)
+            const matchedRow = activeSchedules.find(s => 
+                s.kode_siswa && s.kode_siswa.toUpperCase().includes(queryKode)
+            );
+            
+            // Reset highlight pada tabel jadwal
+            const rows = document.querySelectorAll("tbody tr");
+            rows.forEach(r => r.classList.remove("bg-yellow-50", "border-l-4", "border-yellow-400"));
+
+            if (matchedRow) {
+                // Tampilkan hasil pencarian fiktif
+                resultBox.classList.remove("hidden");
+                resNamaMurid.textContent = `Ananda ${matchedRow.nama_siswa} (${matchedRow.tipe_kelas || 'Kelas'})`;
+                
+                // Cari baris tabel yang bersesuaian dengan ID siswa tersebut dan berikan highlight
+                let foundRow = false;
+                rows.forEach(row => {
+                    const studentIdsStr = row.getAttribute("data-siswa-ids");
+                    if (studentIdsStr && studentIdsStr.toUpperCase().includes(queryKode)) {
+                        row.classList.add("bg-yellow-50", "border-l-4", "border-yellow-400");
+                        row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        foundRow = true;
+                    }
+                });
+
+                if (foundRow) {
+                    showToast("Jadwal ditemukan dan di-highlight!");
+                } else {
+                    showToast("Siswa aktif, silakan cek baris tabel jadwal bersangkutan.");
+                }
+
+            } else {
+                resultBox.classList.add("hidden");
+                showToast("Kode murid tidak ditemukan / menunggu update admin", "error");
+            }
+        }
+
+        // TESTIMONI LOGIC
+        let selectedRating = 5;
+        function setRating(val) {
+            selectedRating = val;
+            document.getElementById("testi-rating").value = val;
+            
+            const stars = document.querySelectorAll(".star-btn");
+            stars.forEach((star, index) => {
+                const icon = star.querySelector("i");
+                if (index < val) {
+                    icon.className = "fa-solid fa-star text-amber-400";
+                } else {
+                    icon.className = "fa-solid fa-star text-slate-200";
+                }
+            });
+        }
+
+        // Mengirim Testimoni Nyata ke Google Sheets
+        async function submitTestimoni(event) {
+            event.preventDefault();
+
+            const btnSubmit = document.getElementById("btn-submit-testimoni");
+            btnSubmit.disabled = true;
+            btnSubmit.innerHTML = `<i class="fa-solid fa-spinner fa-spin mr-2"></i> Mengirim testimoni...`;
+
+            const nama = document.getElementById("testi-nama").value;
+            const sub = document.getElementById("testi-sub").value;
+            const pesan = document.getElementById("testi-pesan").value;
+            const ratingVal = parseInt(document.getElementById("testi-rating").value);
+
+            const payloadTesti = {
+                action: "add_testimoni",
+                nama: nama,
+                subjek: sub,
+                rating: ratingVal,
+                pesan: pesan
+            };
+
+            // Tambah instan ke DOM di urutan paling depan untuk user experience instan
+            const container = document.getElementById("testimonis-container");
+            const inisial = nama.substring(0, 2).toUpperCase();
+
+            const newTestiCard = document.createElement("div");
+            newTestiCard.className = "bg-white p-8 rounded-3xl border border-slate-100 shadow-lg flex flex-col justify-between transform hover:scale-[1.02] transition duration-300";
+            
+            let starsHtml = '';
+            for (let i = 0; i < 5; i++) {
+                starsHtml += `<i class="fa-solid fa-star ${i < ratingVal ? 'text-amber-400' : 'text-slate-200'}"></i>`;
+            }
+
+            newTestiCard.innerHTML = `
+                <div class="space-y-4">
+                    <div class="flex text-amber-400 gap-1">
+                        ${starsHtml}
+                    </div>
+                    <p class="text-slate-600 text-sm italic leading-relaxed">
+                        "${pesan}"
+                    </p>
+                </div>
+                <div class="flex items-center gap-4 pt-6 border-t mt-6">
+                    <div class="w-12 h-12 rounded-full bg-plusPurple-100 flex items-center justify-center text-plusPurple font-bold">
+                        ${inisial}
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-800 text-sm">${nama}</h4>
+                        <p class="text-[11px] text-slate-400">${sub}</p>
+                    </div>
+                </div>
+            `;
+
+            container.insertBefore(newTestiCard, container.firstChild);
+
+            if (WEB_APP_URL) {
+                try {
+                    await fetch(WEB_APP_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(payloadTesti)
+                    });
+                    showToast("Testimoni terkirim & disimpan di cloud.");
+                } catch (error) {
+                    console.error("Gagal simpan testimoni di cloud:", error);
+                    showToast("Testimoni Anda ditambahkan secara lokal.");
+                }
+            } else {
+                showToast("Terima kasih! Testimoni Anda berhasil ditambahkan.");
+            }
+
+            // Pulihkan Tombol
+            btnSubmit.disabled = false;
+            btnSubmit.textContent = "Kirim Testimoni";
+
+            // Reset input form
+            document.getElementById("testimoniForm").reset();
+            setRating(5);
+        }
+
+        // CUSTOM TOAST MESSAGE (TIDAK MENGGUNAKAN BROWSER ALERT)
+        function showToast(message, type = "success") {
+            const toast = document.getElementById("toast-message");
+            const toastText = document.getElementById("toast-text");
+            const toastIcon = document.getElementById("toast-icon");
+
+            toastText.textContent = message;
+
+            if (type === "error") {
+                toastIcon.innerHTML = `<i class="fa-solid fa-circle-xmark text-rose-500"></i>`;
+            } else {
+                toastIcon.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-400"></i>`;
+            }
+
+            // Animate In
+            toast.classList.remove("translate-y-20", "opacity-0");
+            toast.classList.add("translate-y-0", "opacity-100");
+
+            // Animate Out setelah 3.5 detik
+            setTimeout(() => {
+                toast.classList.remove("translate-y-0", "opacity-100");
+                toast.classList.add("translate-y-20", "opacity-0");
+            }, 3500);
+        }
+    </script>
+</body>
+</html>
