@@ -259,7 +259,7 @@
                             Karena Potensimu Layak Dapat <span class="text-plusOrange">"PLUS"</span>
                         </h1>
                         <p class="text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto lg:mx-0">
-                            <strong>"PLUS"</strong> adalah lembaga bimbingan belajar yang berkomitmen memberikan <span class="font-bold text-plusPurple">"nilai tambah"</span> untuk setiap siswa. Kami tidak hanya fokus mengejar nilai akademis, melainkan juga berdedikasi membangun pola pikir kritis, kreatif, serta rasa percaya diri yang tinggi untuk menghadapi masa depan.
+                            <strong>"PLUS"</strong> adalah lembaga bimbingan belajar yang berkomitmen memberikan <span class="font-bold text-plusPurple">"nilai tambah"</span> untuk setiap siswa. Kami tidak hanya focus mengejar nilai akademis, melainkan juga berdedikasi membangun pola pikir kritis, kreatif, serta rasa percaya diri yang tinggi untuk menghadapi masa depan.
                         </p>
                         <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
                             <button onclick="switchTab('daftar')" class="px-8 py-4 bg-plusPurple text-white font-bold text-lg rounded-full shadow-lg hover:bg-plusPurple-700 transition transform hover:-translate-y-1 flex items-center justify-center gap-2">
@@ -459,7 +459,7 @@
                                     <div class="w-10 h-10 rounded-xl bg-plusOrange-100 text-plusOrange flex items-center justify-center shrink-0"><i class="fa-solid fa-maximize"></i></div>
                                     <div>
                                         <h4 class="font-bold text-slate-800">Ruang Kelas Luas</h4>
-                                        <p class="text-sm text-slate-500">Sirkulasi udara baik dan pencahayaan yang pas, bebas dari rasa gerah sehingga fokus anak tetap terjaga.</p>
+                                        <p class="text-sm text-slate-500">Sirkulasi udara baik and pencahayaan yang pas, bebas dari rasa gerah sehingga fokus anak tetap terjaga.</p>
                                     </div>
                                 </div>
                                 <div class="flex items-start gap-4">
@@ -563,32 +563,58 @@
 
                         <!-- SEKSI METODE & TIPE BELAJAR -->
                         <div class="space-y-6 bg-slate-50 p-6 rounded-2xl border border-slate-100">
-                            <h3 class="text-xl font-bold text-slate-800"><i class="fa-solid fa-brain mr-2"></i> Preferensi & Cara Belajar</h3>
+                            <h3 class="text-xl font-bold text-slate-800 flex items-center gap-2">
+                                <i class="fa-solid fa-brain text-plusPurple"></i> Preferensi & Cara Belajar
+                            </h3>
                             
-                            <div>
-                                <label class="block text-sm font-semibold text-slate-700 mb-3">Bagaimana cara/metode belajar yang paling disukai anak? (Bisa pilih lebih dari satu)</label>
-                                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                                    <label class="flex items-center gap-2 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:border-plusPurple transition">
-                                        <input type="checkbox" name="metode" value="Mendengarkan" class="rounded text-plusPurple focus:ring-plusPurple">
-                                        <span class="text-sm">🗣️ Dengar</span>
+                            <div class="space-y-4">
+                                <label class="block text-sm font-semibold text-slate-700">
+                                    Bagaimana cara/metode belajar yang paling disukai anak? (Bisa pilih lebih dari satu)
+                                </label>
+                                
+                                <div class="grid grid-cols-1 sm:grid-cols-4 gap-3">
+                                    <!-- Visual -->
+                                    <label class="flex items-center gap-3 p-3.5 bg-white border border-slate-200 rounded-2xl cursor-pointer hover:border-plusPurple hover:shadow-sm transition duration-200">
+                                        <input type="checkbox" name="metode" value="Visual (Melihat)" class="rounded text-plusPurple focus:ring-plusPurple w-4 h-4">
+                                        <span class="text-sm flex items-center gap-2 font-medium text-slate-700">
+                                            <span class="text-lg">👁️</span> Visual (Melihat)
+                                        </span>
                                     </label>
-                                    <label class="flex items-center gap-2 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:border-plusPurple transition">
-                                        <input type="checkbox" name="metode" value="Menulis" class="rounded text-plusPurple focus:ring-plusPurple">
-                                        <span class="text-sm">✏️ Tulis</span>
+                                    
+                                    <!-- Auditori -->
+                                    <label class="flex items-center gap-3 p-3.5 bg-white border border-slate-200 rounded-2xl cursor-pointer hover:border-plusPurple hover:shadow-sm transition duration-200">
+                                        <input type="checkbox" name="metode" value="Auditori (Mendengar)" class="rounded text-plusPurple focus:ring-plusPurple w-4 h-4">
+                                        <span class="text-sm flex items-center gap-2 font-medium text-slate-700">
+                                            <span class="text-lg">👂</span> Auditori (Mendengar)
+                                        </span>
                                     </label>
-                                    <label class="flex items-center gap-2 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:border-plusPurple transition">
-                                        <input type="checkbox" name="metode" value="Praktik" class="rounded text-plusPurple focus:ring-plusPurple">
-                                        <span class="text-sm">🧪 Praktik</span>
+                                    
+                                    <!-- Kinestetik -->
+                                    <label class="flex items-center gap-3 p-3.5 bg-white border border-slate-200 rounded-2xl cursor-pointer hover:border-plusPurple hover:shadow-sm transition duration-200">
+                                        <input type="checkbox" name="metode" value="Kinestetik (Bergerak/Praktik)" class="rounded text-plusPurple focus:ring-plusPurple w-4 h-4">
+                                        <span class="text-sm flex items-center gap-2 font-medium text-slate-700">
+                                            <span class="text-lg">🏃</span> Kinestetik (Bergerak)
+                                        </span>
                                     </label>
-                                    <label class="flex items-center gap-2 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:border-plusPurple transition">
-                                        <input type="checkbox" name="metode" value="Visual/Gambar" class="rounded text-plusPurple focus:ring-plusPurple">
-                                        <span class="text-sm">👁️ Visual</span>
+                                    
+                                    <!-- Lainnya / Tulis Sendiri -->
+                                    <label class="flex items-center gap-3 p-3.5 bg-white border border-slate-200 rounded-2xl cursor-pointer hover:border-plusPurple hover:shadow-sm transition duration-200" id="label-metode-lainnya">
+                                        <input type="checkbox" id="check-metode-lainnya" onchange="toggleLainnyaInput()" class="rounded text-plusPurple focus:ring-plusPurple w-4 h-4">
+                                        <span class="text-sm flex items-center gap-2 font-medium text-slate-700">
+                                            <span class="text-lg">✍️</span> Lainnya...
+                                        </span>
                                     </label>
+                                </div>
+
+                                <!-- Input Text Lainnya (Hidden by default, slides/fades in) -->
+                                <div id="container-metode-lainnya" class="hidden transition-all duration-300">
+                                    <label class="block text-xs font-bold text-slate-400 mb-1.5 uppercase">Tuliskan Metode Belajar Lainnya</label>
+                                    <input type="text" id="input-metode-lainnya" class="w-full px-4 py-3 border border-slate-200 rounded-2xl text-sm focus:outline-none focus:border-plusPurple transition" placeholder="Misal: Suka belajar lewat lagu, diskusi kelompok, atau menggambar mindmap">
                                 </div>
                             </div>
                         </div>
 
-                        <!-- SEKSI TIPE KELAS (DENGAN INFORMASI DETAIL) -->
+                        <!-- SEKSI TIPE KELAS -->
                         <div class="space-y-6">
                             <div class="flex items-center justify-between border-b pb-2">
                                 <h3 class="text-xl font-bold text-plusPurple"><i class="fa-solid fa-graduation-cap mr-2"></i> Pilihan Opsi Layanan Kelas</h3>
@@ -706,7 +732,7 @@
                     <span class="text-plusOrange font-bold tracking-wider uppercase text-sm block">🗓️ Cek Sesi Belajar</span>
                     <h2 class="text-3xl sm:text-4xl font-bold text-plusPurple">Jadwal Kelas Aktif</h2>
                     <div class="w-24 h-1 bg-plusOrange-500 mx-auto rounded-full"></div>
-                    <p class="text-slate-500 text-sm">Menampilkan jadwal belajar rutin mingguan yang sedang berjalan di Bimbel PLUS.</p>
+                    <p class="text-slate-500 text-sm">Menampilkan seluruh jadwal belajar rutin mingguan yang sedang berjalan di Bimbel PLUS. Masukkan kode murid Anda untuk mencari spesifik.</p>
                 </div>
 
                 <!-- Live Search dan Kode Murid Filter -->
@@ -715,12 +741,17 @@
                         <i class="fa-solid fa-magnifying-glass text-plusPurple"></i> Cari Jadwal Belajar Siswa
                     </h3>
                     <div class="flex flex-col sm:flex-row gap-3">
-                        <input type="text" id="search-kode-murid" class="flex-grow px-4 py-3 border border-slate-200 rounded-2xl focus:outline-none focus:border-plusPurple text-sm" placeholder="Masukkan KODE MURID Anda (misal: MPS-001)">
-                        <button onclick="cariJadwal()" class="px-6 py-3 bg-plusPurple text-white font-bold rounded-2xl hover:bg-plusPurple-700 transition text-sm flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-search"></i> Cari Jadwal
-                        </button>
+                        <input type="text" id="search-kode-murid" class="flex-grow px-4 py-3 border border-slate-200 rounded-2xl focus:outline-none focus:border-plusPurple text-sm" placeholder="Masukkan KODE MURID Anda (misal: RSMP-1, PSMA-4)">
+                        <div class="flex gap-2">
+                            <button onclick="cariJadwal()" class="flex-grow sm:flex-grow-0 px-6 py-3 bg-plusPurple text-white font-bold rounded-2xl hover:bg-plusPurple-700 transition text-sm flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-search"></i> Cari
+                            </button>
+                            <button onclick="resetCariJadwal()" class="px-4 py-3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold rounded-2xl transition text-sm flex items-center justify-center" title="Reset Pencarian">
+                                <i class="fa-solid fa-arrows-rotate"></i>
+                            </button>
+                        </div>
                     </div>
-                    <p class="text-[11px] text-slate-400 mt-2">Dapatkan kode murid Anda saat admin melakukan konfirmasi pendaftaran pertama kali.</p>
+                    <p class="text-[11px] text-slate-400 mt-2">Dapatkan kode murid unik setelah pendaftaran sukses dikonfirmasi oleh admin.</p>
                 </div>
 
                 <!-- Informasi Box Pencarian (Hidden default) -->
@@ -728,11 +759,11 @@
                     <i class="fa-solid fa-circle-check text-emerald-500 text-lg mt-0.5"></i>
                     <div>
                         <h4 class="font-bold text-emerald-800 text-sm">Jadwal Ditemukan untuk: <span id="res-nama-murid" class="underline">Siswa</span></h4>
-                        <p class="text-xs text-slate-600 mt-1">Status Keanggotaan: <span class="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded text-[10px] font-bold">AKTIF</span></p>
+                        <p class="text-xs text-slate-600 mt-1">Status Keanggotaan: <span class="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded text-[10px] font-bold">AKTIF</span>. Hanya menampilkan tabel kategori kelas yang bersangkutan.</p>
                     </div>
                 </div>
 
-                <!-- JADWAL TABEL KELAS (DINAMIS DARI GOOGLE SHEETS) -->
+                <!-- JADWAL TABEL KELAS (DINAMIS DARI GOOGLE SHEETS / LOCAL DATA) -->
                 <div class="space-y-8" id="schedules-tables-container">
                     <div class="text-center py-8 text-slate-400" id="schedule-loading-text">
                         <i class="fa-solid fa-spinner fa-spin mr-2"></i> Mengambil data jadwal dari Google Sheets...
@@ -830,29 +861,33 @@
                 <div class="md:col-span-4 space-y-4">
                     <h4 class="text-white font-bold text-sm uppercase tracking-wider">Hubungi Kami</h4>
                     <div class="space-y-3 text-xs text-slate-400">
-                        <p class="flex items-start gap-3">
+                        <p class="flex items-start gap-3 mb-4">
                             <i class="fa-solid fa-location-dot text-plusOrange-500 text-base shrink-0 mt-0.5"></i>
                             <span>Jl. Gonoharjo Rt 01 Rw 01 Nglimut, Limbangan, Jawa Tengah</span>
                         </p>
-                        
-                        <p class="flex items-center gap-3">
-                            <i class="fa-brands fa-whatsapp text-plusOrange-500 text-sm shrink-0"></i>
-                            <span>Admin Rahma: 0857-4092-0249</span>
-                        </p>
-                        
-                        <p class="flex items-center gap-3">
-                            <i class="fa-brands fa-whatsapp text-plusOrange-500 text-sm shrink-0"></i>
-                            <span>Admin Eldwine: 0857-4020-7460</span>
-                        </p>
                     </div>
 
-                    <div class="pt-2 flex flex-col gap-2">
-                        <a href="https://wa.me/6285740920249?text=Halo%20Admin%20Rahma%20Bimbel%20PLUS,%20saya%20ingin%20bertanya%20informasi%20kelas." target="_blank" class="px-4 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs rounded-xl transition inline-flex items-center gap-2 justify-center md:justify-start w-full md:w-auto">
-                            <i class="fa-brands fa-whatsapp text-base"></i> Tanya Admin Rahma
+                    <div class="pt-2 space-y-3 max-w-xs">
+                        <!-- Admin Rahma -->
+                        <a href="https://wa.me/6285740920249?text=Halo%20Admin%20Rahma%20Bimbel%20PLUS,%20saya%20ingin%20bertanya%20informasi%20kelas." target="_blank" class="flex items-center gap-3 p-3 bg-slate-800 hover:bg-emerald-600 hover:text-white rounded-2xl transition shadow-md group">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-500 text-white flex items-center justify-center text-xl shrink-0 group-hover:bg-white group-hover:text-emerald-600 transition">
+                                <i class="fa-brands fa-whatsapp animate-pulse"></i>
+                            </div>
+                            <div>
+                                <span class="block text-xs text-slate-400 group-hover:text-emerald-100 font-semibold leading-none mb-1">WhatsApp Admin 1</span>
+                                <span class="block text-sm font-bold text-white leading-none">Admin Rahma</span>
+                            </div>
                         </a>
                         
-                        <a href="https://wa.me/6285740207460?text=Halo%20Admin%20Eldwine%20Bimbel%20PLUS,%20saya%20ingin%20bertanya%20informasi%20kelas." target="_blank" class="px-4 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs rounded-xl transition inline-flex items-center gap-2 justify-center md:justify-start w-full md:w-auto">
-                            <i class="fa-brands fa-whatsapp text-base"></i> Tanya Admin Eldwine
+                        <!-- Admin Eldwine -->
+                        <a href="https://wa.me/6285740207460?text=Halo%20Admin%20Eldwine%20Bimbel%20PLUS,%20saya%20ingin%20bertanya%20informasi%20kelas." target="_blank" class="flex items-center gap-3 p-3 bg-slate-800 hover:bg-emerald-600 hover:text-white rounded-2xl transition shadow-md group">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-500 text-white flex items-center justify-center text-xl shrink-0 group-hover:bg-white group-hover:text-emerald-600 transition">
+                                <i class="fa-brands fa-whatsapp animate-pulse"></i>
+                            </div>
+                            <div>
+                                <span class="block text-xs text-slate-400 group-hover:text-emerald-100 font-semibold leading-none mb-1">WhatsApp Admin 2</span>
+                                <span class="block text-sm font-bold text-white leading-none">Admin Eldwine</span>
+                            </div>
                         </a>
                     </div>
                 </div>
@@ -958,14 +993,14 @@
             ]
         };
 
-        // MOCK / FALLBACK DATA (Dipakai otomatis jika WEB_APP_URL belum dikonfigurasi)
+        // MOCK / FALLBACK DATA DENGAN FORMAT KODE UNIK TERBARU
         const mockSchedules = [
-            { hari: "Senin & Kamis", waktu: "14.00 - 15.30", program: "Jarimatika Dasar-Mahir", tingkat: "SD (1-3)", nama_siswa: "Aira, Rayyan, Budi", tutor_platform: "Kak Dian", tipe_kelas: "Reguler Class", kode_siswa: "MPS-001,MPS-004" },
-            { hari: "Senin & Kamis", waktu: "16.00 - 17.30", program: "Pelajaran Umum Sekolah Matematika", tingkat: "SD (4-6)", nama_siswa: "Dimas, Clara, Kayla", tutor_platform: "Kak Soni", tipe_kelas: "Reguler Class", kode_siswa: "MPS-002" },
-            { hari: "Selasa & Jumat", waktu: "15.00 - 16.30", program: "Sains Dasar Sehari-hari", tingkat: "Pra TK-TK", nama_siswa: "Naufal, Rania", tutor_platform: "Kak Angga", tipe_kelas: "Reguler Class", kode_siswa: "MPS-003" },
-            { hari: "Selasa", waktu: "16.30 - 18.00", program: "Pelajaran Umum Sekolah Bahasa Inggris", tingkat: "SMP (Kelas 8)", nama_siswa: "Ahmad Farhan", tutor_platform: "Miss Lutfi", tipe_kelas: "Private Class", kode_siswa: "MPS-101" },
-            { hari: "Rabu", waktu: "15.00 - 16.30", program: "Pelajaran Umum Sekolah Matematika", tingkat: "SMA (Kelas 11)", nama_siswa: "Gita Amalia", tutor_platform: "Kak Rudi", tipe_kelas: "Private Class", kode_siswa: "MPS-102" },
-            { hari: "Rabu & Sabtu", waktu: "19.00 - 20.30", program: "Bahasa Inggris Speaking Dasar", tingkat: "SD (5-6)", nama_siswa: "Rico, Jasmine, Evan", tutor_platform: "Google Meet", tipe_kelas: "Virtual Class", kode_siswa: "MPS-201" }
+            { hari: "Senin & Kamis", waktu: "14.00 - 15.30", program: "Jarimatika Dasar-Mahir", tingkat: "SD Kelas 1-3", nama_siswa: "Aira, Rayyan, Budi", tutor_platform: "Kak Dian", tipe_kelas: "REGULER CLASS", kode_siswa: "RSD-1,RSD-2,RSD-3" },
+            { hari: "Senin & Kamis", waktu: "16.00 - 17.30", program: "Pelajaran Umum Sekolah Matematika", tingkat: "SD Kelas 4-6", nama_siswa: "Dimas, Clara, Kayla", tutor_platform: "Kak Soni", tipe_kelas: "REGULER CLASS", kode_siswa: "RSD-4,RSD-5,RSD-6" },
+            { hari: "Selasa & Jumat", waktu: "15.00 - 16.30", program: "Sains Dasar Sehari-hari", tingkat: "Pra TK & TK", nama_siswa: "Naufal, Rania", tutor_platform: "Kak Angga", tipe_kelas: "REGULER CLASS", kode_siswa: "RPTK-1,RPTK-2" },
+            { hari: "Selasa", waktu: "16.30 - 18.00", program: "Pelajaran Umum Sekolah Bahasa Inggris", tingkat: "SMP Kelas 8", nama_siswa: "Ahmad Farhan", tutor_platform: "Miss Lutfi", tipe_kelas: "PRIVATE CLASS", kode_siswa: "PSMP-1" },
+            { hari: "Rabu", waktu: "15.00 - 16.30", program: "Pelajaran Umum Sekolah Matematika", tingkat: "SMA Kelas 11", nama_siswa: "Gita Amalia", tutor_platform: "Kak Rudi", tipe_kelas: "PRIVATE CLASS", kode_siswa: "PSMA-1" },
+            { hari: "Rabu & Sabtu", waktu: "19.00 - 20.30", program: "Bahasa Inggris Speaking Dasar", tingkat: "SD Kelas 5-6", nama_siswa: "Rico, Jasmine, Evan", tutor_platform: "Google Meet", tipe_kelas: "VIRTUAL CLASS", kode_siswa: "VSD-1,VSD-2,VSD-3" }
         ];
 
         const mockTestimonis = [
@@ -987,7 +1022,7 @@
         // Membaca Data Awal dari API Google Sheets atau Fallback ke Mock Data
         async function loadInitialData() {
             if (!WEB_APP_URL) {
-                console.warn("WEB_APP_URL belum diisi. Menggunakan mock data untuk visualisasi halaman.");
+                console.warn("WEB_APP_URL belum diisi. Menggunakan mock data.");
                 activeSchedules = mockSchedules;
                 activeTestimonis = mockTestimonis;
                 renderSchedules(activeSchedules);
@@ -1026,51 +1061,101 @@
             renderTestimonis(activeTestimonis);
         }
 
-        // Render Tabel Jadwal secara Dinamis berdasarkan Kelas Layanan
+        // FUNGSI UTK AMBIL PROPERTY RESILIEN BILA KOLOM GSHEETS BERBEDA KAPITALISASI
+        function getPropValue(obj, keys) {
+            for (let key of keys) {
+                if (obj[key] !== undefined && obj[key] !== null) return obj[key];
+            }
+            return '';
+        }
+
+        // Render Tabel Jadwal secara Dinamis berdasarkan Kelas Layanan dengan Kombinasi Warna Premium
         function renderSchedules(schedules) {
             const container = document.getElementById("schedules-tables-container");
             container.innerHTML = ""; // Bersihkan loading text
 
             const categories = [
-                { id: "reguler", title: "REGULER CLASS (Belajar Kelompok Luring)", bg: "bg-[#b4f8c8]", icon: "fa-users", info: "Max 4 Siswa/Kelas", filterKey: "REGULER CLASS" },
-                { id: "private", title: "PRIVATE CLASS (Eksklusif 1-On-1)", bg: "bg-orange-100", icon: "fa-graduation-cap", info: "Fokus & Intensif", filterKey: "PRIVATE CLASS" },
-                { id: "virtual", title: "VIRTUAL CLASS (Belajar Daring Interaktif)", bg: "bg-blue-100", icon: "fa-display", info: "Dari Mana Saja", filterKey: "VIRTUAL CLASS" }
+                { 
+                    id: "reguler", 
+                    title: "REGULER CLASS (Belajar Kelompok Luring)", 
+                    bg: "bg-emerald-600", 
+                    text: "text-white",
+                    border: "border-emerald-200",
+                    badge: "bg-emerald-50 text-emerald-800 border-emerald-200 border",
+                    icon: "fa-users", 
+                    info: "Max 4 Siswa/Kelas", 
+                    filterKey: "REGULER CLASS" 
+                },
+                { 
+                    id: "private", 
+                    title: "PRIVATE CLASS (Eksklusif 1-On-1)", 
+                    bg: "bg-amber-500", 
+                    text: "text-white",
+                    border: "border-amber-200",
+                    badge: "bg-amber-50 text-amber-800 border-amber-200 border",
+                    icon: "fa-user-graduate", 
+                    info: "Fokus & Intensif", 
+                    filterKey: "PRIVATE CLASS" 
+                },
+                { 
+                    id: "virtual", 
+                    title: "VIRTUAL CLASS (Belajar Daring Interaktif)", 
+                    bg: "bg-indigo-600", 
+                    text: "text-white",
+                    border: "border-indigo-200",
+                    badge: "bg-indigo-50 text-indigo-800 border-indigo-200 border",
+                    icon: "fa-display", 
+                    info: "Dari Mana Saja", 
+                    filterKey: "VIRTUAL CLASS" 
+                }
             ];
 
             categories.forEach(cat => {
-                const filtered = schedules.filter(s => 
-                    s.tipe_kelas && s.tipe_kelas.toUpperCase() === cat.filterKey
-                );
+                const filtered = schedules.filter(s => {
+                    const tipeVal = getPropValue(s, ['tipe_kelas', 'Tipe_Kelas', 'opsi_layanan', 'tipeKelas']).toUpperCase();
+                    return tipeVal === cat.filterKey;
+                });
 
-                if (filtered.length === 0) return; // Sembunyikan tabel jika tidak ada data
+                // Tetap render tabel kosong agar struktur utuh, tapi jika tidak ada data sama sekali disembunyikan
+                if (filtered.length === 0) return;
 
-                let rowsHtml = filtered.map(row => `
-                    <tr class="hover:bg-slate-50 transition duration-150 border-b border-slate-100" data-siswa-ids="${row.kode_siswa || ''}">
-                        <td class="p-4 font-bold text-slate-800">${row.hari || '-'}</td>
-                        <td class="p-4">${row.waktu || '-'}</td>
-                        <td class="p-4">
-                            <span class="px-2.5 py-1 ${cat.id === 'reguler' ? 'bg-green-50 text-emerald-700' : cat.id === 'private' ? 'bg-orange-50 text-plusOrange-500' : 'bg-blue-50 text-blue-700'} rounded-lg text-xs font-semibold">
-                                ${row.program || row.mata_pelajaran || '-'}
-                            </span>
-                        </td>
-                        <td class="p-4">${row.tingkat || '-'}</td>
-                        <td class="p-4 font-medium text-slate-700">${row.nama_siswa || '-'}</td>
-                        <td class="p-4">
-                            ${cat.id === 'virtual' 
-                                ? `<span class="text-xs bg-slate-100 text-slate-700 px-2 py-1 rounded border"><i class="fa-solid fa-video mr-1"></i> ${row.tutor_platform || '-'}</span>`
-                                : row.tutor_platform || '-'
-                            }
-                        </td>
-                    </tr>
-                `).join('');
+                let rowsHtml = filtered.map(row => {
+                    const hari = getPropValue(row, ['hari', 'Hari']);
+                    const waktu = getPropValue(row, ['waktu', 'Waktu']);
+                    const program = getPropValue(row, ['program', 'mata_pelajaran', 'program_mapel', 'Mapel']);
+                    const tingkat = getPropValue(row, ['tingkat', 'Tingkat', 'kelas', 'Kelas', 'kelas_jenjang']);
+                    const namaSiswa = getPropValue(row, ['nama_siswa', 'Nama_Siswa', 'nama', 'Nama']);
+                    const tutorPlatform = getPropValue(row, ['tutor_platform', 'Tutor_Platform', 'tutor', 'platform', 'Platform']);
+                    const kodeSiswa = getPropValue(row, ['kode_siswa', 'Kode_Siswa', 'kode', 'Kode']);
+
+                    return `
+                        <tr class="hover:bg-slate-50 transition duration-150 border-b border-slate-100" data-siswa-ids="${kodeSiswa}">
+                            <td class="p-4 font-bold text-slate-800">${hari || '-'}</td>
+                            <td class="p-4">${waktu || '-'}</td>
+                            <td class="p-4">
+                                <span class="px-2.5 py-1 ${cat.badge} rounded-lg text-xs font-semibold">
+                                    ${program || '-'}
+                                </span>
+                            </td>
+                            <td class="p-4 font-medium">${tingkat || '-'}</td>
+                            <td class="p-4 text-slate-700 font-semibold">${namaSiswa || '-'}</td>
+                            <td class="p-4">
+                                ${cat.id === 'virtual' 
+                                    ? `<span class="text-xs bg-indigo-50 text-indigo-700 px-2 py-1 rounded-lg border border-indigo-100 font-medium"><i class="fa-solid fa-video mr-1"></i> ${tutorPlatform || '-'}</span>`
+                                    : `<span class="text-xs bg-slate-100 text-slate-700 px-2.5 py-1 rounded-lg border font-medium"><i class="fa-solid fa-user-tie mr-1"></i> ${tutorPlatform || '-'}</span>`
+                                }
+                            </td>
+                        </tr>
+                    `;
+                }).join('');
 
                 const tableHtml = `
-                    <div class="bg-white rounded-3xl border border-slate-100 shadow-lg overflow-hidden schedule-card mb-8" id="schedule-${cat.id}">
-                        <div class="${cat.bg} px-6 py-4 flex items-center justify-between">
-                            <h3 class="font-bold text-slate-800 flex items-center gap-2">
-                                <i class="fa-solid ${cat.icon} text-slate-700"></i> ${cat.title}
+                    <div class="bg-white rounded-3xl border ${cat.border} shadow-lg overflow-hidden schedule-card-wrapper mb-8" id="schedule-card-${cat.id}">
+                        <div class="${cat.bg} ${cat.text} px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                            <h3 class="font-bold text-lg flex items-center gap-2.5">
+                                <i class="fa-solid ${cat.icon}"></i> ${cat.title}
                             </h3>
-                            <span class="text-xs bg-white text-slate-700 font-bold px-3 py-1 rounded-full">${cat.info}</span>
+                            <span class="text-xs bg-white/20 text-white font-bold px-3 py-1 rounded-full self-start sm:self-auto">${cat.info}</span>
                         </div>
                         <div class="overflow-x-auto">
                             <table class="w-full text-left border-collapse">
@@ -1081,7 +1166,7 @@
                                         <th class="p-4">Program / Mapel</th>
                                         <th class="p-4">Tingkat</th>
                                         <th class="p-4">Nama Siswa</th>
-                                        <th class="p-4">${cat.id === 'virtual' ? 'Platform Web' : 'Pengajar (Tutor)'}</th>
+                                        <th class="p-4">${cat.id === 'virtual' ? 'Media Online' : 'Tutor Pengajar'}</th>
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-slate-100 text-sm text-slate-600">
@@ -1093,6 +1178,52 @@
                 `;
                 container.insertAdjacentHTML('beforeend', tableHtml);
             });
+        }
+
+        // GENERASI KODE UNIK SISWA OTOMATIS BERDASAR KATEGORI & JENJANG
+        function generateStudentCode(tipeKelas, jenjang, listAktif = []) {
+            // 1. Tipe Kelas Code
+            let tCode = "R"; // Default REGULER
+            const tk = (tipeKelas || "").toUpperCase();
+            if (tk.includes("PRIVATE") || tk.includes("PRIVAT")) {
+                tCode = "P";
+            } else if (tk.includes("VIRTUAL")) {
+                tCode = "V";
+            }
+
+            // 2. Jenjang Code
+            let jCode = "SD"; // Default
+            const jj = (jenjang || "");
+            if (jj === "Pra TK-TK") {
+                jCode = "PTK";
+            } else if (jj.startsWith("SD-")) {
+                jCode = "SD";
+            } else if (jj.startsWith("SMP-")) {
+                jCode = "SMP";
+            } else if (jj.startsWith("SMA-")) {
+                jCode = "SMA";
+            }
+
+            // 3. Cari urutan ke-berapa di database aktif
+            const prefix = `${tCode}${jCode}-`;
+            let maxCount = 0;
+            
+            listAktif.forEach(s => {
+                const codeVal = getPropValue(s, ['kode_siswa', 'Kode_Siswa', 'kode', 'Kode']).toUpperCase();
+                // Jika berisi substring prefix, cari nomor angka tertingginya
+                if (codeVal.includes(prefix)) {
+                    // Ekstrak angka setelah prefix
+                    const parts = codeVal.split(prefix);
+                    if (parts.length > 1) {
+                        const num = parseInt(parts[1]);
+                        if (!isNaN(num) && num > maxCount) {
+                            maxCount = num;
+                        }
+                    }
+                }
+            });
+
+            return `${prefix}${maxCount + 1}`;
         }
 
         // Render Grid Testimoni secara Dinamis
@@ -1290,6 +1421,22 @@
             });
         }
 
+        // Fungsi toggle input text 'Lainnya' pada Preferensi Belajar
+        function toggleLainnyaInput() {
+            const check = document.getElementById("check-metode-lainnya");
+            const container = document.getElementById("container-metode-lainnya");
+            const input = document.getElementById("input-metode-lainnya");
+            if (check && container) {
+                if (check.checked) {
+                    container.classList.remove("hidden");
+                    input.focus();
+                } else {
+                    container.classList.add("hidden");
+                    input.value = "";
+                }
+            }
+        }
+
         // Tambah baris input kelas pelajaran dinamis
         function addClassRow() {
             const jenjangVal = document.getElementById("reg-kelas").value;
@@ -1370,6 +1517,13 @@
             let metodeBelajar = [];
             metodeCheckboxes.forEach(cb => metodeBelajar.push(cb.value));
 
+            // Tambahkan input text cara belajar lainnya jika dicentang
+            const checkLainnya = document.getElementById("check-metode-lainnya");
+            const inputLainnya = document.getElementById("input-metode-lainnya");
+            if (checkLainnya && checkLainnya.checked && inputLainnya && inputLainnya.value.trim() !== "") {
+                metodeBelajar.push(`Lainnya (${inputLainnya.value.trim()})`);
+            }
+
             // Ambil seluruh kelas pelajaran dinamis yang diisi
             const rowsMapel = document.querySelectorAll(".row-mapel");
             const rowsCatatan = document.querySelectorAll(".row-catatan");
@@ -1384,6 +1538,9 @@
                 }
             }
 
+            // GABUNGKAN PENGHITUNG KODE UNIK OTOMATIS
+            const studentID = generateStudentCode(tipeKelas, kelas, activeSchedules);
+
             // Gabungkan objek pendaftaran murid
             const payloadMurid = {
                 action: "register",
@@ -1394,23 +1551,20 @@
                 cara_belajar: metodeBelajar.join(", ") || "-",
                 opsi_layanan: tipeKelas,
                 kelas_diambil: JSON.stringify(daftarKelasDiambil),
-                jadwal_referensi: jadwalNote
+                jadwal_referensi: jadwalNote,
+                kode_siswa: studentID // Sertakan kode unik yang terbuat otomatis
             };
-
-            let studentID = "MPS-" + Math.floor(100 + Math.random() * 900); // Id cadangan
 
             if (WEB_APP_URL) {
                 try {
                     const response = await fetch(WEB_APP_URL, {
                         method: 'POST',
-                        mode: 'no-cors', // Penting untuk melewati pembatasan CORS web app bawaan Google
+                        mode: 'no-cors',
                         headers: {
                             'Content-Type': 'application/json'
                         },
                         body: JSON.stringify(payloadMurid)
                     });
-                    
-                    // Karena mode 'no-cors' tidak membalas body (opaque response), kita menginfokan data tersimpan.
                     showToast("Formulir sukses dikirim!");
                 } catch (error) {
                     console.error("Kesalahan pengiriman Google Sheets:", error);
@@ -1418,9 +1572,21 @@
                 }
             } else {
                 console.warn("WEB_APP_URL belum dikonfigurasi. Menggunakan penyimpanan simulasi lokal.");
+                // Masukkan ke dummy array lokal agar bisa langsung dites di pencarian tab jadwal
+                activeSchedules.push({
+                    hari: "Menunggu Konfirmasi",
+                    waktu: "Menunggu Konfirmasi",
+                    program: daftarKelasDiambil.map(d => d.mapel).join(", ") || "Belum Memilih",
+                    tingkat: kelas,
+                    nama_siswa: nama,
+                    tutor_platform: "Belum Ditentukan",
+                    tipe_kelas: tipeKelas,
+                    kode_siswa: studentID
+                });
+                renderSchedules(activeSchedules);
             }
 
-            // Menampilkan Custom Modal Konfirmasi Berhasil
+            // Menampilkan Custom Modal Konfirmasi Berhasil dengan Kode Murid Baru
             const dialogBox = document.createElement("div");
             dialogBox.className = "fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 z-[999]";
             dialogBox.innerHTML = `
@@ -1433,13 +1599,13 @@
                         <p class="text-sm text-slate-500">Formulir pendaftaran ananda <strong class="text-plusPurple">${nama}</strong> berhasil disimpan.</p>
                     </div>
                     <div class="bg-purple-50 p-4 rounded-2xl border border-purple-100">
-                        <span class="text-xs text-slate-400 block font-semibold uppercase">Kode Murid Sementara</span>
-                        <span class="text-2xl font-black text-plusPurple tracking-wider">${studentID}</span>
-                        <p class="text-[10px] text-slate-500 mt-2">Gunakan kode sementara ini untuk mengecek jadwal rutin berkala jika telah disetujui.</p>
+                        <span class="text-xs text-slate-400 block font-semibold uppercase">Kode Murid Anda</span>
+                        <span class="text-3xl font-black text-plusPurple tracking-wider">${studentID}</span>
+                        <p class="text-[10px] text-slate-500 mt-2">Gunakan kode di atas untuk mencari jadwal belajar aktif di menu 'Jadwal Kelas'.</p>
                     </div>
                     <div class="flex flex-col gap-2">
-                        <a href="https://wa.me/6285740920249?text=Halo%20Admin%20Bimbel%20PLUS,%20saya%20sudah%20mendaftar%20untuk%20siswa%20${encodeURIComponent(nama)}.%20Kode%20Murid%20Sementara:%20${studentID}" target="_blank" class="w-full py-3 bg-emerald-500 text-white font-bold text-sm rounded-xl hover:bg-emerald-600 transition flex items-center justify-center gap-2">
-                            <i class="fa-brands fa-whatsapp text-lg"></i> Konfirmasi via WhatsApp
+                        <a href="https://wa.me/6285740920249?text=Halo%20Admin%20Bimbel%20PLUS,%20saya%20sudah%20mendaftar%20untuk%20siswa%20${encodeURIComponent(nama)}.%20Kode%20Murid%20Tercatat:%20${studentID}" target="_blank" class="w-full py-3 bg-emerald-500 text-white font-bold text-sm rounded-xl hover:bg-emerald-600 transition flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-lg"></i> Konfirmasi ke Admin
                         </a>
                         <button onclick="closeSuccessDialog(this)" class="w-full py-3 bg-slate-100 text-slate-600 font-bold text-sm rounded-xl hover:bg-slate-200 transition">Kembali ke Beranda</button>
                     </div>
@@ -1453,6 +1619,15 @@
 
             // Reset Form Pendaftaran
             document.getElementById("registrationForm").reset();
+
+            // Reset check & input lainnya
+            const checkL = document.getElementById("check-metode-lainnya");
+            const inputL = document.getElementById("input-metode-lainnya");
+            const containerL = document.getElementById("container-metode-lainnya");
+            if (checkL) checkL.checked = false;
+            if (inputL) inputL.value = "";
+            if (containerL) containerL.classList.add("hidden");
+
             // Reset state kelas dinamis
             document.getElementById("grade-not-selected-warning").classList.remove("hidden");
             document.getElementById("class-rows-container").classList.add("hidden");
@@ -1474,52 +1649,94 @@
             switchTab('home');
         }
 
-        // CARI JADWAL AKTIF MENGGUNAKAN KODE MURID (SINKRON DATA NYATA)
+        // CARI JADWAL AKTIF & FILTER HANYA TABEL KATEGORI YANG BERSESUAIAN
         function cariJadwal() {
             const queryKode = document.getElementById("search-kode-murid").value.trim().toUpperCase();
             const resultBox = document.getElementById("search-result-box");
             const resNamaMurid = document.getElementById("res-nama-murid");
 
+            // Kosongkan dan tampilkan semua jika query kosong
             if (!queryKode) {
-                showToast("Mohon masukkan kode murid terlebih dahulu", "error");
+                resetCariJadwal();
                 return;
             }
 
-            // Temukan di dalam activeSchedules (terintegrasi Google Sheets / Mock)
-            const matchedRow = activeSchedules.find(s => 
-                s.kode_siswa && s.kode_siswa.toUpperCase().includes(queryKode)
-            );
+            // Temukan baris di dalam activeSchedules
+            const matchedRow = activeSchedules.find(s => {
+                const kodeStr = getPropValue(s, ['kode_siswa', 'Kode_Siswa', 'kode', 'Kode']).toUpperCase();
+                return kodeStr.includes(queryKode);
+            });
             
-            // Reset highlight pada tabel jadwal
+            // Reset highlight terlebih dahulu
             const rows = document.querySelectorAll("tbody tr");
-            rows.forEach(r => r.classList.remove("bg-yellow-50", "border-l-4", "border-yellow-400"));
+            rows.forEach(r => r.classList.remove("bg-yellow-100", "border-l-4", "border-yellow-500", "scale-[1.01]", "shadow-sm"));
 
             if (matchedRow) {
-                // Tampilkan hasil pencarian fiktif
-                resultBox.classList.remove("hidden");
-                resNamaMurid.textContent = `Ananda ${matchedRow.nama_siswa} (${matchedRow.tipe_kelas || 'Kelas'})`;
+                // Sembunyikan semua tabel penampung, lalu munculkan hanya yang sesuai
+                const matchedType = getPropValue(matchedRow, ['tipe_kelas', 'Tipe_Kelas', 'opsi_layanan', 'tipeKelas']).toUpperCase();
+                let matchedCatId = "";
                 
-                // Cari baris tabel yang bersesuaian dengan ID siswa tersebut dan berikan highlight
+                if (matchedType.includes("REGULER") || matchedType === "R") matchedCatId = "reguler";
+                else if (matchedType.includes("PRIVATE") || matchedType.includes("PRIVAT") || matchedType === "P") matchedCatId = "private";
+                else if (matchedType.includes("VIRTUAL") || matchedType === "V") matchedCatId = "virtual";
+
+                // Filter visibilitas tabel
+                const categories = ["reguler", "private", "virtual"];
+                categories.forEach(cat => {
+                    const card = document.getElementById(`schedule-card-${cat}`);
+                    if (card) {
+                        if (cat === matchedCatId) {
+                            card.classList.remove("hidden");
+                        } else {
+                            card.classList.add("hidden");
+                        }
+                    }
+                });
+
+                // Tampilkan info box
+                resultBox.classList.remove("hidden");
+                const namaSiswa = getPropValue(matchedRow, ['nama_siswa', 'Nama_Siswa', 'nama', 'Nama']);
+                resNamaMurid.innerHTML = `Ananda <strong class="text-plusPurple">${namaSiswa}</strong> (${matchedType})`;
+                
+                // Beri highlight baris tabel yang bersesuaian
                 let foundRow = false;
                 rows.forEach(row => {
-                    const studentIdsStr = row.getAttribute("data-siswa-ids");
-                    if (studentIdsStr && studentIdsStr.toUpperCase().includes(queryKode)) {
-                        row.classList.add("bg-yellow-50", "border-l-4", "border-yellow-400");
+                    const studentIdsStr = row.getAttribute("data-siswa-ids") || '';
+                    if (studentIdsStr.toUpperCase().includes(queryKode)) {
+                        row.classList.add("bg-yellow-100", "border-l-4", "border-yellow-500", "scale-[1.01]", "shadow-sm");
                         row.scrollIntoView({ behavior: 'smooth', block: 'center' });
                         foundRow = true;
                     }
                 });
 
                 if (foundRow) {
-                    showToast("Jadwal ditemukan dan di-highlight!");
+                    showToast("Jadwal ditemukan & Kategori Kelas difilter!");
                 } else {
-                    showToast("Siswa aktif, silakan cek baris tabel jadwal bersangkutan.");
+                    showToast("Murid terdaftar, jadwal spesifik sesi sedang disiapkan.");
                 }
 
             } else {
+                // Sembunyikan box hasil jika tidak ditemukan
                 resultBox.classList.add("hidden");
+                // Kembalikan semua tabel tetap tampil namun ingatkan user
+                document.querySelectorAll(".schedule-card-wrapper").forEach(el => el.classList.remove("hidden"));
                 showToast("Kode murid tidak ditemukan / menunggu update admin", "error");
             }
+        }
+
+        // RESET PENCOCOKAN JADWAL KEMBALI TAMPIL SELURUHNYA
+        function resetCariJadwal() {
+            document.getElementById("search-kode-murid").value = "";
+            document.getElementById("search-result-box").classList.add("hidden");
+            
+            // Tampilkan kembali semua wrapper card
+            document.querySelectorAll(".schedule-card-wrapper").forEach(el => el.classList.remove("hidden"));
+            
+            // Bersihkan sisa highlight
+            const rows = document.querySelectorAll("tbody tr");
+            rows.forEach(r => r.classList.remove("bg-yellow-100", "border-l-4", "border-yellow-500", "scale-[1.01]", "shadow-sm"));
+            
+            showToast("Menampilkan kembali semua jadwal kategori.");
         }
 
         // TESTIMONI LOGIC
