@@ -774,7 +774,7 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
                 <div class="text-center max-w-3xl mx-auto space-y-4 mb-12 relative">
-                    <span class="text-plusOrange font-bold tracking-wider uppercase text-sm block">🗓️ Cek Sesi Belajar</span>
+                    <span class="text-plusOrange font-bold tracking-wider uppercase text-sm block font-fredoka">🗓️ Cek Sesi Belajar</span>
                     <h2 class="text-3xl sm:text-4xl font-bold text-plusPurple flex justify-center items-center gap-2.5">
                         Jadwal Kelas Aktif
                         <button onclick="loadInitialData()" class="text-slate-400 hover:text-plusPurple transition duration-150" title="Refresh/Update Jadwal">
@@ -1161,9 +1161,12 @@
                 return;
             }
 
+            // Tambahkan timestamp anti-cache agar data di web selalu sama dengan di Google Sheets
+            const timestamp = new Date().getTime();
+
             // Ambil Data Jadwal
             try {
-                const response = await fetch(`${WEB_APP_URL}?action=get_schedules`);
+                const response = await fetch(`${WEB_APP_URL}?action=get_schedules&_t=${timestamp}`);
                 const result = await response.json();
                 if (result.status === "success" && result.data.length > 0) {
                     activeSchedules = result.data;
@@ -1178,7 +1181,7 @@
 
             // Ambil Data Testimoni
             try {
-                const response = await fetch(`${WEB_APP_URL}?action=get_testimonis`);
+                const response = await fetch(`${WEB_APP_URL}?action=get_testimonis&_t=${timestamp}`);
                 const result = await response.json();
                 if (result.status === "success" && result.data.length > 0) {
                     activeTestimonis = result.data;
@@ -1194,9 +1197,19 @@
             if (refreshBtn) refreshBtn.classList.remove("fa-spin");
         }
 
+        // Helper presisi untuk mengakses properti dari Google Sheets hasil getSheetData()
         function getPropValue(obj, keys) {
             for (let key of keys) {
-                if (obj[key] !== undefined && obj[key] !== null) return obj[key];
+                if (obj[key] !== undefined && obj[key] !== null) {
+                    return obj[key];
+                }
+                // Atasi properti dengan spasi atau underscore secara dinamis
+                let normalizedKey = key.toLowerCase().replace(/[\s_]/g, '');
+                for (let k in obj) {
+                    if (k.toLowerCase().replace(/[\s_]/g, '') === normalizedKey) {
+                        return obj[k];
+                    }
+                }
             }
             return '';
         }
@@ -1297,7 +1310,9 @@
                 const waktu = (getPropValue(s, ['waktu', 'Waktu']) || '-').trim();
                 const program = (getPropValue(s, ['program', 'mata_pelajaran', 'program_mapel', 'Mapel']) || '-').trim();
                 const tipeKelas = (getPropValue(s, ['tipe_kelas', 'Tipe_Kelas', 'opsi_layanan', 'tipeKelas', 'kelas']) || '').trim().toUpperCase();
-                const tutorPlatform = (getPropValue(s, ['tutor_platform', 'Tutor_Platform', 'tutor', 'platform', 'Platform']) || '-').trim();
+                
+                // Menerima pencocokan nama properti dari google sheets "Tutor Platform" secara presisi
+                const tutorPlatform = (getPropValue(s, ['tutor_platform', 'tutorplatform', 'tutor', 'platform']) || '-').trim();
                 
                 // Kunci unik pengelompokan kelas
                 const key = `${hari.toLowerCase()}|${waktu.toLowerCase()}|${program.toLowerCase()}|${tipeKelas.toLowerCase()}|${tutorPlatform.toLowerCase()}`;
@@ -2207,7 +2222,8 @@
             // Validasi Kode Murid
             if (WEB_APP_URL) {
                 try {
-                    const checkResponse = await fetch(`${WEB_APP_URL}?action=validate_student&code=${kode}`);
+                    const timestamp = new Date().getTime();
+                    const checkResponse = await fetch(`${WEB_APP_URL}?action=validate_student&code=${kode}&_t=${timestamp}`);
                     const checkResult = await checkResponse.json();
                     if (checkResult.status !== "success" || !checkResult.valid) {
                         showToast("⚠️ Kode murid tidak terdaftar atau belum terkonfirmasi oleh Admin!", "error");
