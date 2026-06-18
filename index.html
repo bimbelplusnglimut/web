@@ -57,6 +57,8 @@
         }
 
         /* --- ANIMASI MASKOT ALAMI & HIDUP --- */
+        
+        /* 1. Efek Bernapas Halus pada Badan Huruf A */
         @keyframes soft-breathe {
             0%, 100% { transform: scale(1) translateY(0); }
             50% { transform: scale(0.98, 1.02) translateY(-2px); }
@@ -66,6 +68,7 @@
             animation: soft-breathe 4s ease-in-out infinite;
         }
 
+        /* 2. Lambaian Tangan Kiri */
         @keyframes wave-left {
             0%, 100% { transform: rotate(0deg); }
             50% { transform: rotate(-18deg); }
@@ -75,6 +78,7 @@
             animation: wave-left 2.5s ease-in-out infinite;
         }
 
+        /* 3. Lambaian Tangan Kanan */
         @keyframes wave-right {
             0%, 100% { transform: rotate(0deg); }
             50% { transform: rotate(18deg); }
@@ -84,6 +88,7 @@
             animation: wave-right 2.2s ease-in-out infinite;
         }
 
+        /* 4. Kedipan Mata Otomatis */
         @keyframes eye-blink {
             0%, 90%, 100% { transform: scaleY(1); }
             95% { transform: scaleY(0.1); }
@@ -93,6 +98,7 @@
             animation: eye-blink 4.5s infinite;
         }
 
+        /* 5. Kelopak Bunga Latar Belakang Berputar Sangat Lambat */
         @keyframes bg-spin {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
@@ -102,6 +108,7 @@
             animation: bg-spin 40s linear infinite;
         }
 
+        /* 6. Hover Jump & Getar Gembira */
         .interactive-mascot-group {
             transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: pointer;
@@ -115,6 +122,7 @@
         .interactive-mascot-group:hover .mascot-arm-right {
             animation: wave-right 0.7s ease-in-out infinite;
         }
+        /* Senyuman melebar saat dihover */
         .mascot-smile {
             transition: d 0.3s ease-in-out, stroke-width 0.3s;
         }
@@ -123,6 +131,7 @@
             stroke-width: 2.5px;
         }
 
+        /* Efek Hover Tab Navigasi */
         .tab-active {
             border-bottom: 4px solid #f08a5d;
             color: #5d51a0;
@@ -148,7 +157,7 @@
     <!-- KONFIGURASI INTEGRASI API GOOGLE SHEETS -->
     <script>
         // Tempelkan URL Web App Google Apps Script Anda yang sudah dideploy di sini
-        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwX9teyItK2UPU8TXG78grkewVqMCS2wZGjfuPAnLIHX_F17vrJvq-kwDOLY5YSDblC6w/exec"; 
+        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwZX2TxgQLO7nGvvOh2XPKkACpooMgHXUJ1YfJUCKAltho2fPNM8m9N1zH0ODm25_87DQ/exec"; 
     </script>
 
     <!-- HEADER / NAVIGATION -->
@@ -161,22 +170,38 @@
                         <!-- SVG Huruf A Lucu dengan kacamata & tangan (Versi Navbar) -->
                         <svg viewBox="0 0 100 100" class="w-full h-full">
                             <g class="interactive-mascot-group">
+                                <!-- Bunga Hijau Latar Belakang -->
                                 <path class="mascot-bg-flower" d="M 50,15 C 38,15 35,35 45,45 C 35,35 15,38 15,50 C 15,62 35,65 45,55 C 35,65 38,85 50,85 C 62,85 65,65 55,55 C 65,65 85,62 85,50 C 85,38 65,35 55,45 C 65,35 62,15 50,15 Z" fill="#b4f8c8" opacity="0.8"/>
+                                <!-- Papan Seluncur/Garis Ungu -->
                                 <ellipse cx="50" cy="82" rx="25" ry="4" fill="#5d51a0" />
+                                
+                                <!-- Kelompok Karakter Utama (Bisa Bernapas) -->
                                 <g class="mascot-body">
+                                    <!-- Tangan Kiri (Melambai) -->
                                     <path class="mascot-arm-left" d="M 38,48 Q 23,45 25,52" stroke="#f08a5d" stroke-width="4.5" stroke-linecap="round" fill="none" />
+                                    <!-- Tangan Kanan (Melambai) -->
                                     <path class="mascot-arm-right" d="M 62,48 Q 77,38 75,44" stroke="#f08a5d" stroke-width="4.5" stroke-linecap="round" fill="none" />
+                                    
+                                    <!-- Kaki -->
                                     <line x1="43" y1="72" x2="41" y2="82" stroke="#1e293b" stroke-width="3" stroke-linecap="round" />
                                     <line x1="57" y1="72" x2="59" y2="82" stroke="#1e293b" stroke-width="3" stroke-linecap="round" />
+                                    
+                                    <!-- Badan Huruf 'A' Oranye -->
                                     <path d="M 50,23 L 35,72 L 45,72 L 50,55 L 55,72 L 65,72 Z" fill="#f08a5d" stroke="#f08a5d" stroke-width="1" stroke-linejoin="round" />
                                     <rect x="42" y="52" width="16" height="6" fill="#f08a5d" />
+                                    
+                                    <!-- Kacamata Bulat Hitam -->
                                     <circle cx="43" cy="43" r="7.5" stroke="#1e293b" stroke-width="2.5" fill="white" />
                                     <circle cx="57" cy="43" r="7.5" stroke="#1e293b" stroke-width="2.5" fill="white" />
                                     <line x1="48" y1="43" x2="52" y2="43" stroke="#1e293b" stroke-width="2.5" />
+                                    
+                                    <!-- Mata Kedip Otomatis (Pupil Tenang) -->
                                     <g class="mascot-eye">
                                         <circle cx="43" cy="43" r="3.2" fill="#1e293b" />
                                         <circle cx="57" cy="43" r="3.2" fill="#1e293b" />
                                     </g>
+                                    
+                                    <!-- Senyuman -->
                                     <path class="mascot-smile" d="M 45,62 Q 50,66 55,62" stroke="#1e293b" stroke-width="2" stroke-linecap="round" fill="none" />
                                 </g>
                             </g>
@@ -260,29 +285,47 @@
                             </a>
                         </div>
                     </div>
-                    <!-- Hero Visual -->
+                    <!-- Hero Visual (Mascot Gembira) -->
                     <div class="lg:col-span-5 flex justify-center">
                         <div class="relative w-72 h-72 sm:w-96 sm:h-96 md:w-[420px] md:h-[420px]">
+                            <!-- SVG Dekorasi Besar Interaktif -->
                             <svg viewBox="0 0 100 100" class="w-full h-full drop-shadow-2xl">
                                 <g class="interactive-mascot-group">
+                                    <!-- Kelopak Bunga Latar Belakang (Berputar Lambat) -->
                                     <path class="mascot-bg-flower" d="M 50,10 C 35,10 30,30 40,40 C 30,30 10,35 10,50 C 10,65 30,70 40,60 C 30,70 35,90 50,90 C 65,90 70,70 60,60 C 70,70 90,65 90,50 C 90,35 70,30 60,40 C 70,30 65,10 50,10 Z" fill="#b4f8c8" opacity="0.6"/>
+                                    <!-- Garis Seluncur Ungu -->
                                     <ellipse cx="50" cy="85" rx="35" ry="6" fill="#5d51a0" opacity="0.9" />
+                                    
+                                    <!-- Kelompok Karakter Utama -->
                                     <g class="mascot-body">
+                                        <!-- Tangan Kiri Lentur -->
                                         <path class="mascot-arm-left" d="M 38,48 Q 20,44 22,54" stroke="#f08a5d" stroke-width="5" stroke-linecap="round" fill="none" />
                                         <circle class="mascot-arm-left" cx="21" cy="54" r="3.5" fill="#f08a5d" />
+                                        
+                                        <!-- Tangan Kanan Lentur -->
                                         <path class="mascot-arm-right" d="M 62,48 Q 80,36 78,44" stroke="#f08a5d" stroke-width="5" stroke-linecap="round" fill="none" />
                                         <circle class="mascot-arm-right" cx="79" cy="42" r="3.5" fill="#f08a5d" />
+                                        
+                                        <!-- Kaki Karakter -->
                                         <line x1="40" y1="78" x2="38" y2="85" stroke="#1e293b" stroke-width="4.5" stroke-linecap="round"/>
                                         <line x1="60" y1="78" x2="62" y2="85" stroke="#1e293b" stroke-width="4.5" stroke-linecap="round"/>
+                                        
+                                        <!-- Tubuh Huruf 'A' -->
                                         <path d="M 50,20 L 28,78 L 40,78 L 50,55 L 60,78 L 72,78 Z" fill="#f08a5d" stroke="#f08a5d" stroke-width="1.5" stroke-linejoin="round" />
                                         <rect x="38" y="52" width="24" height="8" fill="#f08a5d" />
+                                        
+                                        <!-- Kacamata Bulat -->
                                         <circle cx="41" cy="44" r="10" stroke="#1e293b" stroke-width="3" fill="white" />
                                         <circle cx="59" cy="44" r="10" stroke="#1e293b" stroke-width="3" fill="white" />
                                         <line x1="47" y1="44" x2="53" y2="44" stroke="#1e293b" stroke-width="3" />
+                                        
+                                        <!-- Mata Kedip Otomatis -->
                                         <g class="mascot-eye">
                                             <circle cx="41" cy="44" r="4.2" fill="#1e293b" />
                                             <circle cx="59" cy="44" r="4.2" fill="#1e293b" />
                                         </g>
+                                        
+                                        <!-- Senyuman Hangat -->
                                         <path class="mascot-smile" d="M 45,64 Q 50,70 55,64" stroke="#1e293b" stroke-width="2.5" stroke-linecap="round" fill="none" />
                                     </g>
                                 </g>
@@ -302,6 +345,7 @@
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <!-- Rasio Kelas Ideal -->
                         <div class="bg-plusPurple-50 p-8 rounded-3xl border border-plusPurple-100 shadow-sm hover:shadow-md transition duration-300">
                             <div class="w-14 h-14 bg-plusPurple text-white rounded-2xl flex items-center justify-center text-2xl mb-6">
                                 <i class="fa-solid fa-users"></i>
@@ -312,6 +356,7 @@
                             </p>
                         </div>
 
+                        <!-- Materi Terstruktur -->
                         <div class="bg-orange-50 p-8 rounded-3xl border border-orange-100 shadow-sm hover:shadow-md transition duration-300">
                             <div class="w-14 h-14 bg-plusOrange text-white rounded-2xl flex items-center justify-center text-2xl mb-6">
                                 <i class="fa-solid fa-book-open"></i>
@@ -322,6 +367,7 @@
                             </p>
                         </div>
 
+                        <!-- Monitoring Akademik -->
                         <div class="bg-green-50 p-8 rounded-3xl border border-green-100 shadow-sm hover:shadow-md transition duration-300">
                             <div class="w-14 h-14 bg-emerald-500 text-white rounded-2xl flex items-center justify-center text-2xl mb-6">
                                 <i class="fa-solid fa-chart-line"></i>
@@ -332,6 +378,7 @@
                             </p>
                         </div>
 
+                        <!-- Bimbingan Lanjutan -->
                         <div class="bg-blue-50 p-8 rounded-3xl border border-blue-100 shadow-sm hover:shadow-md transition duration-300">
                             <div class="w-14 h-14 bg-blue-500 text-white rounded-2xl flex items-center justify-center text-2xl mb-6">
                                 <i class="fa-solid fa-comments"></i>
@@ -356,6 +403,7 @@
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <!-- Pra TK / TK -->
                         <div class="bg-white rounded-3xl border border-slate-100 shadow-lg overflow-hidden flex flex-col justify-between hover:scale-[1.02] transition duration-300">
                             <div class="p-8">
                                 <div class="bg-emerald-100 text-emerald-600 font-bold text-xs uppercase px-3 py-1 rounded-full inline-block mb-4">Pra TK & TK</div>
@@ -372,6 +420,7 @@
                             </div>
                         </div>
 
+                        <!-- SD -->
                         <div class="bg-white rounded-3xl border border-plusPurple-100 shadow-xl overflow-hidden flex flex-col justify-between hover:scale-[1.02] transition duration-300 relative">
                             <div class="absolute top-0 right-0 bg-plusOrange text-white text-xs font-bold uppercase px-4 py-1.5 rounded-bl-2xl">Terpopuler</div>
                             <div class="p-8">
@@ -390,6 +439,7 @@
                             </div>
                         </div>
 
+                        <!-- SMP & SMA -->
                         <div class="bg-white rounded-3xl border border-slate-100 shadow-lg overflow-hidden flex flex-col justify-between hover:scale-[1.02] transition duration-300">
                             <div class="p-8">
                                 <div class="bg-indigo-100 text-indigo-600 font-bold text-xs uppercase px-3 py-1 rounded-full inline-block mb-4">SMP & SMA</div>
@@ -408,6 +458,63 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Fasilitas Section -->
+            <div class="bg-white py-16">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div class="space-y-6">
+                            <span class="text-plusOrange font-bold tracking-wider uppercase text-sm block">🏫 Ruang & Sarana</span>
+                            <h2 class="text-3xl sm:text-4xl font-bold text-plusPurple">Fasilitas Penunjang Belajar</h2>
+                            <p class="text-slate-600 leading-relaxed">
+                                Kami percaya lingkungan sangat mempengaruhi kenyamanan belajar anak. Oleh karena itu, Bimbel PLUS dilengkapi dengan berbagai fasilitas pendukung modern demi menghadirkan proses KBM yang ideal:
+                            </p>
+                            <div class="space-y-4">
+                                <div class="flex items-start gap-4">
+                                    <div class="w-10 h-10 rounded-xl bg-plusOrange-100 text-plusOrange flex items-center justify-center shrink-0"><i class="fa-solid fa-maximize"></i></div>
+                                    <div>
+                                        <h4 class="font-bold text-slate-800">Ruang Kelas Luas</h4>
+                                        <p class="text-sm text-slate-500">Sirkulasi udara baik and pencahayaan yang pas, bebas dari rasa gerah sehingga fokus anak tetap terjaga.</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-4">
+                                    <div class="w-10 h-10 rounded-xl bg-plusPurple-100 text-plusPurple flex items-center justify-center shrink-0"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+                                    <div>
+                                        <h4 class="font-bold text-slate-800">Alat Pembelajaran Lengkap & Praktis</h4>
+                                        <p class="text-sm text-slate-500">Bahan ajar fisik, alat peraga jarimatika, serta kit percobaan sains sederhana yang aman.</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-4">
+                                    <div class="w-10 h-10 rounded-xl bg-green-100 text-emerald-600 flex items-center justify-center shrink-0"><i class="fa-solid fa-laptop"></i></div>
+                                    <div>
+                                        <h4 class="font-bold text-slate-800">Sarana Pengajaran Interaktif</h4>
+                                        <p class="text-sm text-slate-500">Pemanfaatan media visual interaktif di kelas untuk memudahkan penggambaran konsep sulit.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <!-- SVG Representasi Fasilitas -->
+                            <div class="bg-[#b4f8c8] bg-opacity-30 p-8 rounded-3xl flex flex-col justify-between h-48 hover:scale-[1.05] transition-all duration-300">
+                                <i class="fa-solid fa-school text-4xl text-emerald-600"></i>
+                                <span class="font-bold text-slate-800 text-lg">Kelas Nyaman</span>
+                            </div>
+                            <div class="bg-plusOrange-100 bg-opacity-50 p-8 rounded-3xl flex flex-col justify-between h-48 hover:scale-[1.05] transition-all duration-300">
+                                <i class="fa-solid fa-flask text-4xl text-plusOrange-500"></i>
+                                <span class="font-bold text-slate-800 text-lg">Eksperimen Praktis</span>
+                            </div>
+                            <div class="bg-plusPurple-100 bg-opacity-50 p-8 rounded-3xl flex flex-col justify-between h-48 hover:scale-[1.05] transition-all duration-300">
+                                <i class="fa-solid fa-tv text-4xl text-plusPurple"></i>
+                                <span class="font-bold text-slate-800 text-lg">Media Interaktif</span>
+                            </div>
+                            <div class="bg-blue-100 bg-opacity-50 p-8 rounded-3xl flex flex-col justify-between h-48 hover:scale-[1.05] transition-all duration-300">
+                                <i class="fa-solid fa-user-graduate text-4xl text-blue-600"></i>
+                                <span class="font-bold text-slate-800 text-lg">Maks. 4 Anak</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- TAB: FORM PENDAFTARAN -->
@@ -420,12 +527,14 @@
                         <h2 class="text-3xl font-bold">Pendaftaran Murid Bimbel PLUS</h2>
                         <p class="text-plusPurple-100 text-sm max-w-xl">Lengkapi formulir pendaftaran ini secara saksama. Setelah pengiriman, admin kami akan melakukan konfirmasi jadwal kelas terpilih.</p>
                     </div>
+                    <!-- Hiasan Bulat -->
                     <div class="absolute -right-10 -bottom-10 w-44 h-44 bg-plusOrange rounded-full opacity-25"></div>
                 </div>
 
                 <!-- Form Card -->
                 <div class="bg-white rounded-3xl shadow-xl border border-slate-100 p-8 md:p-12">
                     <form id="registrationForm" onsubmit="submitForm(event)" class="space-y-8">
+                        
                         <!-- SEKSI DATA DIRI -->
                         <div class="space-y-6">
                             <h3 class="text-xl font-bold text-plusPurple border-b pb-2"><i class="fa-solid fa-id-card mr-2"></i> Data Diri Calon Murid</h3>
@@ -484,6 +593,7 @@
                                 </label>
                                 
                                 <div class="grid grid-cols-1 sm:grid-cols-4 gap-3">
+                                    <!-- Visual -->
                                     <label class="flex items-center gap-3 p-3.5 bg-white border border-slate-200 rounded-2xl cursor-pointer hover:border-plusPurple hover:shadow-sm transition duration-200">
                                         <input type="checkbox" name="metode" value="Visual (Melihat)" class="rounded text-plusPurple focus:ring-plusPurple w-4 h-4">
                                         <span class="text-sm flex items-center gap-2 font-medium text-slate-700">
@@ -491,6 +601,7 @@
                                         </span>
                                     </label>
                                     
+                                    <!-- Auditori -->
                                     <label class="flex items-center gap-3 p-3.5 bg-white border border-slate-200 rounded-2xl cursor-pointer hover:border-plusPurple hover:shadow-sm transition duration-200">
                                         <input type="checkbox" name="metode" value="Auditori (Mendengar)" class="rounded text-plusPurple focus:ring-plusPurple w-4 h-4">
                                         <span class="text-sm flex items-center gap-2 font-medium text-slate-700">
@@ -498,6 +609,7 @@
                                         </span>
                                     </label>
                                     
+                                    <!-- Kinestetik -->
                                     <label class="flex items-center gap-3 p-3.5 bg-white border border-slate-200 rounded-2xl cursor-pointer hover:border-plusPurple hover:shadow-sm transition duration-200">
                                         <input type="checkbox" name="metode" value="Kinestetik (Bergerak/Praktik)" class="rounded text-plusPurple focus:ring-plusPurple w-4 h-4">
                                         <span class="text-sm flex items-center gap-2 font-medium text-slate-700">
@@ -505,6 +617,7 @@
                                         </span>
                                     </label>
                                     
+                                    <!-- Lainnya / Tulis Sendiri -->
                                     <label class="flex items-center gap-3 p-3.5 bg-white border border-slate-200 rounded-2xl cursor-pointer hover:border-plusPurple hover:shadow-sm transition duration-200" id="label-metode-lainnya">
                                         <input type="checkbox" id="check-metode-lainnya" onchange="toggleLainnyaInput()" class="rounded text-plusPurple focus:ring-plusPurple w-4 h-4">
                                         <span class="text-sm flex items-center gap-2 font-medium text-slate-700">
@@ -513,6 +626,7 @@
                                     </label>
                                 </div>
 
+                                <!-- Input Text Lainnya -->
                                 <div id="container-metode-lainnya" class="hidden transition-all duration-300">
                                     <label class="block text-xs font-bold text-slate-400 mb-1.5 uppercase">Tuliskan Metode Belajar Lainnya</label>
                                     <input type="text" id="input-metode-lainnya" class="w-full px-4 py-3 border border-slate-200 rounded-2xl text-sm focus:outline-none focus:border-plusPurple transition" placeholder="Misal: Suka belajar lewat lagu, diskusi kelompok, atau menggambar mindmap">
@@ -524,6 +638,7 @@
                         <div class="space-y-6">
                             <div class="flex items-center justify-between border-b pb-2">
                                 <h3 class="text-xl font-bold text-plusPurple"><i class="fa-solid fa-graduation-cap mr-2"></i> Pilihan Opsi Layanan Kelas</h3>
+                                <!-- Tombol Bantuan Info Kelas -->
                                 <button type="button" onclick="openModal('modal-info-kelas')" class="text-xs font-bold text-plusPurple hover:text-plusPurple-700 underline flex items-center gap-1">
                                     <i class="fa-solid fa-circle-info"></i> Panduan Perbedaan Kelas
                                 </button>
@@ -574,6 +689,7 @@
                                 </button>
                             </div>
 
+                            <!-- Warning box jika jenjang belum dipilih -->
                             <div id="grade-not-selected-warning" class="p-4 bg-amber-50 border border-amber-200 rounded-2xl text-amber-800 text-xs font-medium flex items-center gap-2">
                                 <i class="fa-solid fa-circle-exclamation text-base shrink-0"></i>
                                 <span>Silakan pilih <strong>Jenjang / Kelas</strong> anak terlebih dahulu di bagian atas untuk memunculkan pilihan mata pelajaran.</span>
@@ -581,6 +697,7 @@
 
                             <!-- Container Row Kelas Dinamis -->
                             <div id="class-rows-container" class="space-y-4 hidden">
+                                <!-- Row 1 Default -->
                                 <div class="class-row bg-white p-4 rounded-xl border border-slate-200 grid grid-cols-1 md:grid-cols-2 gap-4 relative">
                                     <div>
                                         <label class="block text-xs font-bold text-slate-500 mb-1">Mata Pelajaran / Program</label>
@@ -593,6 +710,7 @@
                                             <label class="block text-xs font-bold text-slate-500 mb-1">Catatan Tambahan Kesulitan Belajar</label>
                                             <input type="text" class="row-catatan w-full px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-plusPurple" placeholder="Keterangan kesulitan belajar / topik yang diinginkan">
                                         </div>
+                                        <!-- Hapus Button (Disabled untuk Row pertama) -->
                                         <button type="button" disabled class="px-3 py-2 text-slate-300 bg-slate-100 rounded-xl cursor-not-allowed">
                                             <i class="fa-solid fa-trash"></i>
                                         </button>
@@ -605,7 +723,7 @@
                         <div class="space-y-4">
                             <h3 class="text-xl font-bold text-slate-800 border-b pb-2"><i class="fa-solid fa-clock-rotate-left mr-2"></i> Usulan Jadwal Belajar</h3>
                             <p class="text-xs text-slate-500">
-                                Pilih preferensi hari dan jam belajar. Reguler Class terbatas pada jam 13.00-13.45 dan 14.00-14.45. Private/Virtual Class fleksibel di luar jam reguler serta tidak bertabrakan dengan sesi yang penuh.
+                                Pilih preferensi hari dan jam belajar. Reguler Class terbatas pada jam 13.00-13.45 and 14.00-14.45. Private/Virtual Class fleksibel di luar jam reguler serta tidak bertabrakan dengan sesi yang penuh.
                             </p>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
@@ -628,6 +746,7 @@
                                     </select>
                                 </div>
                             </div>
+                            <!-- Notifikasi Kuota Penuh -->
                             <div id="quota-warning" class="hidden p-4 bg-rose-50 border border-rose-200 text-rose-800 text-xs font-semibold rounded-2xl flex items-center gap-2 mt-4">
                                 <i class="fa-solid fa-triangle-exclamation"></i>
                                 <span id="quota-warning-text">Kuota penuh pada jadwal tersebut!</span>
@@ -644,6 +763,7 @@
                                 <i class="fa-solid fa-paper-plane"></i> Kirim Formulir Pendaftaran
                             </button>
                         </div>
+
                     </form>
                 </div>
             </div>
@@ -684,7 +804,7 @@
                     <p class="text-[11px] text-slate-400 mt-2">Dapatkan kode murid unik setelah pendaftaran sukses dikonfirmasi oleh admin.</p>
                 </div>
 
-                <!-- Informasi Detail Pencarian -->
+                <!-- Informasi Detail Pencarian (Kartu Premium dengan Info Lengkap) -->
                 <div id="search-result-box" class="hidden max-w-2xl mx-auto mb-8 p-6 bg-emerald-50 border-2 border-emerald-200 rounded-3xl shadow-lg transition duration-300">
                     <div class="flex items-start gap-4">
                         <div class="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl shrink-0 mt-1">
@@ -715,7 +835,7 @@
                                         <span id="res-mapel-murid" class="font-bold text-plusOrange-500">-</span>
                                     </div>
                                     <div>
-                                        <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider leading-none mb-1">Tutor Pengajar</span>
+                                        <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider leading-none mb-1">Tutor / Pengajar</span>
                                         <span id="res-tutor-murid" class="font-semibold text-slate-800">-</span>
                                     </div>
                                 </div>
@@ -746,7 +866,7 @@
                     <p class="text-slate-500 text-sm">Melihat bagaimana bimbingan dipersonalisasi di Bimbel PLUS membantu anak-anak berkembang pesat dalam prestasi akademis maupun pembentukan karakter positif.</p>
                 </div>
 
-                <!-- TRUST BUILDER: PANEL STATISTIK SOSIAL -->
+                <!-- TRUST BUILDER: PANEL STATISTIK SOSIAL & KREDO -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-16 bg-gradient-to-br from-plusPurple-50 via-white to-orange-50 p-6 sm:p-8 rounded-3xl border border-plusPurple-100 shadow-md">
                     <div class="text-center p-4 border-b md:border-b-0 md:border-r border-slate-100 flex flex-col justify-center items-center">
                         <span class="text-4xl sm:text-5xl font-extrabold text-plusPurple">4.9<span class="text-plusOrange">/5</span></span>
@@ -771,10 +891,10 @@
                     </div>
                 </div>
 
-                <!-- Grid Testimoni -->
+                <!-- Grid Testimoni dengan Desain Baru yang Menarik Minat Wali Murid -->
                 <div id="testimonis-container" class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
                     <div class="col-span-full text-center py-8 text-slate-400" id="testi-loading-text">
-                        <i class="fa-solid fa-spinner fa-spin mr-2"></i> Memuat testimoni...
+                        <i class="fa-solid fa-spinner fa-spin mr-2"></i> Memuat testimoni dari awan...
                     </div>
                 </div>
 
@@ -801,7 +921,7 @@
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
-                                <label class="block text-sm font-semibold text-slate-700 mb-2">Kode Murid (Wajib Terdaftar) *</label>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">Kode Murid (Wajib Terdaftar & Terkonfirmasi) *</label>
                                 <input type="text" id="testi-kode" required class="w-full px-4 py-3 border border-slate-200 rounded-2xl focus:outline-none focus:border-plusPurple text-sm uppercase" placeholder="Contoh: RSMP-2">
                                 <p class="text-[10px] text-slate-400 mt-1">Ulasan hanya disimpan dari murid terdaftar Bimbel PLUS.</p>
                             </div>
@@ -836,6 +956,7 @@
     <footer class="bg-slate-900 text-slate-300 pt-16 pb-8 border-t-8 border-plusPurple">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-12">
+                
                 <!-- Identitas Brand -->
                 <div class="md:col-span-4 space-y-4">
                     <div class="flex items-center space-x-3">
@@ -865,6 +986,7 @@
                     </div>
 
                     <div class="pt-2 space-y-3 max-w-xs">
+                        <!-- Admin Rahma -->
                         <a href="https://wa.me/6285740920249?text=Halo%20Admin%20Rahma%20Bimbel%20PLUS,%20saya%20ingin%20bertanya%20informasi%20kelas." target="_blank" class="flex items-center gap-3 p-3 bg-slate-800 hover:bg-emerald-600 hover:text-white rounded-2xl transition shadow-md group">
                             <div class="w-10 h-10 rounded-xl bg-emerald-500 text-white flex items-center justify-center text-xl shrink-0 group-hover:bg-white group-hover:text-emerald-600 transition">
                                 <i class="fa-brands fa-whatsapp animate-pulse"></i>
@@ -875,6 +997,7 @@
                             </div>
                         </a>
                         
+                        <!-- Admin Eldwine -->
                         <a href="https://wa.me/6285740207460?text=Halo%20Admin%20Eldwine%20Bimbel%20PLUS,%20saya%20ingin%20bertanya%20informasi%20kelas." target="_blank" class="flex items-center gap-3 p-3 bg-slate-800 hover:bg-emerald-600 hover:text-white rounded-2xl transition shadow-md group">
                             <div class="w-10 h-10 rounded-xl bg-emerald-500 text-white flex items-center justify-center text-xl shrink-0 group-hover:bg-white group-hover:text-emerald-600 transition">
                                 <i class="fa-brands fa-whatsapp animate-pulse"></i>
@@ -905,6 +1028,7 @@
                     </div>
                     <p class="text-[11px] text-slate-500 italic">Pencarian Peta: Little Kitchen Houses</p>
                 </div>
+
             </div>
 
             <!-- Bagian Hak Cipta -->
@@ -917,10 +1041,12 @@
     <!-- POPUP MODAL: INFORMASI DETAIL TIPE KELAS -->
     <div id="modal-info-kelas" class="fixed inset-0 bg-black bg-opacity-50 z-[100] flex items-center justify-center p-4 hidden">
         <div class="bg-white w-full max-w-2xl rounded-3xl overflow-hidden shadow-2xl transition duration-300">
+            <!-- Header Modal -->
             <div class="bg-plusPurple p-6 text-white flex justify-between items-center">
                 <h3 class="font-bold text-lg flex items-center gap-2"><i class="fa-solid fa-circle-info"></i> Panduan Opsi Tipe Kelas Bimbel PLUS</h3>
                 <button onclick="closeModal('modal-info-kelas')" class="text-white hover:text-slate-200"><i class="fa-solid fa-xmark text-lg"></i></button>
             </div>
+            <!-- Isi Konten Modal -->
             <div class="p-6 md:p-8 space-y-6 max-h-[70vh] overflow-y-auto text-sm">
                 <div class="space-y-4">
                     <div class="p-4 bg-emerald-50 rounded-2xl border border-emerald-100">
@@ -951,13 +1077,14 @@
                     </div>
                 </div>
             </div>
+            <!-- Footer Modal -->
             <div class="p-4 bg-slate-50 border-t flex justify-end">
                 <button onclick="closeModal('modal-info-kelas')" class="px-6 py-2 bg-plusPurple text-white font-bold rounded-xl hover:bg-plusPurple-700 transition text-xs">Paham, Tutup</button>
             </div>
         </div>
     </div>
 
-    <!-- NOTIFIKASI POPUP (CUSTOM TOAST) -->
+    <!-- NOTIFIKASI POPUP (CUSTOM ALERT) -->
     <div id="toast-message" class="fixed bottom-6 right-6 bg-slate-900 text-white py-3.5 px-6 rounded-2xl shadow-2xl z-[100] flex items-center gap-3 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
         <span id="toast-icon" class="text-emerald-400 text-lg"><i class="fa-solid fa-circle-check"></i></span>
         <span id="toast-text" class="text-sm font-semibold">Tindakan berhasil!</span>
@@ -965,6 +1092,7 @@
 
     <!-- SCRIPT LOGIC JAVASCRIPT -->
     <script>
+        // DATA PEMETAAN MAPEL DINAMIS UNTUK FORM PENDAFTARAN
         const mapelByJenjang = {
             "TK": [
                 "Sains Dasar Sehari-hari",
@@ -986,19 +1114,20 @@
             ]
         };
 
+        // MOCK / FALLBACK DATA DENGAN FORMAT KODE UNIK TERBARU
         const mockSchedules = [
-            { hari: "Senin", waktu: "13.00 - 13.45", program: "Jarimatika Dasar-Mahir", tingkat: "SD Kelas 1", nama_siswa: "Aira", tutor_pengajar: "Kak Dian", tipe_kelas: "REGULER CLASS", kode_siswa: "RSD-1" },
-            { hari: "Senin", waktu: "13.00 - 13.45", program: "Jarimatika Dasar-Mahir", tingkat: "SD Kelas 2", nama_siswa: "Rayyan", tutor_pengajar: "Kak Dian", tipe_kelas: "REGULER CLASS", kode_siswa: "RSD-2" },
-            { hari: "Senin", waktu: "13.00 - 13.45", program: "Jarimatika Dasar-Mahir", tingkat: "SD Kelas 3", nama_siswa: "Budi", tutor_pengajar: "Kak Dian", tipe_kelas: "REGULER CLASS", kode_siswa: "RSD-3" },
-            { hari: "Senin", waktu: "14.00 - 14.45", program: "Pelajaran Umum Sekolah Matematika", tingkat: "SD Kelas 4", nama_siswa: "Dimas", tutor_pengajar: "Kak Soni", tipe_kelas: "REGULER CLASS", kode_siswa: "RSD-4" },
-            { hari: "Senin", waktu: "14.00 - 14.45", program: "Pelajaran Umum Sekolah Matematika", tingkat: "SD Kelas 5", nama_siswa: "Clara", tutor_pengajar: "Kak Soni", tipe_kelas: "REGULER CLASS", kode_siswa: "RSD-5" },
-            { hari: "Senin", waktu: "14.00 - 14.45", program: "Pelajaran Umum Sekolah Matematika", tingkat: "SD Kelas 6", nama_siswa: "Kayla", tutor_pengajar: "Kak Soni", tipe_kelas: "REGULER CLASS", kode_siswa: "RSD-6" },
-            { hari: "Selasa", waktu: "13.00 - 13.45", program: "Sains Dasar Sehari-hari", tingkat: "Pra TK-TK", nama_siswa: "Naufal", tutor_pengajar: "Kak Angga", tipe_kelas: "REGULER CLASS", kode_siswa: "RPRA-1" },
-            { hari: "Selasa", waktu: "13.00 - 13.45", program: "Sains Dasar Sehari-hari", tingkat: "Pra TK-TK", nama_siswa: "Rania", tutor_pengajar: "Kak Angga", tipe_kelas: "REGULER CLASS", kode_siswa: "RPRA-2" },
-            { hari: "Selasa", waktu: "15.00 - 16.30", program: "Pelajaran Umum Sekolah Bahasa Inggris", tingkat: "SMP Kelas 8", nama_siswa: "Ahmad Farhan", tutor_pengajar: "Miss Lutfi", tipe_kelas: "PRIVATE CLASS", kode_siswa: "PSMP-1" },
-            { hari: "Rabu", waktu: "15.00 - 16.30", program: "Pelajaran Umum Sekolah Matematika", tingkat: "SMA Kelas 11", nama_siswa: "Gita Amalia", tutor_pengajar: "Kak Rudi", tipe_kelas: "PRIVATE CLASS", kode_siswa: "PSMA-1" },
-            { hari: "Sabtu", waktu: "19.00 - 20.30", program: "Bahasa Inggris Speaking Dasar", tingkat: "SD Kelas 5", nama_siswa: "Rico", tutor_pengajar: "Google Meet", tipe_kelas: "VIRTUAL CLASS", kode_siswa: "VSD-1" },
-            { hari: "Sabtu", waktu: "19.00 - 20.30", program: "Bahasa Inggris Speaking Dasar", tingkat: "SD Kelas 6", nama_siswa: "Jasmine", tutor_pengajar: "Google Meet", tipe_kelas: "VIRTUAL CLASS", kode_siswa: "VSD-2" }
+            { hari: "Senin", waktu: "13.00 - 13.45", program: "Jarimatika Dasar-Mahir", tingkat: "SD Kelas 1", nama_siswa: "Aira", tutor_platform: "Kak Dian", tipe_kelas: "REGULER CLASS", kode_siswa: "RSD-1" },
+            { hari: "Senin", waktu: "13.00 - 13.45", program: "Jarimatika Dasar-Mahir", tingkat: "SD Kelas 2", nama_siswa: "Rayyan", tutor_platform: "Kak Dian", tipe_kelas: "REGULER CLASS", kode_siswa: "RSD-2" },
+            { hari: "Senin", waktu: "13.00 - 13.45", program: "Jarimatika Dasar-Mahir", tingkat: "SD Kelas 3", nama_siswa: "Budi", tutor_platform: "Kak Dian", tipe_kelas: "REGULER CLASS", kode_siswa: "RSD-3" },
+            { hari: "Senin", waktu: "14.00 - 14.45", program: "Pelajaran Umum Sekolah Matematika", tingkat: "SD Kelas 4", nama_siswa: "Dimas", tutor_platform: "Kak Soni", tipe_kelas: "REGULER CLASS", kode_siswa: "RSD-4" },
+            { hari: "Senin", waktu: "14.00 - 14.45", program: "Pelajaran Umum Sekolah Matematika", tingkat: "SD Kelas 5", nama_siswa: "Clara", tutor_platform: "Kak Soni", tipe_kelas: "REGULER CLASS", kode_siswa: "RSD-5" },
+            { hari: "Senin", waktu: "14.00 - 14.45", program: "Pelajaran Umum Sekolah Matematika", tingkat: "SD Kelas 6", nama_siswa: "Kayla", tutor_platform: "Kak Soni", tipe_kelas: "REGULER CLASS", kode_siswa: "RSD-6" },
+            { hari: "Selasa", waktu: "13.00 - 13.45", program: "Sains Dasar Sehari-hari", tingkat: "Pra TK-TK", nama_siswa: "Naufal", tutor_platform: "Kak Angga", tipe_kelas: "REGULER CLASS", kode_siswa: "RPRA-1" },
+            { hari: "Selasa", waktu: "13.00 - 13.45", program: "Sains Dasar Sehari-hari", tingkat: "Pra TK-TK", nama_siswa: "Rania", tutor_platform: "Kak Angga", tipe_kelas: "REGULER CLASS", kode_siswa: "RPRA-2" },
+            { hari: "Selasa", waktu: "15.00 - 16.30", program: "Pelajaran Umum Sekolah Bahasa Inggris", tingkat: "SMP Kelas 8", nama_siswa: "Ahmad Farhan", tutor_platform: "Miss Lutfi", tipe_kelas: "PRIVATE CLASS", kode_siswa: "PSMP-1" },
+            { hari: "Rabu", waktu: "15.00 - 16.30", program: "Pelajaran Umum Sekolah Matematika", tingkat: "SMA Kelas 11", nama_siswa: "Gita Amalia", tutor_platform: "Kak Rudi", tipe_kelas: "PRIVATE CLASS", kode_siswa: "PSMA-1" },
+            { hari: "Sabtu", waktu: "19.00 - 20.30", program: "Bahasa Inggris Speaking Dasar", tingkat: "SD Kelas 5", nama_siswa: "Rico", tutor_platform: "Google Meet", tipe_kelas: "VIRTUAL CLASS", kode_siswa: "VSD-1" },
+            { hari: "Sabtu", duration: "19.00 - 20.30", program: "Bahasa Inggris Speaking Dasar", tingkat: "SD Kelas 6", nama_siswa: "Jasmine", tutor_platform: "Google Meet", tipe_kelas: "VIRTUAL CLASS", kode_siswa: "VSD-2" }
         ];
 
         const mockTestimonis = [
@@ -1007,9 +1136,11 @@
             { nama: "Ahmad Farhan", subjek: "Murid Peserta (PSMP-1)", rating: 5, pesan: "Belajar matematika luring di private class sungguh membantu mempersiapkan ulangan harian. Kakaknya sabar dan menjelaskannya memakai analogi sehari-hari sehingga sangat gampang ditangkap." }
         ];
 
+        // State Penyimpanan Lokal Data Aktif
         let activeSchedules = [];
         let activeTestimonis = [];
 
+        // DOM LOAD
         document.addEventListener("DOMContentLoaded", function() {
             switchTab('home');
             loadInitialData();
@@ -1063,16 +1194,14 @@
             if (refreshBtn) refreshBtn.classList.remove("fa-spin");
         }
 
-        // Helper Cerdas untuk Mengambil Value dari Beragam Probabilitas Key Kolom (Kebal Error Sinkronisasi)
         function getPropValue(obj, keys) {
             for (let key of keys) {
-                if (obj[key] !== undefined && obj[key] !== null) {
-                    return obj[key];
-                }
+                if (obj[key] !== undefined && obj[key] !== null) return obj[key];
             }
             return '';
         }
 
+        // Fungsi Cerdas Pengubah Tingkat Kelas Lintas Jenjang secara Otomatis
         function formatSmartLevels(levels) {
             if (levels.length === 0) return '-';
             if (levels.length === 1) return levels[0];
@@ -1105,8 +1234,12 @@
             });
             
             let resultParts = [];
-            if (hasTK) resultParts.push("Pra TK & TK");
             
+            if (hasTK) {
+                resultParts.push("Pra TK & TK");
+            }
+            
+            // Mengatur otomatis range SD (misal: SD Kelas 1-6)
             if (sdGrades.length > 0) {
                 const numbers = sdGrades.filter(x => typeof x === 'number').sort((a,b)=>a-b);
                 const strings = sdGrades.filter(x => typeof x === 'string');
@@ -1115,9 +1248,12 @@
                 } else if (numbers.length === 1) {
                     resultParts.push(`SD Kelas ${numbers[0]}`);
                 }
-                if (strings.length > 0) resultParts.push(strings.join(', '));
+                if (strings.length > 0) {
+                    resultParts.push(strings.join(', '));
+                }
             }
             
+            // Mengatur otomatis range SMP (misal: SMP Kelas 7-9)
             if (smpGrades.length > 0) {
                 const numbers = smpGrades.filter(x => typeof x === 'number').sort((a,b)=>a-b);
                 const strings = smpGrades.filter(x => typeof x === 'string');
@@ -1126,9 +1262,12 @@
                 } else if (numbers.length === 1) {
                     resultParts.push(`SMP Kelas ${numbers[0]}`);
                 }
-                if (strings.length > 0) resultParts.push(strings.join(', '));
+                if (strings.length > 0) {
+                    resultParts.push(strings.join(', '));
+                }
             }
             
+            // Mengatur otomatis range SMA (misal: SMA Kelas 10-12)
             if (smaGrades.length > 0) {
                 const numbers = smaGrades.filter(x => typeof x === 'number').sort((a,b)=>a-b);
                 const strings = smaGrades.filter(x => typeof x === 'string');
@@ -1137,14 +1276,19 @@
                 } else if (numbers.length === 1) {
                     resultParts.push(`SMA Kelas ${numbers[0]}`);
                 }
-                if (strings.length > 0) resultParts.push(strings.join(', '));
+                if (strings.length > 0) {
+                    resultParts.push(strings.join(', '));
+                }
             }
             
-            if (others.length > 0) resultParts.push(others.join(', '));
+            if (others.length > 0) {
+                resultParts.push(others.join(', '));
+            }
+            
             return resultParts.join(' & ');
         }
 
-        // Pengelompokan Jadwal Belajar Lintas Kolom secara Sempurna & Robust
+        // Fungsi untuk mengelompokkan jadwal berdasarkan Hari, Waktu, Program, Tipe Kelas, dan Pengajar
         function groupSchedules(schedules) {
             const groups = {};
             
@@ -1154,10 +1298,11 @@
                 const program = (getPropValue(s, ['program', 'mata_pelajaran', 'program_mapel', 'Mapel']) || '-').trim();
                 const tipeKelas = (getPropValue(s, ['tipe_kelas', 'Tipe_Kelas', 'opsi_layanan', 'tipeKelas', 'kelas']) || '').trim().toUpperCase();
                 
-                // MENGAKOMODASI KOLOM 'TUTOR PENGAJAR' DARI GOOGLE SHEET MAUPUN CADANGANNYA
-                const tutorPengajar = (getPropValue(s, ['tutor_pengajar', 'tutor_platform', 'tutor_platform', 'Tutor_Platform', 'tutor_pengajar', 'Tutor_Pengajar', 'tutor', 'platform', 'pengajar', 'Pengajar']) || '-').trim();
+                // Mendeteksi kunci tutor baik 'tutor_pengajar' (dari GS baru) maupun 'tutor_platform' secara cerdas
+                const tutorPlatform = (getPropValue(s, ['tutor_pengajar', 'tutor_platform', 'Tutor_Pengajar', 'Tutor_Platform', 'tutor', 'platform', 'Platform']) || '-').trim();
                 
-                const key = `${hari.toLowerCase()}|${waktu.toLowerCase()}|${program.toLowerCase()}|${tipeKelas.toLowerCase()}|${tutorPengajar.toLowerCase()}`;
+                // Kunci unik pengelompokan kelas
+                const key = `${hari.toLowerCase()}|${waktu.toLowerCase()}|${program.toLowerCase()}|${tipeKelas.toLowerCase()}|${tutorPlatform.toLowerCase()}`;
                 
                 if (!groups[key]) {
                     groups[key] = {
@@ -1165,18 +1310,20 @@
                         waktu,
                         program,
                         tipe_kelas: tipeKelas,
-                        tutor_pengajar: tutorPengajar,
+                        tutor_platform: tutorPlatform,
                         raw_levels: [],
                         raw_names: [],
                         raw_codes: []
                     };
                 }
                 
+                // Masukkan tingkat kelas
                 const tingkat = (getPropValue(s, ['tingkat', 'Tingkat', 'kelas', 'Kelas', 'kelas_jenjang']) || '').trim();
                 if (tingkat && !groups[key].raw_levels.includes(tingkat)) {
                     groups[key].raw_levels.push(tingkat);
                 }
                 
+                // Masukkan nama siswa (pecah jika sudah berisi koma)
                 const namaSiswa = (getPropValue(s, ['nama_siswa', 'Nama_Siswa', 'nama', 'Nama']) || '').trim();
                 if (namaSiswa) {
                     namaSiswa.split(',').forEach(n => {
@@ -1187,6 +1334,7 @@
                     });
                 }
                 
+                // Masukkan kode unik murid
                 const kodeSiswa = (getPropValue(s, ['kode_siswa', 'Kode_Siswa', 'kode', 'Kode']) || '').trim();
                 if (kodeSiswa) {
                     kodeSiswa.split(',').forEach(c => {
@@ -1198,6 +1346,7 @@
                 }
             });
             
+            // Konversikan data map ke bentuk array yang terformat rapi
             return Object.values(groups).map(g => {
                 return {
                     hari: g.hari,
@@ -1205,18 +1354,19 @@
                     program: g.program,
                     tingkat: formatSmartLevels(g.raw_levels),
                     nama_siswa: g.raw_names.join(', '),
-                    tutor_pengajar: g.tutor_pengajar,
+                    tutor_platform: g.tutor_platform,
                     tipe_kelas: g.tipe_kelas,
                     kode_siswa: g.raw_codes.join(',')
                 };
             });
         }
 
-        // Render Tabel Jadwal secara Dinamis berdasarkan Kelas Layanan
+        // Render Tabel Jadwal secara Dinamis berdasarkan Kelas Layanan dengan Kombinasi Warna Premium
         function renderSchedules(schedules) {
             const container = document.getElementById("schedules-tables-container");
-            container.innerHTML = ""; 
+            container.innerHTML = ""; // Bersihkan loading text
 
+            // Lakukan grouping jadwal terlebih dahulu sebelum di-render
             const groupedSchedules = groupSchedules(schedules);
 
             const categories = [
@@ -1263,6 +1413,7 @@
 
                 if (filtered.length === 0) return;
 
+                // Urutkan jadwal per hari Senin-Minggu
                 const order = { "SENIN": 1, "SELASA": 2, "RABU": 3, "KAMIS": 4, "JUMAT": 5, "SABTU": 6, "MINGGU": 7 };
                 filtered.sort((a, b) => {
                     const hA = a.hari.toUpperCase();
@@ -1284,8 +1435,8 @@
                             <td class="p-4 text-slate-700 font-semibold">${row.nama_siswa || '-'}</td>
                             <td class="p-4">
                                 ${cat.id === 'virtual' 
-                                    ? `<span class="text-xs bg-indigo-50 text-indigo-700 px-2.5 py-1 rounded-lg border border-indigo-100 font-bold"><i class="fa-solid fa-video mr-1"></i> ${row.tutor_pengajar || '-'}</span>`
-                                    : `<span class="text-xs bg-emerald-50 text-emerald-700 px-2.5 py-1 rounded-lg border border-emerald-100 font-bold"><i class="fa-solid fa-user-tie mr-1"></i> ${row.tutor_pengajar || '-'}</span>`
+                                    ? `<span class="text-xs bg-indigo-50 text-indigo-700 px-2.5 py-1 rounded-lg border border-indigo-100 font-medium"><i class="fa-solid fa-video mr-1"></i> ${row.tutor_platform || '-'}</span>`
+                                    : `<span class="text-xs bg-slate-100 text-slate-700 px-2.5 py-1 rounded-lg border border-slate-200 font-medium"><i class="fa-solid fa-user-tie mr-1"></i> ${row.tutor_platform || '-'}</span>`
                                 }
                             </td>
                         </tr>
@@ -1323,6 +1474,7 @@
             });
         }
 
+        // GENERASI KODE UNIK SISWA OTOMATIS BERDASAR KATEGORI & JENJANG
         function generateStudentCode(tipeKelas, jenjang, listAktif = []) {
             let tCode = "R";
             const tk = (tipeKelas || "").toUpperCase();
@@ -1363,9 +1515,10 @@
             return `${prefix}${maxCount + 1}`;
         }
 
+        // Render Grid Testimoni secara Dinamis dengan Layout Visual Premium untuk Menarik Wali Murid
         function renderTestimonis(testimonis) {
             const container = document.getElementById("testimonis-container");
-            container.innerHTML = ""; 
+            container.innerHTML = ""; // Bersihkan loading text
 
             testimonis.forEach((t, idx) => {
                 const inisial = t.nama ? t.nama.substring(0, 2).toUpperCase() : "AN";
@@ -1379,6 +1532,7 @@
                 const subValue = t.subjek || t.sub || t.wali_siswa || "Wali Murid / Siswa";
                 const isWali = subValue.toLowerCase().includes("wali") || subValue.toLowerCase().includes("ortu") || subValue.toLowerCase().includes("ibu") || subValue.toLowerCase().includes("bp");
 
+                // Variasi Visual Badge Berdasarkan Kategori Wali / Murid demi Estetika Profesional
                 const relationBadgeStyle = isWali 
                     ? "bg-emerald-50 text-emerald-700 border-emerald-200" 
                     : "bg-purple-50 text-purple-700 border-purple-200";
@@ -1387,6 +1541,7 @@
                     ? `<span class="flex items-center gap-1"><i class="fa-solid fa-shield-halved text-emerald-500"></i> Wali Terverifikasi</span>`
                     : `<span class="flex items-center gap-1"><i class="fa-solid fa-user-graduate text-purple-500"></i> Siswa Aktif</span>`;
 
+                // Tagging otomatis berbasis kata kunci ulasan demi segmentasi yang kredibel
                 let tagKelebihan = "Peningkatan Akademik";
                 const teksPesan = t.pesan.toLowerCase();
                 if (teksPesan.includes("sains") || teksPesan.includes("praktik") || teksPesan.includes("eksperimen")) {
@@ -1403,6 +1558,7 @@
 
                 const cardHtml = `
                     <div class="bg-white p-8 rounded-3xl border border-slate-100 ${accentBorder} shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300 flex flex-col justify-between relative overflow-hidden group">
+                        <!-- Watermark Quote Cantik di Latar Belakang -->
                         <div class="absolute right-6 top-2 text-slate-100 group-hover:text-slate-200 text-8xl font-black select-none pointer-events-none transition duration-300">“</div>
                         
                         <div class="space-y-4 relative z-10">
@@ -1440,6 +1596,7 @@
             });
         }
 
+        // Toggle mobile menu hamburger
         function toggleMobileMenu() {
             const menu = document.getElementById("mobile-menu");
             const icon = document.getElementById("menu-icon");
@@ -1452,6 +1609,7 @@
             }
         }
 
+        // Helper untuk tombol daftar di dashboard (langsung isi kelas & trigger)
         function setRegistrationGrade(gradeVal) {
             const selectKelas = document.getElementById("reg-kelas");
             if (selectKelas) {
@@ -1460,6 +1618,7 @@
             }
         }
 
+        // Switch Antar Tab Menu Utama
         function switchTab(tabId) {
             const contents = document.querySelectorAll(".tab-content");
             contents.forEach(content => content.classList.add("hidden"));
@@ -1502,6 +1661,7 @@
             }
         }
 
+        // Efek Visual Aktif pada Tipe Kelas Radio yang dipilih
         function highlightClassType(type) {
             const reguler = document.getElementById("label-class-reguler");
             const private = document.getElementById("label-class-private");
@@ -1524,6 +1684,7 @@
             updateScheduleTimeOptions();
         }
 
+        // Perbarui Opsi Waktu Belajar berdasarkan Tipe Layanan
         function updateScheduleTimeOptions() {
             const timeSelect = document.getElementById("reg-jadwal-waktu");
             const selectedRadio = document.querySelector('input[name="tipe-kelas"]:checked');
@@ -1557,6 +1718,7 @@
             validateScheduleQuota();
         }
 
+        // Validasi Kuota Belajar (Reguler maks 4, Private maks 2, Virtual maks 4)
         function validateScheduleQuota() {
             const hari = document.getElementById("reg-jadwal-hari").value;
             const waktu = document.getElementById("reg-jadwal-waktu").value;
@@ -1579,6 +1741,7 @@
                 maxQuota = 2; 
             }
 
+            // Hitung bentrokan slot hari & waktu yang sama dari data aktif
             let matchedCount = 0;
             activeSchedules.forEach(item => {
                 const itemHari = getPropValue(item, ['hari', 'Hari']).toUpperCase();
@@ -1711,6 +1874,7 @@
                         <label class="block text-xs font-bold text-slate-500 mb-1">Catatan Tambahan Kesulitan Belajar</label>
                         <input type="text" class="row-catatan w-full px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-plusPurple" placeholder="Keterangan kesulitan belajar / topik yang diinginkan">
                     </div>
+                    <!-- Hapus Button -->
                     <button type="button" onclick="removeClassRow(this)" class="px-3 py-2 text-rose-500 bg-rose-50 border border-rose-100 rounded-xl hover:bg-rose-100 transition">
                         <i class="fa-solid fa-trash"></i>
                     </button>
@@ -1744,6 +1908,7 @@
             const jadwalHari = document.getElementById("reg-jadwal-hari").value;
             const jadwalWaktu = document.getElementById("reg-jadwal-waktu").value;
 
+            // Ambil cara belajar terpilih
             const metodeCheckboxes = document.querySelectorAll('input[name="metode"]:checked');
             let metodeBelajar = [];
             metodeCheckboxes.forEach(cb => metodeBelajar.push(cb.value));
@@ -1754,6 +1919,7 @@
                 metodeBelajar.push(`Lainnya (${inputLainnya.value.trim()})`);
             }
 
+            // Ambil seluruh kelas pelajaran dinamis yang diisi
             const rowsMapel = document.querySelectorAll(".row-mapel");
             const rowsCatatan = document.querySelectorAll(".row-catatan");
             let listMapels = [];
@@ -1766,6 +1932,7 @@
                 }
             }
 
+            // Gabungkan hasil mapel dan catatan terpisah
             const stringMapels = listMapels.join(", ");
             const stringCatatans = listCatatans.join(" | ");
 
@@ -1773,7 +1940,7 @@
 
             const payloadMurid = {
                 action: "register",
-                kode_murid: studentID,
+                kode_murid: studentID, // MENGIRIM KODE MURID YANG SINKRON DENGAN POPUP DI LAYAR
                 nama: nama,
                 kelas_jenjang: kelas,
                 alamat: alamat,
@@ -1811,7 +1978,7 @@
                     program: stringMapels,
                     tingkat: kelas,
                     nama_siswa: nama,
-                    tutor_pengajar: "Menunggu Konfirmasi",
+                    tutor_platform: "Menunggu Konfirmasi",
                     tipe_kelas: tipeKelas,
                     kode_siswa: studentID
                 });
@@ -1854,7 +2021,7 @@
                         <p class="text-sm text-slate-500">Pendaftaran murid atas nama <strong class="text-plusPurple">${nama}</strong> berhasil disimpan.</p>
                     </div>
                     <div class="bg-purple-50 p-4 rounded-2xl border border-purple-100">
-                        <span class="text-xs text-slate-400 block font-semibold uppercase">Kode Murid Anda</span>
+                        <span class="text-xs text-slate-400 block uppercase font-semibold leading-none mb-1">Kode Murid Anda</span>
                         <span class="text-3xl font-black text-plusPurple tracking-wider">${kode}</span>
                         <p class="text-[10px] text-slate-500 mt-2">Gunakan kode di atas untuk verifikasi jadwal di menu 'Jadwal Kelas' atau menulis testimoni.</p>
                     </div>
@@ -1877,7 +2044,7 @@
             if (admin === "eldwine") {
                 num = "6285740207460"; 
             }
-            const msg = `Halo Admin, saya ingin mengonfirmasi pendaftaran baru di Bimbel PLUS.\nNama Murid: ${nama}\nKode Murid: ${kode}.\nMohon diverifikasi lebih lanjut ya, Terima kasih!`;
+            const msg = `Halo Admin ${admin === 'rahma' ? 'Rahma' : 'Eldwine'} Bimbel PLUS, saya ingin mengonfirmasi pendaftaran baru di Bimbel PLUS.\nNama Murid: ${nama}\nKode Murid: ${kode}.\nMohon diverifikasi lebih lanjut ya, Terima kasih!`;
             window.open(`https://wa.me/${num}?text=${encodeURIComponent(msg)}`, '_blank');
             document.getElementById("modal-success").remove();
             switchTab('home');
@@ -1887,14 +2054,16 @@
             document.getElementById("modal-success").remove();
             switchTab('home');
             setTimeout(() => {
-                showToast(`⚠️ Jangan lupa untuk mengonfirmasi pendaftaran ke admin atas nama ${nama} (${kode})!`, "error");
+                showToast(`⚠️ Jangan lupa untuk mengonfirmasi pendaftaran ke admin  (${kode})!`);
             }, 1000);
         }
 
+        // Fungsi Pencarian Jadwal Terintegrasi & Block Highlight Warna Pulsing Premium
         function cariJadwal() {
             const queryKode = document.getElementById("search-kode-murid").value.trim().toUpperCase();
             const resultBox = document.getElementById("search-result-box");
             
+            // Detail elemen kartu pencarian
             const resNamaMurid = document.getElementById("res-nama-murid");
             const resKodeMurid = document.getElementById("res-kode-murid");
             const resWaktuMurid = document.getElementById("res-waktu-murid");
@@ -1907,12 +2076,14 @@
                 return;
             }
 
+            // Bersihkan semua highlight aktif sebelumnya di tabel
             const rows = document.querySelectorAll("tbody tr");
             rows.forEach(r => {
                 r.className = r.className.replace("row-highlight-active", "");
                 r.classList.remove("shadow-sm");
             });
 
+            // Cari baris murid di dalam list jadwal asli (belum di-grouping)
             const matchedRaw = activeSchedules.find(s => {
                 const kodeStr = getPropValue(s, ['kode_siswa', 'Kode_Siswa', 'kode', 'Kode']).toUpperCase();
                 return kodeStr.split(',').map(c => c.trim()).includes(queryKode);
@@ -1926,6 +2097,7 @@
                 else if (matchedType.includes("PRIVATE") || matchedType.includes("PRIVAT") || matchedType === "P") matchedCatId = "private";
                 else if (matchedType.includes("VIRTUAL") || matchedType === "V") matchedCatId = "virtual";
 
+                // Hanya tampilkan kategori kelas yang bersangkutan
                 const categories = ["reguler", "private", "virtual"];
                 categories.forEach(cat => {
                     const card = document.getElementById(`schedule-card-${cat}`);
@@ -1938,6 +2110,7 @@
                     }
                 });
 
+                // Lakukan pencarian baris tabel yang dikelompokkan
                 let foundRow = false;
                 let targetRowElement = null;
 
@@ -1953,22 +2126,27 @@
                 });
 
                 if (foundRow && targetRowElement) {
+                    // Ekstrak data dari baris tabel yang ter-grouping untuk ditampilkan di Kartu Detail Pencarian
                     const cells = targetRowElement.querySelectorAll("td");
                     const hari = cells[0].textContent;
                     const waktu = cells[1].textContent;
                     const program = cells[2].textContent.trim();
                     const tingkat = cells[3].textContent;
                     const namaSiswaCombined = cells[4].textContent;
-                    const tutorPengajar = cells[5].textContent.trim();
+                    const tutorPlatform = cells[5].textContent.trim();
 
+                    // Update informasi di Kartu Detail Pencarian Siswa
                     resNamaMurid.innerHTML = namaSiswaCombined;
                     resKodeMurid.textContent = queryKode;
                     resWaktuMurid.textContent = `${hari}, ${waktu} WIB`;
                     resTingkatMurid.textContent = tingkat;
                     resMapelMurid.textContent = program;
-                    resTutorMurid.textContent = tutorPengajar;
+                    resTutorMurid.textContent = tutorPlatform;
 
+                    // Tampilkan box kartu pencarian
                     resultBox.classList.remove("hidden");
+
+                    // Scroll baris tabel target ke tengah layar agar langsung terbaca
                     targetRowElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     showToast("Siswa ditemukan! Detail sesi kelas ditampilkan.");
                 } else {
@@ -1978,11 +2156,13 @@
 
             } else {
                 resultBox.classList.add("hidden");
+                // Kembalikan semua kategori card tabel jika tidak ditemukan
                 document.querySelectorAll(".schedule-card-wrapper").forEach(el => el.classList.remove("hidden"));
                 showToast("Kode murid tidak ditemukan / belum dikonfirmasi admin", "error");
             }
         }
 
+        // Reset hasil filter pencarian ke mode default
         function resetCariJadwal() {
             document.getElementById("search-kode-murid").value = "";
             document.getElementById("search-result-box").classList.add("hidden");
@@ -2026,6 +2206,7 @@
             const pesan = document.getElementById("testi-pesan").value;
             const ratingVal = parseInt(document.getElementById("testi-rating").value, 10);
 
+            // Validasi Kode Murid
             if (WEB_APP_URL) {
                 try {
                     const checkResponse = await fetch(`${WEB_APP_URL}?action=validate_student&code=${kode}`);
@@ -2055,6 +2236,7 @@
             const container = document.getElementById("testimonis-container");
             const inisial = nama.substring(0, 2).toUpperCase();
 
+            // Desain Baru yang Sangat Menarik untuk Card Instan yang Baru Saja Dikirim
             const isWali = sub.toLowerCase().includes("wali") || sub.toLowerCase().includes("orang");
             const borderAccentClass = isWali ? "border-l-4 border-emerald-500" : "border-l-4 border-plusOrange";
             const relationBadgeStyle = isWali ? "bg-emerald-50 text-emerald-700 border-emerald-200" : "bg-purple-50 text-purple-700 border-purple-200";
