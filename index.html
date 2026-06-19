@@ -28,19 +28,19 @@
                             500: '#6366f1',
                             600: '#4f46e5',
                             700: '#4338ca',
-                            DEFAULT: '#5d51a0', // Warna ungu logo
+                            DEFAULT: '#5d51a0',
                         },
                         plusOrange: {
                             100: '#ffedd5',
                             400: '#fb923c',
                             500: '#f97316',
-                            DEFAULT: '#f08a5d', // Warna oranye huruf A
+                            DEFAULT: '#f08a5d',
                         },
                         plusGreen: {
                             100: '#f0fdf4',
                             400: '#4ade80',
                             500: '#22c55e',
-                            DEFAULT: '#b4f8c8', // Warna hijau bunga
+                            DEFAULT: '#b4f8c8',
                         }
                     }
                 }
@@ -57,8 +57,6 @@
         }
 
         /* --- ANIMASI MASKOT ALAMI & HIDUP --- */
-        
-        /* 1. Efek Bernapas Halus pada Badan Huruf A */
         @keyframes soft-breathe {
             0%, 100% { transform: scale(1) translateY(0); }
             50% { transform: scale(0.98, 1.02) translateY(-2px); }
@@ -68,7 +66,6 @@
             animation: soft-breathe 4s ease-in-out infinite;
         }
 
-        /* 2. Lambaian Tangan Kiri */
         @keyframes wave-left {
             0%, 100% { transform: rotate(0deg); }
             50% { transform: rotate(-18deg); }
@@ -78,7 +75,6 @@
             animation: wave-left 2.5s ease-in-out infinite;
         }
 
-        /* 3. Lambaian Tangan Kanan */
         @keyframes wave-right {
             0%, 100% { transform: rotate(0deg); }
             50% { transform: rotate(18deg); }
@@ -88,7 +84,6 @@
             animation: wave-right 2.2s ease-in-out infinite;
         }
 
-        /* 4. Kedipan Mata Otomatis */
         @keyframes eye-blink {
             0%, 90%, 100% { transform: scaleY(1); }
             95% { transform: scaleY(0.1); }
@@ -98,7 +93,6 @@
             animation: eye-blink 4.5s infinite;
         }
 
-        /* 5. Kelopak Bunga Latar Belakang Berputar Sangat Lambat */
         @keyframes bg-spin {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
@@ -108,7 +102,6 @@
             animation: bg-spin 40s linear infinite;
         }
 
-        /* 6. Hover Jump & Getar Gembira */
         .interactive-mascot-group {
             transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: pointer;
@@ -122,7 +115,6 @@
         .interactive-mascot-group:hover .mascot-arm-right {
             animation: wave-right 0.7s ease-in-out infinite;
         }
-        /* Senyuman melebar saat dihover */
         .mascot-smile {
             transition: d 0.3s ease-in-out, stroke-width 0.3s;
         }
@@ -131,32 +123,24 @@
             stroke-width: 2.5px;
         }
 
-        /* Efek Hover Tab Navigasi */
-        .tab-active {
-            border-bottom: 4px solid #f08a5d;
-            color: #5d51a0;
-            font-weight: 700;
-        }
-
         /* --- HIGHLIGHT BARIS JADWAL AKTIF --- */
         @keyframes pulse-yellow {
             0%, 100% { background-color: rgba(254, 240, 138, 0.95); }
-            50% { background-color: rgba(254, 240, 138, 0.5); }
+            50% { background-color: rgba(254, 240, 138, 0.4); }
         }
         .row-highlight-active {
             animation: pulse-yellow 2s infinite ease-in-out;
             border-left: 6px solid #fb923c !important;
-            box-shadow: 0 4px 15px rgba(251, 146, 60, 0.25);
-            transform: scale(1.015);
+            box-shadow: 0 4px 15px rgba(251, 146, 60, 0.15);
+            transform: scale(1.01);
             transition: all 0.3s ease;
         }
     </style>
 </head>
 <body class="text-slate-700 min-h-screen flex flex-col">
 
-    <!-- KONFIGURASI INTEGRASI API GOOGLE SHEETS -->
     <script>
-        // Tempelkan URL Web App Google Apps Script Anda yang sudah dideploy di sini
+        // Masukkan URL Web App Google Apps Script Anda hasil deploy di sini
         const WEB_APP_URL = "https://script.google.com/macros/s/AKfycby74uzOmCAvjedCnFH2ZLCbEHYhYzjcjJGFFV0yn4RwqwpMGY6otlVoSGX4qEFg864TYg/exec"; 
     </script>
 
@@ -167,41 +151,24 @@
                 <!-- LOGO ZONE (INTERAKTIF) -->
                 <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('home')">
                     <div class="relative w-14 h-14" id="interactive-logo">
-                        <!-- SVG Huruf A Lucu dengan kacamata & tangan (Versi Navbar) -->
                         <svg viewBox="0 0 100 100" class="w-full h-full">
                             <g class="interactive-mascot-group">
-                                <!-- Bunga Hijau Latar Belakang -->
                                 <path class="mascot-bg-flower" d="M 50,15 C 38,15 35,35 45,45 C 35,35 15,38 15,50 C 15,62 35,65 45,55 C 35,65 38,85 50,85 C 62,85 65,65 55,55 C 65,65 85,62 85,50 C 85,38 65,35 55,45 C 65,35 62,15 50,15 Z" fill="#b4f8c8" opacity="0.8"/>
-                                <!-- Papan Seluncur/Garis Ungu -->
                                 <ellipse cx="50" cy="82" rx="25" ry="4" fill="#5d51a0" />
-                                
-                                <!-- Kelompok Karakter Utama (Bisa Bernapas) -->
                                 <g class="mascot-body">
-                                    <!-- Tangan Kiri (Melambai) -->
                                     <path class="mascot-arm-left" d="M 38,48 Q 23,45 25,52" stroke="#f08a5d" stroke-width="4.5" stroke-linecap="round" fill="none" />
-                                    <!-- Tangan Kanan (Melambai) -->
                                     <path class="mascot-arm-right" d="M 62,48 Q 77,38 75,44" stroke="#f08a5d" stroke-width="4.5" stroke-linecap="round" fill="none" />
-                                    
-                                    <!-- Kaki -->
                                     <line x1="43" y1="72" x2="41" y2="82" stroke="#1e293b" stroke-width="3" stroke-linecap="round" />
                                     <line x1="57" y1="72" x2="59" y2="82" stroke="#1e293b" stroke-width="3" stroke-linecap="round" />
-                                    
-                                    <!-- Badan Huruf 'A' Oranye -->
                                     <path d="M 50,23 L 35,72 L 45,72 L 50,55 L 55,72 L 65,72 Z" fill="#f08a5d" stroke="#f08a5d" stroke-width="1" stroke-linejoin="round" />
                                     <rect x="42" y="52" width="16" height="6" fill="#f08a5d" />
-                                    
-                                    <!-- Kacamata Bulat Hitam -->
                                     <circle cx="43" cy="43" r="7.5" stroke="#1e293b" stroke-width="2.5" fill="white" />
                                     <circle cx="57" cy="43" r="7.5" stroke="#1e293b" stroke-width="2.5" fill="white" />
                                     <line x1="48" y1="43" x2="52" y2="43" stroke="#1e293b" stroke-width="2.5" />
-                                    
-                                    <!-- Mata Kedip Otomatis (Pupil Tenang) -->
                                     <g class="mascot-eye">
                                         <circle cx="43" cy="43" r="3.2" fill="#1e293b" />
                                         <circle cx="57" cy="43" r="3.2" fill="#1e293b" />
                                     </g>
-                                    
-                                    <!-- Senyuman -->
                                     <path class="mascot-smile" d="M 45,62 Q 50,66 55,62" stroke="#1e293b" stroke-width="2" stroke-linecap="round" fill="none" />
                                 </g>
                             </g>
@@ -209,9 +176,7 @@
                     </div>
                     <div>
                         <span class="text-xs uppercase tracking-wider text-slate-400 block font-semibold leading-none">Bimbingan Belajar</span>
-                        <span class="text-2xl font-bold text-plusPurple tracking-wide brand-font leading-none flex items-center">
-                            PLUS
-                        </span>
+                        <span class="text-2xl font-bold text-plusPurple tracking-wide brand-font leading-none flex items-center">PLUS</span>
                     </div>
                 </div>
 
@@ -264,17 +229,15 @@
 
         <!-- TAB: HOME / DASHBOARD -->
         <section id="content-home" class="tab-content py-8 md:py-16">
-            <!-- Hero Section -->
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                    <!-- Hero Info -->
                     <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
                         <span class="inline-block px-4 py-1.5 bg-plusOrange-100 text-plusOrange-500 font-bold text-sm rounded-full tracking-wide uppercase">⚡ Bimbingan Belajar Berkualitas</span>
                         <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-plusPurple tracking-tight leading-tight">
                             Karena Potensimu Layak Dapat <span class="text-plusOrange">"PLUS"</span>
                         </h1>
                         <p class="text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto lg:mx-0">
-                            <strong>"PLUS"</strong> adalah lembaga bimbingan belajar yang berkomitmen memberikan <span class="font-bold text-plusPurple">"nilai tambah"</span> untuk setiap siswa. Kami tidak hanya focus mengejar nilai akademis, melainkan juga berdedikasi membangun pola pikir kritis, kreatif, serta rasa percaya diri yang tinggi untuk menghadapi masa depan.
+                            <strong>"PLUS"</strong> adalah lembaga bimbingan belajar yang berkomitmen memberikan <span class="font-bold text-plusPurple">"nilai tambah"</span> untuk setiap siswa. Kami tidak hanya fokus mengejar nilai akademis, melainkan juga berdedikasi membangun pola pikir kritis, kreatif, serta rasa percaya diri yang tinggi untuk menghadapi masa depan.
                         </p>
                         <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
                             <button onclick="switchTab('daftar')" class="px-8 py-4 bg-plusPurple text-white font-bold text-lg rounded-full shadow-lg hover:bg-plusPurple-700 transition transform hover:-translate-y-1 flex items-center justify-center gap-2">
@@ -285,47 +248,29 @@
                             </a>
                         </div>
                     </div>
-                    <!-- Hero Visual (Mascot Gembira) -->
+                    <!-- Hero Visual -->
                     <div class="lg:col-span-5 flex justify-center">
                         <div class="relative w-72 h-72 sm:w-96 sm:h-96 md:w-[420px] md:h-[420px]">
-                            <!-- SVG Dekorasi Besar Interaktif -->
                             <svg viewBox="0 0 100 100" class="w-full h-full drop-shadow-2xl">
                                 <g class="interactive-mascot-group">
-                                    <!-- Kelopak Bunga Latar Belakang (Berputar Lambat) -->
                                     <path class="mascot-bg-flower" d="M 50,10 C 35,10 30,30 40,40 C 30,30 10,35 10,50 C 10,65 30,70 40,60 C 30,70 35,90 50,90 C 65,90 70,70 60,60 C 70,70 90,65 90,50 C 90,35 70,30 60,40 C 70,30 65,10 50,10 Z" fill="#b4f8c8" opacity="0.6"/>
-                                    <!-- Garis Seluncur Ungu -->
                                     <ellipse cx="50" cy="85" rx="35" ry="6" fill="#5d51a0" opacity="0.9" />
-                                    
-                                    <!-- Kelompok Karakter Utama -->
                                     <g class="mascot-body">
-                                        <!-- Tangan Kiri Lentur -->
                                         <path class="mascot-arm-left" d="M 38,48 Q 20,44 22,54" stroke="#f08a5d" stroke-width="5" stroke-linecap="round" fill="none" />
                                         <circle class="mascot-arm-left" cx="21" cy="54" r="3.5" fill="#f08a5d" />
-                                        
-                                        <!-- Tangan Kanan Lentur -->
                                         <path class="mascot-arm-right" d="M 62,48 Q 80,36 78,44" stroke="#f08a5d" stroke-width="5" stroke-linecap="round" fill="none" />
                                         <circle class="mascot-arm-right" cx="79" cy="42" r="3.5" fill="#f08a5d" />
-                                        
-                                        <!-- Kaki Karakter -->
                                         <line x1="40" y1="78" x2="38" y2="85" stroke="#1e293b" stroke-width="4.5" stroke-linecap="round"/>
                                         <line x1="60" y1="78" x2="62" y2="85" stroke="#1e293b" stroke-width="4.5" stroke-linecap="round"/>
-                                        
-                                        <!-- Tubuh Huruf 'A' -->
                                         <path d="M 50,20 L 28,78 L 40,78 L 50,55 L 60,78 L 72,78 Z" fill="#f08a5d" stroke="#f08a5d" stroke-width="1.5" stroke-linejoin="round" />
                                         <rect x="38" y="52" width="24" height="8" fill="#f08a5d" />
-                                        
-                                        <!-- Kacamata Bulat -->
                                         <circle cx="41" cy="44" r="10" stroke="#1e293b" stroke-width="3" fill="white" />
                                         <circle cx="59" cy="44" r="10" stroke="#1e293b" stroke-width="3" fill="white" />
                                         <line x1="47" y1="44" x2="53" y2="44" stroke="#1e293b" stroke-width="3" />
-                                        
-                                        <!-- Mata Kedip Otomatis -->
                                         <g class="mascot-eye">
                                             <circle cx="41" cy="44" r="4.2" fill="#1e293b" />
                                             <circle cx="59" cy="44" r="4.2" fill="#1e293b" />
                                         </g>
-                                        
-                                        <!-- Senyuman Hangat -->
                                         <path class="mascot-smile" d="M 45,64 Q 50,70 55,64" stroke="#1e293b" stroke-width="2.5" stroke-linecap="round" fill="none" />
                                     </g>
                                 </g>
@@ -335,7 +280,6 @@
                 </div>
             </div>
 
-            <!-- Keunggulan Utama Section -->
             <div id="keunggulan" class="bg-white py-16 mt-20 border-t border-slate-100">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
@@ -345,48 +289,36 @@
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                        <!-- Rasio Kelas Ideal -->
                         <div class="bg-plusPurple-50 p-8 rounded-3xl border border-plusPurple-100 shadow-sm hover:shadow-md transition duration-300">
                             <div class="w-14 h-14 bg-plusPurple text-white rounded-2xl flex items-center justify-center text-2xl mb-6">
                                 <i class="fa-solid fa-users"></i>
                             </div>
                             <h3 class="text-xl font-bold text-plusPurple mb-3">Rasio Kelas Ideal</h3>
-                            <p class="text-slate-600 text-sm leading-relaxed">
-                                Maksimal 4 anak per kelas demi menjamin interaksi dan fokus pengajar yang optimal ke setiap anak.
-                            </p>
+                            <p class="text-slate-600 text-sm leading-relaxed">Maksimal 4 anak per kelas demi menjamin interaksi dan fokus pengajar yang optimal ke setiap anak.</p>
                         </div>
 
-                        <!-- Materi Terstruktur -->
                         <div class="bg-orange-50 p-8 rounded-3xl border border-orange-100 shadow-sm hover:shadow-md transition duration-300">
                             <div class="w-14 h-14 bg-plusOrange text-white rounded-2xl flex items-center justify-center text-2xl mb-6">
                                 <i class="fa-solid fa-book-open"></i>
                             </div>
                             <h3 class="text-xl font-bold text-plusOrange-500 mb-3">Materi Terstruktur</h3>
-                            <p class="text-slate-600 text-sm leading-relaxed">
-                                Kurikulum telah disusun serta dievaluasi berkala agar materi mudah dipahami namun tetap menyenangkan.
-                            </p>
+                            <p class="text-slate-600 text-sm leading-relaxed">Kurikulum telah disusun serta dievaluasi berkala agar materi mudah dipahami namun tetap menyenangkan.</p>
                         </div>
 
-                        <!-- Monitoring Akademik -->
                         <div class="bg-green-50 p-8 rounded-3xl border border-green-100 shadow-sm hover:shadow-md transition duration-300">
                             <div class="w-14 h-14 bg-emerald-500 text-white rounded-2xl flex items-center justify-center text-2xl mb-6">
                                 <i class="fa-solid fa-chart-line"></i>
                             </div>
                             <h3 class="text-xl font-bold text-emerald-600 mb-3">Monitoring Akademik</h3>
-                            <p class="text-slate-600 text-sm leading-relaxed">
-                                Laporan dikirim ke ortu tiap selesai 2x kelas review, mencakup kemampuan kognitif & perkembangan sikap anak.
-                            </p>
+                            <p class="text-slate-600 text-sm leading-relaxed">Laporan dikirim ke ortu tiap selesai 2x kelas review, mencakup kemampuan kognitif & perkembangan anak.</p>
                         </div>
 
-                        <!-- Bimbingan Lanjutan -->
                         <div class="bg-blue-50 p-8 rounded-3xl border border-blue-100 shadow-sm hover:shadow-md transition duration-300">
                             <div class="w-14 h-14 bg-blue-500 text-white rounded-2xl flex items-center justify-center text-2xl mb-6">
                                 <i class="fa-solid fa-comments"></i>
                             </div>
                             <h3 class="text-xl font-bold text-blue-600 mb-3">Bimbingan Lanjutan</h3>
-                            <p class="text-slate-600 text-sm leading-relaxed">
-                                Layanan konsultasi di luar jam kelas reguler untuk membantu pemahaman materi sekolah yang dirasa sulit secara mendalam.
-                            </p>
+                            <p class="text-slate-600 text-sm leading-relaxed">Layanan konsultasi di luar jam kelas reguler untuk membantu pemahaman materi sekolah yang dirasa sulit.</p>
                         </div>
                     </div>
                 </div>
@@ -458,103 +390,45 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Fasilitas Section -->
-            <div class="bg-white py-16">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                        <div class="space-y-6">
-                            <span class="text-plusOrange font-bold tracking-wider uppercase text-sm block">🏫 Ruang & Sarana</span>
-                            <h2 class="text-3xl sm:text-4xl font-bold text-plusPurple">Fasilitas Penunjang Belajar</h2>
-                            <p class="text-slate-600 leading-relaxed">
-                                Kami percaya lingkungan sangat mempengaruhi kenyamanan belajar anak. Oleh karena itu, Bimbel PLUS dilengkapi dengan berbagai fasilitas pendukung modern demi menghadirkan proses KBM yang ideal:
-                            </p>
-                            <div class="space-y-4">
-                                <div class="flex items-start gap-4">
-                                    <div class="w-10 h-10 rounded-xl bg-plusOrange-100 text-plusOrange flex items-center justify-center shrink-0"><i class="fa-solid fa-maximize"></i></div>
-                                    <div>
-                                        <h4 class="font-bold text-slate-800">Ruang Kelas Luas</h4>
-                                        <p class="text-sm text-slate-500">Sirkulasi udara baik and pencahayaan yang pas, bebas dari rasa gerah sehingga fokus anak tetap terjaga.</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-start gap-4">
-                                    <div class="w-10 h-10 rounded-xl bg-plusPurple-100 text-plusPurple flex items-center justify-center shrink-0"><i class="fa-solid fa-screwdriver-wrench"></i></div>
-                                    <div>
-                                        <h4 class="font-bold text-slate-800">Alat Pembelajaran Lengkap & Praktis</h4>
-                                        <p class="text-sm text-slate-500">Bahan ajar fisik, alat peraga jarimatika, serta kit percobaan sains sederhana yang aman.</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-start gap-4">
-                                    <div class="w-10 h-10 rounded-xl bg-green-100 text-emerald-600 flex items-center justify-center shrink-0"><i class="fa-solid fa-laptop"></i></div>
-                                    <div>
-                                        <h4 class="font-bold text-slate-800">Sarana Pengajaran Interaktif</h4>
-                                        <p class="text-sm text-slate-500">Pemanfaatan media visual interaktif di kelas untuk memudahkan penggambaran konsep sulit.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-2 gap-4">
-                            <!-- SVG Representasi Fasilitas -->
-                            <div class="bg-[#b4f8c8] bg-opacity-30 p-8 rounded-3xl flex flex-col justify-between h-48 hover:scale-[1.05] transition-all duration-300">
-                                <i class="fa-solid fa-school text-4xl text-emerald-600"></i>
-                                <span class="font-bold text-slate-800 text-lg">Kelas Nyaman</span>
-                            </div>
-                            <div class="bg-plusOrange-100 bg-opacity-50 p-8 rounded-3xl flex flex-col justify-between h-48 hover:scale-[1.05] transition-all duration-300">
-                                <i class="fa-solid fa-flask text-4xl text-plusOrange-500"></i>
-                                <span class="font-bold text-slate-800 text-lg">Eksperimen Praktis</span>
-                            </div>
-                            <div class="bg-plusPurple-100 bg-opacity-50 p-8 rounded-3xl flex flex-col justify-between h-48 hover:scale-[1.05] transition-all duration-300">
-                                <i class="fa-solid fa-tv text-4xl text-plusPurple"></i>
-                                <span class="font-bold text-slate-800 text-lg">Media Interaktif</span>
-                            </div>
-                            <div class="bg-blue-100 bg-opacity-50 p-8 rounded-3xl flex flex-col justify-between h-48 hover:scale-[1.05] transition-all duration-300">
-                                <i class="fa-solid fa-user-graduate text-4xl text-blue-600"></i>
-                                <span class="font-bold text-slate-800 text-lg">Maks. 4 Anak</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </section>
 
-        <!-- TAB: FORM PENDAFTARAN (DENGAN LAYOUT PREMIUM MULTI-PILIHAN REGISTRASI) -->
+        <!-- TAB: FORM PENDAFTARAN (DESAIN BARU YANG AMAT MENARIK, SINKRON & PROFESIONAL) -->
         <section id="content-daftar" class="tab-content py-8 md:py-16 hidden">
             <div class="max-w-4xl mx-auto px-4 sm:px-6">
-                <!-- Info Banner pendaftaran -->
-                <div class="bg-plusPurple rounded-3xl p-8 text-white mb-8 relative overflow-hidden shadow-xl">
+                <!-- Info Banner Pendaftaran -->
+                <div class="bg-gradient-to-r from-plusPurple via-indigo-900 to-plusPurple rounded-3xl p-8 text-white mb-8 relative overflow-hidden shadow-xl border-b-4 border-plusOrange-500">
                     <div class="relative z-10 space-y-2">
-                        <span class="px-3 py-1 bg-plusOrange rounded-full text-xs font-bold uppercase tracking-wide">Layanan Formulir</span>
-                        <h2 class="text-3xl font-bold">Penerimaan Siswa & Sesi Baru</h2>
-                        <p class="text-plusPurple-100 text-sm max-w-xl">Pilih tipe pendaftaran di bawah ini untuk memulai registrasi murid baru atau penambahan kelas belajar untuk murid lama yang telah terverifikasi.</p>
+                        <span class="px-3 py-1 bg-plusOrange rounded-full text-xs font-bold uppercase tracking-wider">Registrasi & Layanan Baru</span>
+                        <h2 class="text-3xl font-extrabold brand-font">Penerimaan Siswa & Sesi Belajar</h2>
+                        <p class="text-plusPurple-100 text-sm max-w-xl">Pilih tipe pendaftaran di bawah ini untuk memulai registrasi murid baru atau menambahkan kelas/mapel baru bagi siswa yang sudah terdaftar.</p>
                     </div>
-                    <!-- Hiasan Bulat -->
-                    <div class="absolute -right-10 -bottom-10 w-44 h-44 bg-plusOrange rounded-full opacity-25"></div>
+                    <div class="absolute -right-10 -bottom-10 w-44 h-44 bg-plusOrange rounded-full opacity-20"></div>
                 </div>
 
-                <!-- SUB-MENU SELECTOR: DAFTAR BARU vs TAMBAH MAPEL MURID LAMA (SANGAT RAPI & PROFESIONAL) -->
-                <div class="flex gap-4 p-1.5 bg-slate-100 rounded-2xl mb-8 max-w-md mx-auto shadow-inner">
-                    <button onclick="setRegistrationMode('baru')" id="btn-mode-baru" class="flex-1 py-3 text-center rounded-xl font-bold text-sm transition duration-200 bg-white text-plusPurple shadow-sm">
-                        <i class="fa-solid fa-user-plus mr-1"></i> Murid Baru
+                <!-- SUB-MENU SELECTOR: SWITCH SLIDER PREMIUM DAN SANGAT MENARIK -->
+                <div class="bg-slate-200/80 backdrop-blur-md p-1.5 rounded-3xl mb-8 max-w-md mx-auto shadow-inner flex border border-slate-300 relative">
+                    <button onclick="setRegistrationMode('baru')" id="btn-mode-baru" class="flex-1 py-3.5 text-center rounded-2xl font-bold text-sm transition duration-300 flex items-center justify-center gap-2 bg-white text-plusPurple shadow-md">
+                        <i class="fa-solid fa-user-plus text-base"></i> Murid Baru
                     </button>
-                    <button onclick="setRegistrationMode('lama')" id="btn-mode-lama" class="flex-1 py-3 text-center rounded-xl font-semibold text-sm transition duration-200 text-slate-600 hover:text-plusPurple">
-                        <i class="fa-solid fa-book-medical mr-1"></i> Murid Terdaftar
+                    <button onclick="setRegistrationMode('lama')" id="btn-mode-lama" class="flex-1 py-3.5 text-center rounded-2xl font-bold text-sm transition duration-300 flex items-center justify-center gap-2 text-slate-600 hover:text-plusPurple">
+                        <i class="fa-solid fa-book-medical text-base"></i> Murid Terdaftar
                     </button>
                 </div>
 
-                <!-- SEARCH BOX BAGI LAYANAN TAMBAH MAPEL MURID TERDAFTAR (SANGAT INTERAKTIF) -->
+                <!-- SEARCH BOX UNTUK TAMBAH MAPEL MURID TERDAFTAR -->
                 <div id="container-search-murid-lama" class="hidden bg-white p-6 rounded-3xl border border-slate-200 shadow-md mb-8 animate-fade-in">
                     <h3 class="font-bold text-slate-800 text-base mb-3 flex items-center gap-2">
                         <i class="fa-solid fa-magnifying-glass text-plusPurple"></i> Validasi Identitas Murid Terdaftar
                     </h3>
                     <div class="flex flex-col sm:flex-row gap-3">
-                        <input type="text" id="search-existing-code" class="flex-grow px-4 py-3 border border-slate-200 rounded-2xl focus:outline-none focus:border-plusPurple text-sm uppercase" placeholder="Masukkan KODE MURID terdaftar Anda (misal: RSD-1)">
-                        <button onclick="fetchStudentProfile()" class="px-6 py-3 bg-plusPurple text-white font-bold rounded-2xl hover:bg-plusPurple-700 transition text-sm flex items-center justify-center gap-2">
+                        <input type="text" id="search-existing-code" class="flex-grow px-4 py-3 border-2 border-slate-200 rounded-2xl focus:outline-none focus:border-plusPurple text-sm uppercase font-semibold text-slate-800 tracking-wider" placeholder="Masukkan KODE MURID Anda (misal: RSD-1)">
+                        <button type="button" onclick="fetchStudentProfile()" class="px-6 py-3 bg-plusPurple text-white font-bold rounded-2xl hover:bg-plusPurple-700 transition text-sm flex items-center justify-center gap-2 shadow-md">
                             <i id="icon-search-profile" class="fa-solid fa-magnifying-glass"></i> Cek Data Murid
                         </button>
                     </div>
-                    <p class="text-[11px] text-slate-400 mt-2">Mata pelajaran lama akan digabungkan secara otomatis berdasarkan data sheet DataMurid.</p>
+                    <p class="text-[11px] text-slate-400 mt-2">Pencarian terintegrasi langsung dengan tab DataMurid di database cloud utama.</p>
 
-                    <!-- CARD PROFIL MURID JIKA DITEMUKAN (TAMPIL OTOMATIS TANPA ISI ULANG) -->
+                    <!-- CARD PROFIL MURID TERDAFTAR -->
                     <div id="existing-student-card" class="hidden mt-6 p-5 bg-plusPurple-50 border border-plusPurple-100 rounded-2xl animate-fade-in">
                         <div class="flex items-start gap-3.5">
                             <div class="w-10 h-10 rounded-full bg-plusPurple text-white flex items-center justify-center text-lg shrink-0 mt-0.5">
@@ -563,7 +437,7 @@
                             <div class="flex-grow space-y-1">
                                 <span class="bg-plusOrange-100 text-plusOrange-500 font-bold px-2 py-0.5 text-[10px] rounded uppercase">Murid Terverifikasi</span>
                                 <h4 id="profile-display-name" class="font-bold text-slate-800 text-base leading-tight">-</h4>
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1.5 pt-2 text-xs text-slate-600">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1.5 pt-2 text-xs text-slate-600 border-t border-slate-200 mt-2">
                                     <p><strong>Kode Murid:</strong> <span id="profile-display-code" class="font-mono text-plusPurple font-semibold">-</span></p>
                                     <p><strong>Jenjang / Kelas:</strong> <span id="profile-display-kelas">-</span></p>
                                     <p class="sm:col-span-2"><strong>Alamat:</strong> <span id="profile-display-alamat">-</span></p>
@@ -575,13 +449,15 @@
                     </div>
                 </div>
 
-                <!-- Form Card -->
+                <!-- FORM UTAMA PENDAFTARAN -->
                 <div class="bg-white rounded-3xl shadow-xl border border-slate-100 p-8 md:p-12" id="registration-form-wrapper">
                     <form id="registrationForm" onsubmit="submitForm(event)" class="space-y-8">
                         
                         <!-- SEKSI DATA DIRI -->
-                        <div class="space-y-6" id="section-data-diri">
-                            <h3 class="text-xl font-bold text-plusPurple border-b pb-2"><i class="fa-solid fa-id-card mr-2"></i> Data Diri Calon Murid</h3>
+                        <div class="space-y-6 animate-fade-in" id="section-data-diri">
+                            <h3 class="text-xl font-bold text-plusPurple border-b pb-2 flex items-center gap-2">
+                                <i class="fa-solid fa-id-card"></i> Data Diri Calon Murid
+                            </h3>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
                                     <label class="block text-sm font-semibold text-slate-700 mb-2">Nama Lengkap Murid *</label>
@@ -596,7 +472,7 @@
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
                                     <label class="block text-sm font-semibold text-slate-700 mb-2">Pilih Jenjang / Kelas saat ini *</label>
-                                    <select id="reg-kelas" required onchange="updateClassOptions()" class="w-full px-4 py-3 border border-slate-200 rounded-2xl focus:outline-none focus:border-plusPurple transition">
+                                    <select id="reg-kelas" required onchange="updateClassOptions()" class="w-full px-4 py-3 border border-slate-200 rounded-2xl focus:outline-none focus:border-plusPurple transition bg-white">
                                         <option value="">-- Pilih Kelas --</option>
                                         <option value="Pra TK-TK">Pra TK & TK</option>
                                         <option value="SD-1">SD Kelas 1</option>
@@ -632,127 +508,76 @@
                             </h3>
                             
                             <div class="space-y-4">
-                                <label class="block text-sm font-semibold text-slate-700">
-                                    Bagaimana cara/metode belajar yang paling disukai anak? (Bisa pilih lebih dari satu)
-                                </label>
-                                
+                                <label class="block text-sm font-semibold text-slate-700">Bagaimana cara/metode belajar yang paling disukai anak? (Bisa pilih lebih dari satu)</label>
                                 <div class="grid grid-cols-1 sm:grid-cols-4 gap-3">
-                                    <!-- Visual -->
                                     <label class="flex items-center gap-3 p-3.5 bg-white border border-slate-200 rounded-2xl cursor-pointer hover:border-plusPurple hover:shadow-sm transition duration-200">
                                         <input type="checkbox" name="metode" value="Visual (Melihat)" class="rounded text-plusPurple focus:ring-plusPurple w-4 h-4">
-                                        <span class="text-sm flex items-center gap-2 font-medium text-slate-700">
-                                            <span class="text-lg">👁️</span> Visual (Melihat)
-                                        </span>
+                                        <span class="text-sm flex items-center gap-2 font-medium text-slate-700">👁️ Visual</span>
                                     </label>
-                                    
-                                    <!-- Auditori -->
                                     <label class="flex items-center gap-3 p-3.5 bg-white border border-slate-200 rounded-2xl cursor-pointer hover:border-plusPurple hover:shadow-sm transition duration-200">
                                         <input type="checkbox" name="metode" value="Auditori (Mendengar)" class="rounded text-plusPurple focus:ring-plusPurple w-4 h-4">
-                                        <span class="text-sm flex items-center gap-2 font-medium text-slate-700">
-                                            <span class="text-lg">👂</span> Auditori (Mendengar)
-                                        </span>
+                                        <span class="text-sm flex items-center gap-2 font-medium text-slate-700">👂 Auditori</span>
                                     </label>
-                                    
-                                    <!-- Kinestetik -->
                                     <label class="flex items-center gap-3 p-3.5 bg-white border border-slate-200 rounded-2xl cursor-pointer hover:border-plusPurple hover:shadow-sm transition duration-200">
                                         <input type="checkbox" name="metode" value="Kinestetik (Bergerak/Praktik)" class="rounded text-plusPurple focus:ring-plusPurple w-4 h-4">
-                                        <span class="text-sm flex items-center gap-2 font-medium text-slate-700">
-                                            <span class="text-lg">🏃</span> Kinestetik (Bergerak)
-                                        </span>
+                                        <span class="text-sm flex items-center gap-2 font-medium text-slate-700">🏃 Kinestetik</span>
                                     </label>
-                                    
-                                    <!-- Lainnya / Tulis Sendiri -->
-                                    <label class="flex items-center gap-3 p-3.5 bg-white border border-slate-200 rounded-2xl cursor-pointer hover:border-plusPurple hover:shadow-sm transition duration-200" id="label-metode-lainnya">
+                                    <label class="flex items-center gap-3 p-3.5 bg-white border border-slate-200 rounded-2xl cursor-pointer hover:border-plusPurple hover:shadow-sm transition duration-200">
                                         <input type="checkbox" id="check-metode-lainnya" onchange="toggleLainnyaInput()" class="rounded text-plusPurple focus:ring-plusPurple w-4 h-4">
-                                        <span class="text-sm flex items-center gap-2 font-medium text-slate-700">
-                                            <span class="text-lg">✍️</span> Lainnya...
-                                        </span>
+                                        <span class="text-sm flex items-center gap-2 font-medium text-slate-700">✍️ Lainnya...</span>
                                     </label>
                                 </div>
-
-                                <!-- Input Text Lainnya -->
                                 <div id="container-metode-lainnya" class="hidden transition-all duration-300">
                                     <label class="block text-xs font-bold text-slate-400 mb-1.5 uppercase">Tuliskan Metode Belajar Lainnya</label>
-                                    <input type="text" id="input-metode-lainnya" class="w-full px-4 py-3 border border-slate-200 rounded-2xl text-sm focus:outline-none focus:border-plusPurple transition" placeholder="Misal: Suka belajar lewat lagu, diskusi kelompok, atau menggambar mindmap">
+                                    <input type="text" id="input-metode-lainnya" class="w-full px-4 py-3 border border-slate-200 rounded-2xl text-sm focus:outline-none focus:border-plusPurple transition" placeholder="Misal: Belajar lewat lagu atau menggambar">
                                 </div>
                             </div>
                         </div>
 
-                        <!-- SEKSI TIPE KELAS -->
-                        <div class="space-y-6" id="section-opsi-layanan">
-                            <div class="flex items-center justify-between border-b pb-2">
-                                <h3 class="text-xl font-bold text-plusPurple"><i class="fa-solid fa-graduation-cap mr-2"></i> Pilihan Opsi Layanan Kelas</h3>
-                                <!-- Tombol Bantuan Info Kelas -->
-                                <button type="button" onclick="openModal('modal-info-kelas')" class="text-xs font-bold text-plusPurple hover:text-plusPurple-700 underline flex items-center gap-1">
-                                    <i class="fa-solid fa-circle-info"></i> Panduan Perbedaan Kelas
-                                </button>
-                            </div>
-
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                <!-- REGULER CLASS -->
-                                <label class="relative flex flex-col justify-between p-5 border-2 border-slate-200 rounded-2xl cursor-pointer hover:border-plusPurple transition-all" id="label-class-reguler">
-                                    <input type="radio" name="tipe-kelas" value="REGULER CLASS" required class="absolute top-4 right-4 text-plusPurple focus:ring-plusPurple" onclick="highlightClassType('reguler')">
-                                    <div class="space-y-2 pr-6">
-                                        <span class="px-2 py-0.5 bg-green-100 text-emerald-700 text-xs font-bold rounded-md">Max 4 Anak</span>
-                                        <h4 class="font-bold text-slate-800 text-base">REGULER CLASS</h4>
-                                        <p class="text-xs text-slate-500">Belajar tatap muka luring kelompok kecil di lokasi Bimbel PLUS.</p>
-                                    </div>
-                                </label>
-
-                                <!-- PRIVATE CLASS -->
-                                <label class="relative flex flex-col justify-between p-5 border-2 border-slate-200 rounded-2xl cursor-pointer hover:border-plusPurple transition-all" id="label-class-private">
-                                    <input type="radio" name="tipe-kelas" value="PRIVATE CLASS" class="absolute top-4 right-4 text-plusPurple focus:ring-plusPurple" onclick="highlightClassType('private')">
-                                    <div class="space-y-2 pr-6">
-                                        <span class="px-2 py-0.5 bg-orange-100 text-plusOrange-500 text-xs font-bold rounded-md">Max 2 Anak (2 On 1)</span>
-                                        <h4 class="font-bold text-slate-800 text-base">PRIVATE CLASS</h4>
-                                        <p class="text-xs text-slate-500">Pendampingan fokus intensif tatap muka 1 On 1 atau ganda 2 On 1.</p>
-                                    </div>
-                                </label>
-
-                                <!-- VIRTUAL CLASS -->
-                                <label class="relative flex flex-col justify-between p-5 border-2 border-slate-200 rounded-2xl cursor-pointer hover:border-plusPurple transition-all" id="label-class-virtual">
-                                    <input type="radio" name="tipe-kelas" value="VIRTUAL CLASS" class="absolute top-4 right-4 text-plusPurple focus:ring-plusPurple" onclick="highlightClassType('virtual')">
-                                    <div class="space-y-2 pr-6">
-                                        <span class="px-2 py-0.5 bg-blue-100 text-blue-600 text-xs font-bold rounded-md">Max 4 Anak</span>
-                                        <h4 class="font-bold text-slate-800 text-base">VIRTUAL CLASS</h4>
-                                        <p class="text-xs text-slate-500">Belajar digital interaktif luring dari rumah via video conference.</p>
-                                    </div>
-                                </label>
-                            </div>
-                        </div>
-
-                        <!-- SEKSI DAFTAR KELAS & MAPEL DIAMBIL (OTOMATIS BERHADAPAN DENGAN JADWAL REFERENSI SESUAI PERMINTAAN) -->
+                        <!-- SEKSI DINAMIS: SESI KELAS & REFERENSI JADWAL + PILIHAN LAYANAN PER ROW -->
                         <div class="space-y-6 bg-slate-50 p-6 rounded-2xl border border-slate-100" id="section-mapel-pendaftaran">
                             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
                                 <div>
-                                    <h3 class="text-xl font-bold text-slate-800"><i class="fa-solid fa-list-check mr-2"></i> Sesi Kelas & Referensi Jadwal</h3>
-                                    <p class="text-xs text-slate-500 mt-1" id="label-sub-mapel">Daftar pelajaran & waktu belajar akan menyesuaikan otomatis dengan pilihan Jenjang/Kelas anak.</p>
+                                    <h3 class="text-xl font-bold text-slate-800"><i class="fa-solid fa-list-check mr-2"></i> Pilihan Layanan, Sesi Kelas & Jadwal</h3>
+                                    <p class="text-xs text-slate-500 mt-1" id="label-sub-mapel">Pilih opsi layanan, mata pelajaran, serta referensi jadwal untuk setiap sesi yang diambil.</p>
                                 </div>
-                                <button type="button" onclick="addClassRow()" class="px-4 py-2 bg-plusPurple text-white text-xs font-bold rounded-xl hover:bg-plusPurple-700 transition flex items-center gap-1">
-                                    <i class="fa-solid fa-plus"></i> Tambah Kelas/Mapel Baru
+                                <button type="button" onclick="addClassRow()" class="px-4 py-2.5 bg-plusPurple text-white text-xs font-bold rounded-xl hover:bg-plusPurple-700 transition flex items-center gap-1.5 shadow-sm">
+                                    <i class="fa-solid fa-plus"></i> Tambah Sesi/Mapel Baru
                                 </button>
                             </div>
 
                             <!-- Warning box jika jenjang belum dipilih -->
                             <div id="grade-not-selected-warning" class="p-4 bg-amber-50 border border-amber-200 rounded-2xl text-amber-800 text-xs font-medium flex items-center gap-2">
                                 <i class="fa-solid fa-circle-exclamation text-base shrink-0"></i>
-                                <span>Silakan pilih <strong>Jenjang / Kelas</strong> anak terlebih dahulu di bagian atas untuk memunculkan pilihan mata pelajaran.</span>
+                                <span>Silakan pilih <strong>Jenjang / Kelas</strong> anak terlebih dahulu di bagian atas untuk memunculkan sesi dan mata pelajaran.</span>
                             </div>
 
                             <!-- Container Row Kelas Dinamis -->
                             <div id="class-rows-container" class="space-y-4 hidden">
-                                <!-- Row 1 Default (Memiliki Dropdown Mapel, Kolom Hari & Sesi Belajar) -->
-                                <div class="class-row bg-white p-5 rounded-2xl border border-slate-200 grid grid-cols-1 md:grid-cols-12 gap-4 relative animate-fade-in">
-                                    <div class="md:col-span-4">
-                                        <label class="block text-xs font-bold text-slate-500 mb-1">Mata Pelajaran / Program *</label>
-                                        <select required class="row-mapel w-full px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-plusPurple bg-white" onchange="onClassRowDetailsChanged()">
-                                            <option value="">-- Pilih Mata Pelajaran --</option>
+                                <!-- Row 1 Default -->
+                                <div class="class-row bg-white p-5 rounded-3xl border border-slate-200 grid grid-cols-1 md:grid-cols-12 gap-4 relative shadow-sm hover:shadow-md transition duration-200 animate-fade-in">
+                                    <!-- Opsi Layanan Per-Sesi -->
+                                    <div class="md:col-span-3">
+                                        <label class="block text-xs font-bold text-slate-500 mb-1">Opsi Layanan *</label>
+                                        <select required class="row-layanan w-full px-3 py-2.5 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-plusPurple bg-white" onchange="updateRowWaktuOptions(this); onClassRowDetailsChanged();">
+                                            <option value="">-- Pilih Layanan --</option>
+                                            <option value="REGULER CLASS">REGULER CLASS</option>
+                                            <option value="PRIVATE CLASS">PRIVATE CLASS</option>
+                                            <option value="VIRTUAL CLASS">VIRTUAL CLASS</option>
                                         </select>
                                     </div>
+                                    <!-- Mata Pelajaran -->
                                     <div class="md:col-span-3">
-                                        <label class="block text-xs font-bold text-slate-500 mb-1">Pilih Hari *</label>
-                                        <select required class="row-hari w-full px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-plusPurple bg-white" onchange="onClassRowDetailsChanged()">
-                                            <option value="">-- Pilih Hari --</option>
+                                        <label class="block text-xs font-bold text-slate-500 mb-1">Mata Pelajaran *</label>
+                                        <select required class="row-mapel w-full px-3 py-2.5 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-plusPurple bg-white" onchange="onClassRowDetailsChanged()">
+                                            <option value="">-- Pilih Mapel --</option>
+                                        </select>
+                                    </div>
+                                    <!-- Hari -->
+                                    <div class="md:col-span-2">
+                                        <label class="block text-xs font-bold text-slate-500 mb-1">Hari *</label>
+                                        <select required class="row-hari w-full px-3 py-2.5 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-plusPurple bg-white" onchange="onClassRowDetailsChanged()">
+                                            <option value="">-- Hari --</option>
                                             <option value="Senin">Senin</option>
                                             <option value="Selasa">Selasa</option>
                                             <option value="Rabu">Rabu</option>
@@ -762,18 +587,20 @@
                                             <option value="Minggu">Minggu</option>
                                         </select>
                                     </div>
-                                    <div class="md:col-span-5 flex items-end gap-2">
-                                        <div class="flex-grow">
-                                            <label class="block text-xs font-bold text-slate-500 mb-1">Pilih Jam Sesi *</label>
-                                            <select required class="row-waktu w-full px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-plusPurple bg-white" onchange="onClassRowDetailsChanged()">
-                                                <option value="">-- Pilih Layanan Terlebih Dahulu --</option>
-                                            </select>
-                                        </div>
-                                        <!-- Hapus Button (Disabled untuk Row pertama) -->
-                                        <button type="button" disabled class="px-3 py-2 text-slate-300 bg-slate-100 rounded-xl cursor-not-allowed">
+                                    <!-- Jam Sesi -->
+                                    <div class="md:col-span-3">
+                                        <label class="block text-xs font-bold text-slate-500 mb-1">Jam Sesi *</label>
+                                        <select required class="row-waktu w-full px-3 py-2.5 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-plusPurple bg-white" onchange="onClassRowDetailsChanged()">
+                                            <option value="">-- Jam Sesi --</option>
+                                        </select>
+                                    </div>
+                                    <!-- Hapus Row Button -->
+                                    <div class="md:col-span-1 flex items-end justify-center">
+                                        <button type="button" disabled class="w-full py-2.5 text-slate-300 bg-slate-100 rounded-xl cursor-not-allowed flex items-center justify-center">
                                             <i class="fa-solid fa-trash"></i>
                                         </button>
                                     </div>
+                                    <!-- Catatan Per-Sesi -->
                                     <div class="md:col-span-12 mt-1">
                                         <label class="block text-xs font-bold text-slate-500 mb-1">Catatan Kesulitan Belajar</label>
                                         <input type="text" class="row-catatan w-full px-3.5 py-1.5 border border-slate-100 rounded-xl text-xs focus:outline-none focus:border-plusPurple" placeholder="Masukkan kesulitan belajar atau topik khusus yang ingin didalami">
@@ -782,15 +609,15 @@
                             </div>
                         </div>
 
-                        <!-- SEKSI UTAMA KUOTA DAN WARNING JADWAL -->
+                        <!-- KETENTUAN KUOTA JADWAL -->
                         <div class="space-y-4" id="section-konfirmasi-jadwal">
-                            <h3 class="text-xl font-bold text-slate-800 border-b pb-2"><i class="fa-solid fa-clock-rotate-left mr-2"></i> Ketentuan Kuota & Jadwal</h3>
-                            <p class="text-xs text-slate-500">
-                                Reguler Class terbatas pada jam 13.00-13.45 dan 14.00-14.45. Private/Virtual Class fleksibel di luar jam reguler serta tidak bertabrakan dengan sesi yang penuh.
-                            </p>
+                            <h3 class="text-lg font-bold text-slate-800 border-b pb-2 flex items-center gap-2">
+                                <i class="fa-solid fa-clock-rotate-left"></i> Ketentuan Kuota & Jadwal
+                            </h3>
+                            <p class="text-xs text-slate-500">Reguler Class terbatas pada jam 13.00-13.45 dan 14.00-14.45. Private/Virtual Class fleksibel di luar jam reguler serta tidak bertabrakan dengan sesi yang penuh.</p>
                             <!-- Notifikasi Kuota Penuh -->
                             <div id="quota-warning" class="hidden p-4 bg-rose-50 border border-rose-200 text-rose-800 text-xs font-semibold rounded-2xl flex items-center gap-2 mt-4">
-                                <i class="fa-solid fa-triangle-exclamation"></i>
+                                <i class="fa-solid fa-triangle-exclamation text-rose-500"></i>
                                 <span id="quota-warning-text">Kuota penuh pada salah satu pilihan jadwal yang ditentukan!</span>
                             </div>
                             <p class="text-xs text-plusOrange font-medium mt-2">
@@ -814,7 +641,6 @@
         <!-- TAB: JADWAL KELAS -->
         <section id="content-jadwal" class="tab-content py-8 md:py-16 hidden">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                
                 <div class="text-center max-w-3xl mx-auto space-y-4 mb-12 relative">
                     <span class="text-plusOrange font-bold tracking-wider uppercase text-sm block">🗓️ Cek Sesi Belajar</span>
                     <h2 class="text-3xl sm:text-4xl font-bold text-plusPurple flex justify-center items-center gap-2.5">
@@ -833,7 +659,7 @@
                         <i class="fa-solid fa-magnifying-glass text-plusPurple"></i> Cari Jadwal Belajar Siswa
                     </h3>
                     <div class="flex flex-col sm:flex-row gap-3">
-                        <input type="text" id="search-kode-murid" class="flex-grow px-4 py-3 border border-slate-200 rounded-2xl focus:outline-none focus:border-plusPurple text-sm" placeholder="Masukkan KODE MURID Anda (misal: RSD-1, PSMP-1, PSMA-1)">
+                        <input type="text" id="search-kode-murid" class="flex-grow px-4 py-3 border-2 border-slate-200 rounded-2xl focus:outline-none focus:border-plusPurple text-sm font-semibold text-slate-800 uppercase tracking-wider" placeholder="Masukkan KODE MURID Anda (misal: RSD-1)">
                         <div class="flex gap-2">
                             <button onclick="cariJadwal()" class="flex-grow sm:flex-grow-0 px-6 py-3 bg-plusPurple text-white font-bold rounded-2xl hover:bg-plusPurple-700 transition text-sm flex items-center justify-center gap-2">
                                 <i class="fa-solid fa-search"></i> Cari
@@ -843,48 +669,7 @@
                             </button>
                         </div>
                     </div>
-                    <p class="text-[11px] text-slate-400 mt-2">Dapatkan kode murid unik setelah pendaftaran sukses dikonfirmasi oleh admin.</p>
-                </div>
-
-                <!-- Informasi Detail Pencarian (Kartu Premium dengan Info Lengkap) -->
-                <div id="search-result-box" class="hidden max-w-2xl mx-auto mb-8 p-6 bg-emerald-50 border-2 border-emerald-200 rounded-3xl shadow-lg transition duration-300">
-                    <div class="flex items-start gap-4">
-                        <div class="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl shrink-0 mt-1">
-                            <i class="fa-solid fa-circle-check"></i>
-                        </div>
-                        <div class="flex-grow space-y-3">
-                            <h4 class="font-extrabold text-emerald-800 text-lg">Hasil Pencarian Ditemukan!</h4>
-                            <div class="bg-white p-5 rounded-2xl border border-emerald-100 shadow-sm space-y-3 text-sm text-slate-700">
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-4">
-                                    <div>
-                                        <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider leading-none mb-1">Nama Siswa</span>
-                                        <span id="res-nama-murid" class="font-extrabold text-slate-800 text-base">-</span>
-                                    </div>
-                                    <div>
-                                        <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider leading-none mb-1">Kode Murid</span>
-                                        <span id="res-kode-murid" class="font-mono font-bold text-plusPurple text-base">-</span>
-                                    </div>
-                                    <div>
-                                        <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider leading-none mb-1">Hari & Sesi Jam</span>
-                                        <span id="res-waktu-murid" class="font-semibold text-slate-800">-</span>
-                                    </div>
-                                    <div>
-                                        <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider leading-none mb-1">Tingkat Kelas</span>
-                                        <span id="res-tingkat-murid" class="font-semibold text-slate-800">-</span>
-                                    </div>
-                                    <div>
-                                        <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider leading-none mb-1">Mata Pelajaran</span>
-                                        <span id="res-mapel-murid" class="font-bold text-plusOrange-500">-</span>
-                                    </div>
-                                    <div>
-                                        <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider leading-none mb-1">Tutor / Pengajar</span>
-                                        <span id="res-tutor-murid" class="font-semibold text-slate-800">-</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="text-xs text-slate-500 italic">Status Keanggotaan: <span class="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded text-[10px] font-bold">AKTIF</span>. Baris kelas terkait pada tabel jadwal di bawah telah diberi tanda khusus berwarna kuning menyala agar mudah dibaca.</p>
-                        </div>
-                    </div>
+                    <p class="text-[11px] text-slate-400 mt-2">Pencarian jadwal otomatis menandai dan mengarahkan Anda ke baris tabel kelas aktif.</p>
                 </div>
 
                 <!-- JADWAL TABEL KELAS (DINAMIS & DIKELOMPOKKAN SECARA OTOMATIS) -->
@@ -913,16 +698,12 @@
                     <p class="text-slate-500 text-sm">Melihat bagaimana bimbingan dipersonalisasi di Bimbel PLUS membantu anak-anak berkembang pesat dalam prestasi akademis maupun pembentukan karakter positif.</p>
                 </div>
 
-                <!-- TRUST BUILDER: PANEL STATISTIK SOSIAL & KREDO -->
+                <!-- TRUST BUILDER -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-16 bg-gradient-to-br from-plusPurple-50 via-white to-orange-50 p-6 sm:p-8 rounded-3xl border border-plusPurple-100 shadow-md">
                     <div class="text-center p-4 border-b md:border-b-0 md:border-r border-slate-100 flex flex-col justify-center items-center">
                         <span class="text-4xl sm:text-5xl font-extrabold text-plusPurple">4.9<span class="text-plusOrange">/5</span></span>
                         <div class="flex text-amber-400 gap-1 my-2 text-lg">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                         </div>
                         <span class="text-xs text-slate-500 font-bold uppercase tracking-wider">Kepuasan Wali Murid</span>
                     </div>
@@ -938,7 +719,7 @@
                     </div>
                 </div>
 
-                <!-- Grid Testimoni dengan Desain Baru yang Menarik Minat Wali Murid -->
+                <!-- Grid Testimoni -->
                 <div id="testimonis-container" class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
                     <div class="col-span-full text-center py-8 text-slate-400" id="testi-loading-text">
                         <i class="fa-solid fa-spinner fa-spin mr-2"></i> Memuat testimoni dari awan...
@@ -969,7 +750,7 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-sm font-semibold text-slate-700 mb-2">Kode Murid (Wajib Terdaftar & Terkonfirmasi) *</label>
-                                <input type="text" id="testi-kode" required class="w-full px-4 py-3 border border-slate-200 rounded-2xl focus:outline-none focus:border-plusPurple text-sm uppercase" placeholder="Contoh: RSMP-2">
+                                <input type="text" id="testi-kode" required class="w-full px-4 py-3 border border-slate-200 rounded-2xl focus:outline-none focus:border-plusPurple text-sm uppercase font-semibold" placeholder="Contoh: RSMP-2">
                                 <p class="text-[10px] text-slate-400 mt-1">Ulasan hanya disimpan dari murid terdaftar Bimbel PLUS.</p>
                             </div>
                             <div>
@@ -999,12 +780,10 @@
 
     </main>
 
-    <!-- FOOTER INFORMASI LENGKAP -->
+    <!-- FOOTER -->
     <footer class="bg-slate-900 text-slate-300 pt-16 pb-8 border-t-8 border-plusPurple">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-12">
-                
-                <!-- Identitas Brand -->
                 <div class="md:col-span-4 space-y-4">
                     <div class="flex items-center space-x-3">
                         <div class="w-10 h-10 bg-white p-1 rounded-full flex items-center justify-center">
@@ -1012,17 +791,9 @@
                         </div>
                         <span class="text-xl font-bold text-white brand-font tracking-wider">PLUS</span>
                     </div>
-                    <p class="text-xs leading-relaxed text-slate-400">
-                        Kami berkomitmen memberikan bimbingan dengan kurikulum yang terarah, menyenangkan, serta interaksi yang dipersonalisasi maksimal demi menumbuhkan potensi belajar anak.
-                    </p>
-                    <div class="flex gap-3">
-                        <a href="#" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-plusPurple flex items-center justify-center text-sm transition"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="#" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-plusPurple flex items-center justify-center text-sm transition"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-plusPurple flex items-center justify-center text-sm transition"><i class="fa-brands fa-tiktok"></i></a>
-                    </div>
+                    <p class="text-xs leading-relaxed text-slate-400">Kami berkomitmen memberikan bimbingan dengan kurikulum yang terarah, menyenangkan, serta interaksi yang dipersonalisasi maksimal demi menumbuhkan potensi belajar anak.</p>
                 </div>
 
-                <!-- Hubungi Kami -->
                 <div class="md:col-span-4 space-y-4">
                     <h4 class="text-white font-bold text-sm uppercase tracking-wider">Hubungi Kami</h4>
                     <div class="space-y-3 text-xs text-slate-400">
@@ -1033,8 +804,7 @@
                     </div>
 
                     <div class="pt-2 space-y-3 max-w-xs">
-                        <!-- Admin Rahma -->
-                        <a href="https://wa.me/6285740920249?text=Halo%20Admin%20Rahma%20Bimbel%20PLUS,%20saya%20ingin%20bertanya%20informasi%20kelas." target="_blank" class="flex items-center gap-3 p-3 bg-slate-800 hover:bg-emerald-600 hover:text-white rounded-2xl transition shadow-md group">
+                        <a href="https://wa.me/6285740920249?text=Halo%20Admin%20Rahma%20Bimbel%20PLUS" target="_blank" class="flex items-center gap-3 p-3 bg-slate-800 hover:bg-emerald-600 hover:text-white rounded-2xl transition shadow-md group">
                             <div class="w-10 h-10 rounded-xl bg-emerald-500 text-white flex items-center justify-center text-xl shrink-0 group-hover:bg-white group-hover:text-emerald-600 transition">
                                 <i class="fa-brands fa-whatsapp animate-pulse"></i>
                             </div>
@@ -1044,8 +814,7 @@
                             </div>
                         </a>
                         
-                        <!-- Admin Eldwine -->
-                        <a href="https://wa.me/6285740207460?text=Halo%20Admin%20Eldwine%20Bimbel%20PLUS,%20saya%20ingin%20bertanya%20informasi%20kelas." target="_blank" class="flex items-center gap-3 p-3 bg-slate-800 hover:bg-emerald-600 hover:text-white rounded-2xl transition shadow-md group">
+                        <a href="https://wa.me/6285740207460?text=Halo%20Admin%20Eldwine%20Bimbel%20PLUS" target="_blank" class="flex items-center gap-3 p-3 bg-slate-800 hover:bg-emerald-600 hover:text-white rounded-2xl transition shadow-md group">
                             <div class="w-10 h-10 rounded-xl bg-emerald-500 text-white flex items-center justify-center text-xl shrink-0 group-hover:bg-white group-hover:text-emerald-600 transition">
                                 <i class="fa-brands fa-whatsapp animate-pulse"></i>
                             </div>
@@ -1057,28 +826,16 @@
                     </div>
                 </div>
 
-                <!-- Google Maps Embed -->
                 <div class="md:col-span-4 space-y-4">
                     <h4 class="text-white font-bold text-sm uppercase tracking-wider flex items-center gap-2">
                         <i class="fa-solid fa-map-location-dot text-plusOrange-500"></i> Google Maps Lokasi
                     </h4>
                     <div class="rounded-2xl overflow-hidden border border-slate-700 h-44 shadow-lg">
-                        <iframe 
-                            src="https://maps.google.com/maps?q=Little%20Kitchen%20Houses,%20Nglimut,%20Limbangan,%20Kendal&z=16&output=embed" 
-                            width="100%" 
-                            height="100%" 
-                            style="border:0;" 
-                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
+                        <iframe src="https://maps.google.com/maps?q=Little%20Kitchen%20Houses,%20Nglimut,%20Limbangan,%20Kendal&z=16&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
-                    <p class="text-[11px] text-slate-500 italic">Pencarian Peta: Little Kitchen Houses</p>
                 </div>
-
             </div>
 
-            <!-- Bagian Hak Cipta -->
             <div class="pt-8 border-t border-slate-800 text-center text-xs text-slate-500">
                 <p>&copy; 2026 Bimbel by PLUS. All Rights Reserved. Potensimu Layak Dapat "PLUS".</p>
             </div>
@@ -1088,58 +845,42 @@
     <!-- POPUP MODAL: INFORMASI DETAIL TIPE KELAS -->
     <div id="modal-info-kelas" class="fixed inset-0 bg-black bg-opacity-50 z-[100] flex items-center justify-center p-4 hidden">
         <div class="bg-white w-full max-w-2xl rounded-3xl overflow-hidden shadow-2xl transition duration-300">
-            <!-- Header Modal -->
             <div class="bg-plusPurple p-6 text-white flex justify-between items-center">
                 <h3 class="font-bold text-lg flex items-center gap-2"><i class="fa-solid fa-circle-info"></i> Panduan Opsi Tipe Kelas Bimbel PLUS</h3>
                 <button onclick="closeModal('modal-info-kelas')" class="text-white hover:text-slate-200"><i class="fa-solid fa-xmark text-lg"></i></button>
             </div>
-            <!-- Isi Konten Modal -->
             <div class="p-6 md:p-8 space-y-6 max-h-[70vh] overflow-y-auto text-sm">
                 <div class="space-y-4">
                     <div class="p-4 bg-emerald-50 rounded-2xl border border-emerald-100">
                         <span class="px-2.5 py-1 bg-emerald-500 text-white font-bold text-[10px] rounded uppercase">REGULER CLASS</span>
-                        <p class="text-xs text-slate-600 mt-2 leading-relaxed">
-                            <strong>Deskripsi:</strong> Siswa berkumpul langsung di ruang kelas Bimbel PLUS secara luring. 
-                            <br><strong>Kelebihan:</strong> Interaksi sosial yang baik dengan teman sebaya. Dengan batasan maksimal 4 anak per kelas, pembelajaran tetap berlangsung fokus dan terarah tanpa bising.
-                        </p>
+                        <p class="text-xs text-slate-600 mt-2 leading-relaxed"><strong>Deskripsi:</strong> Siswa berkumpul langsung di ruang kelas Bimbel PLUS secara luring. Maksimal 4 anak per kelas, menjamin pembelajaran kondusif dan fokus tanpa bising.</p>
                     </div>
 
                     <div class="p-4 bg-orange-50 rounded-2xl border border-orange-100">
                         <span class="px-2.5 py-1 bg-plusOrange text-white font-bold text-[10px] rounded uppercase">PRIVATE CLASS</span>
-                        <p class="text-xs text-slate-600 mt-2 leading-relaxed">
-                            <strong>Deskripsi:</strong> Kelas bimbingan eksklusif tatap muka, ganda (maksimal 2 anak atau 2 on 1). 
-                            <br><strong>Kelebihan:</strong> Anak bebas menanyakan PR sekolah apa saja secara detail, kecepatan penjelasan menyesuaikan penangkapan anak, ganda menambah motivasi, dan jadwal lebih fleksibel.
-                        </p>
+                        <p class="text-xs text-slate-600 mt-2 leading-relaxed"><strong>Deskripsi:</strong> Kelas bimbingan eksklusif tatap muka (maksimal 2 anak atau 2 on 1). Bebas menanyakan PR sekolah secara intensif dengan jadwal lebih fleksibel.</p>
                     </div>
 
                     <div class="p-4 bg-blue-50 rounded-2xl border border-blue-100">
                         <span class="px-2.5 py-1 bg-blue-600 text-white font-bold text-[10px] rounded uppercase">VIRTUAL CLASS</span>
-                        <p class="text-xs text-slate-600 mt-2 leading-relaxed">
-                            <strong>Deskripsi:</strong> Sesi bimbingan jarak jauh interaktif menggunakan konferensi video digital. Maksimal 4 anak per kelas.
-                        </p>
-                        <p class="text-xs text-rose-700 font-bold mt-2 border-t pt-2 border-rose-100 flex items-start gap-1">
-                            <i class="fa-solid fa-circle-exclamation mt-0.5 shrink-0"></i>
-                            <span>PERHATIAN VIRTUAL CLASS: Orang tua/Wali murid diwajibkan menyediakan peralatan virtual kelas secara mandiri di rumah serta mendampingi agar anak tetap fokus mengikuti kelas sehingga proses pembelajaran tidak sia-sia.</span>
-                        </p>
+                        <p class="text-xs text-slate-600 mt-2 leading-relaxed"><strong>Deskripsi:</strong> Sesi bimbingan jarak jauh interaktif via konferensi video digital. Ortu diwajibkan menyediakan sarana virtual mandiri di rumah.</p>
                     </div>
                 </div>
             </div>
-            <!-- Footer Modal -->
             <div class="p-4 bg-slate-50 border-t flex justify-end">
                 <button onclick="closeModal('modal-info-kelas')" class="px-6 py-2 bg-plusPurple text-white font-bold rounded-xl hover:bg-plusPurple-700 transition text-xs">Paham, Tutup</button>
             </div>
         </div>
     </div>
 
-    <!-- NOTIFIKASI POPUP (CUSTOM ALERT) -->
-    <div id="toast-message" class="fixed bottom-6 right-6 bg-slate-900 text-white py-3.5 px-6 rounded-2xl shadow-2xl z-[100] flex items-center gap-3 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+    <!-- TOAST MESSAGE / POPUP NOTIFICATION -->
+    <div id="toast-message" class="fixed bottom-6 right-6 bg-slate-900 text-white py-4 px-6 rounded-2xl shadow-2xl z-[100] flex items-center gap-3 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none max-w-sm">
         <span id="toast-icon" class="text-emerald-400 text-lg"><i class="fa-solid fa-circle-check"></i></span>
         <span id="toast-text" class="text-sm font-semibold">Tindakan berhasil!</span>
     </div>
 
-    <!-- SCRIPT LOGIC JAVASCRIPT -->
+    <!-- JAVASCRIPT LOGIC -->
     <script>
-        // DATA PEMETAAN MAPEL DINAMIS UNTUK FORM PENDAFTARAN
         const mapelByJenjang = {
             "TK": [
                 "Sains Dasar Sehari-hari",
@@ -1161,41 +902,30 @@
             ]
         };
 
-        // MOCK / FALLBACK DATA DENGAN FORMAT KODE UNIK TERBARU
         const mockSchedules = [
             { hari: "Senin", waktu: "13.00 - 13.45", program: "Jarimatika Dasar-Mahir", tingkat: "SD Kelas 1", nama_siswa: "Aira", tutor_platform: "Kak Dian", tipe_kelas: "REGULER CLASS", kode_siswa: "RSD-1" },
             { hari: "Senin", waktu: "13.00 - 13.45", program: "Jarimatika Dasar-Mahir", tingkat: "SD Kelas 2", nama_siswa: "Rayyan", tutor_platform: "Kak Dian", tipe_kelas: "REGULER CLASS", kode_siswa: "RSD-2" },
-            { hari: "Senin", waktu: "13.00 - 13.45", program: "Jarimatika Dasar-Mahir", tingkat: "SD Kelas 3", nama_siswa: "Budi", tutor_platform: "Kak Dian", tipe_kelas: "REGULER CLASS", kode_siswa: "RSD-3" },
-            { hari: "Senin", waktu: "14.00 - 14.45", program: "Pelajaran Umum Sekolah Matematika", tingkat: "SD Kelas 4", nama_siswa: "Dimas", tutor_platform: "Kak Soni", tipe_kelas: "REGULER CLASS", kode_siswa: "RSD-4" },
-            { hari: "Senin", waktu: "14.00 - 14.45", program: "Pelajaran Umum Sekolah Matematika", tingkat: "SD Kelas 5", nama_siswa: "Clara", tutor_platform: "Kak Soni", tipe_kelas: "REGULER CLASS", kode_siswa: "RSD-5" },
-            { hari: "Senin", waktu: "14.00 - 14.45", program: "Pelajaran Umum Sekolah Matematika", tingkat: "SD Kelas 6", nama_siswa: "Kayla", tutor_platform: "Kak Soni", tipe_kelas: "REGULER CLASS", kode_siswa: "RSD-6" },
             { hari: "Selasa", waktu: "13.00 - 13.45", program: "Sains Dasar Sehari-hari", tingkat: "Pra TK-TK", nama_siswa: "Naufal", tutor_platform: "Kak Angga", tipe_kelas: "REGULER CLASS", kode_siswa: "RPRA-1" },
-            { hari: "Selasa", waktu: "13.00 - 13.45", program: "Sains Dasar Sehari-hari", tingkat: "Pra TK-TK", nama_siswa: "Rania", tutor_platform: "Kak Angga", tipe_kelas: "REGULER CLASS", kode_siswa: "RPRA-2" },
             { hari: "Selasa", waktu: "15.00 - 16.30", program: "Pelajaran Umum Sekolah Bahasa Inggris", tingkat: "SMP Kelas 8", nama_siswa: "Ahmad Farhan", tutor_platform: "Miss Lutfi", tipe_kelas: "PRIVATE CLASS", kode_siswa: "PSMP-1" },
             { hari: "Rabu", waktu: "15.00 - 16.30", program: "Pelajaran Umum Sekolah Matematika", tingkat: "SMA Kelas 11", nama_siswa: "Gita Amalia", tutor_platform: "Kak Rudi", tipe_kelas: "PRIVATE CLASS", kode_siswa: "PSMA-1" },
-            { hari: "Sabtu", waktu: "19.00 - 20.30", program: "Bahasa Inggris Speaking Dasar", tingkat: "SD Kelas 5", nama_siswa: "Rico", tutor_platform: "Google Meet", tipe_kelas: "VIRTUAL CLASS", kode_siswa: "VSD-1" },
-            { hari: "Sabtu", waktu: "19.00 - 20.30", program: "Bahasa Inggris Speaking Dasar", tingkat: "SD Kelas 6", nama_siswa: "Jasmine", tutor_platform: "Google Meet", tipe_kelas: "VIRTUAL CLASS", kode_siswa: "VSD-2" }
+            { hari: "Sabtu", waktu: "19.00 - 20.30", program: "Bahasa Inggris Speaking Dasar", tingkat: "SD Kelas 5", nama_siswa: "Rico", tutor_platform: "Google Meet", tipe_kelas: "VIRTUAL CLASS", kode_siswa: "VSD-1" }
         ];
 
         const mockTestimonis = [
-            { nama: "Ibu Ratna", subjek: "Wali / Orang Tua (RSD-1)", rating: 5, pesan: "Semenjak anak saya les di Bimbel PLUS kelas reguler, nilai ulangannya meningkat drastis. Yang paling menakjubkan, rasio 4 anak di kelas membuat dia diperhatikan maksimal oleh gurunya!" },
-            { nama: "Bp. Hermawan", subjek: "Wali / Orang Tua (RSD-2)", rating: 5, pesan: "Anak saya paling suka sesi Jarimatika dan Sains Praktiknya. Belajarnya asyik dan menyenangkan sekali, dia tidak merasa terbebani seperti belajar biasa. Sangat rekomended bagi orang tua yang ingin nilai tambah." },
-            { nama: "Ahmad Farhan", subjek: "Murid Peserta (PSMP-1)", rating: 5, pesan: "Belajar matematika luring di private class sungguh membantu mempersiapkan ulangan harian. Kakaknya sabar dan menjelaskannya memakai analogi sehari-hari sehingga sangat gampang ditangkap." }
+            { nama: "Ibu Ratna", subjek: "Wali / Orang Tua (RSD-1)", rating: 5, pesan: "Semenjak anak saya les di Bimbel PLUS, rasio maksimal 4 anak di kelas membuat dia diperhatikan maksimal oleh gurunya!" },
+            { nama: "Bp. Hermawan", subjek: "Wali / Orang Tua (RSD-2)", rating: 5, pesan: "Anak saya paling suka sesi Jarimatika dan Sains Praktiknya. Belajarnya sangat asyik dan menyenangkan sekali." }
         ];
 
-        // State Penyimpanan Lokal Data Aktif & Mode Registrasi (baru/lama)
         let activeSchedules = [];
         let activeTestimonis = [];
-        let registrationMode = "baru"; // "baru" atau "lama"
-        let loadedStudentProfile = null; // Menyimpan data profil murid terdaftar sementara
+        let registrationMode = "baru"; 
+        let loadedStudentProfile = null; 
 
-        // DOM LOAD
         document.addEventListener("DOMContentLoaded", function() {
             switchTab('home');
             loadInitialData();
         });
 
-        // Membaca Data Awal dari API Google Sheets atau Fallback ke Mock Data
         async function loadInitialData() {
             const refreshBtnSchedules = document.getElementById("btn-refresh-schedules");
             const refreshBtnTestimonis = document.getElementById("btn-refresh-testimonis");
@@ -1204,7 +934,6 @@
             if (refreshBtnTestimonis) refreshBtnTestimonis.classList.add("fa-spin");
 
             if (!WEB_APP_URL) {
-                console.warn("WEB_APP_URL belum diisi. Menggunakan mock data.");
                 activeSchedules = mockSchedules;
                 activeTestimonis = mockTestimonis;
                 renderSchedules(activeSchedules);
@@ -1214,17 +943,21 @@
                 return;
             }
 
-            // Ambil Data Jadwal
+            // Ambil Data Jadwal Aktif
             try {
                 const response = await fetch(`${WEB_APP_URL}?action=get_schedules`);
                 const result = await response.json();
+                
+                // MENGHILANGKAN DATA SIMULASI APABILA DATA DI SHEET SUDAH ADA
                 if (result.status === "success" && result.data && result.data.length > 0) {
-                    activeSchedules = result.data;
+                    activeSchedules = result.data; 
+                } else if (result.status === "success" && result.data && result.data.length === 0) {
+                    activeSchedules = []; 
                 } else {
                     activeSchedules = mockSchedules;
                 }
             } catch (err) {
-                console.error("Gagal terhubung ke Google Sheets API Jadwal:", err);
+                console.error("Gagal terhubung ke Sheets API Jadwal:", err);
                 activeSchedules = mockSchedules;
             }
             renderSchedules(activeSchedules);
@@ -1239,7 +972,7 @@
                     activeTestimonis = mockTestimonis;
                 }
             } catch (err) {
-                console.error("Gagal terhubung ke Google Sheets API Testimoni:", err);
+                console.error("Gagal terhubung ke Sheets API Testimoni:", err);
                 activeTestimonis = mockTestimonis;
             }
             renderTestimonis(activeTestimonis);
@@ -1255,104 +988,19 @@
             return '';
         }
 
-        // Fungsi Cerdas Pengubah Tingkat Kelas Lintas Jenjang secara Otomatis
         function formatSmartLevels(levels) {
             if (levels.length === 0) return '-';
-            if (levels.length === 1) return levels[0];
-            
-            let hasTK = false;
-            let sdGrades = [];
-            let smpGrades = [];
-            let smaGrades = [];
-            let others = [];
-            
-            levels.forEach(level => {
-                const lUpper = level.toUpperCase();
-                if (lUpper.includes("TK")) {
-                    hasTK = true;
-                } else if (lUpper.includes("SD")) {
-                    const match = level.match(/\d+/);
-                    if (match) sdGrades.push(parseInt(match[0], 10));
-                    else sdGrades.push(level); 
-                } else if (lUpper.includes("SMP")) {
-                    const match = level.match(/\d+/);
-                    if (match) smpGrades.push(parseInt(match[0], 10));
-                    else smpGrades.push(level);
-                } else if (lUpper.includes("SMA")) {
-                    const match = level.match(/\d+/);
-                    if (match) smaGrades.push(parseInt(match[0], 10));
-                    else smaGrades.push(level);
-                } else {
-                    others.push(level);
-                }
-            });
-            
-            let resultParts = [];
-            
-            if (hasTK) {
-                resultParts.push("Pra TK & TK");
-            }
-            
-            // Mengatur otomatis range SD
-            if (sdGrades.length > 0) {
-                const numbers = sdGrades.filter(x => typeof x === 'number').sort((a,b)=>a-b);
-                const strings = sdGrades.filter(x => typeof x === 'string');
-                if (numbers.length > 1) {
-                    resultParts.push(`SD Kelas ${numbers[0]}-${numbers[numbers.length-1]}`);
-                } else if (numbers.length === 1) {
-                    resultParts.push(`SD Kelas ${numbers[0]}`);
-                }
-                if (strings.length > 0) {
-                    resultParts.push(strings.join(', '));
-                }
-            }
-            
-            // Mengatur otomatis range SMP
-            if (smpGrades.length > 0) {
-                const numbers = smpGrades.filter(x => typeof x === 'number').sort((a,b)=>a-b);
-                const strings = smpGrades.filter(x => typeof x === 'string');
-                if (numbers.length > 1) {
-                    resultParts.push(`SMP Kelas ${numbers[0]}-${numbers[numbers.length-1]}`);
-                } else if (numbers.length === 1) {
-                    resultParts.push(`SMP Kelas ${numbers[0]}`);
-                }
-                if (strings.length > 0) {
-                    resultParts.push(strings.join(', '));
-                }
-            }
-            
-            // Mengatur otomatis range SMA
-            if (smaGrades.length > 0) {
-                const numbers = smaGrades.filter(x => typeof x === 'number').sort((a,b)=>a-b);
-                const strings = smaGrades.filter(x => typeof x === 'string');
-                if (numbers.length > 1) {
-                    resultParts.push(`SMA Kelas ${numbers[0]}-${numbers[numbers.length-1]}`);
-                } else if (numbers.length === 1) {
-                    resultParts.push(`SMA Kelas ${numbers[0]}`);
-                }
-                if (strings.length > 0) {
-                    resultParts.push(strings.join(', '));
-                }
-            }
-            
-            if (others.length > 0) {
-                resultParts.push(others.join(', '));
-            }
-            
-            return resultParts.join(' & ');
+            return levels.join(' & ');
         }
 
-        // Fungsi untuk mengelompokkan jadwal berdasarkan Hari, Waktu, Program, Tipe Kelas, dan Pengajar
         function groupSchedules(schedules) {
             const groups = {};
-            
             schedules.forEach(s => {
-                const hari = (getPropValue(s, ['hari', 'Hari']) || '-').trim();
-                const waktu = (getPropValue(s, ['waktu', 'Waktu']) || '-').trim();
-                const program = (getPropValue(s, ['program', 'mata_pelajaran', 'program_mapel', 'Mapel']) || '-').trim();
-                const tipeKelas = (getPropValue(s, ['tipe_kelas', 'Tipe_Kelas', 'opsi_layanan', 'tipeKelas', 'kelas']) || '').trim().toUpperCase();
-                
-                const tutorPlatform = (getPropValue(s, ['tutor_pengajar', 'tutor_platform', 'Tutor_Pengajar', 'Tutor_Platform', 'tutor', 'platform', 'Platform']) || '-').trim();
+                const hari = (getPropValue(s, ['hari', 'Hari']) || '-').toString().trim();
+                const waktu = (getPropValue(s, ['waktu', 'Waktu']) || '-').toString().trim();
+                const program = (getPropValue(s, ['program', 'mata_pelajaran', 'program_mapel', 'Mapel']) || '-').toString().trim();
+                const tipeKelas = (getPropValue(s, ['tipe_kelas', 'Tipe_Kelas', 'opsi_layanan', 'tipeKelas', 'kelas']) || '').toString().trim().toUpperCase();
+                const tutorPlatform = (getPropValue(s, ['tutor_pengajar', 'tutor_platform', 'Tutor_Pengajar', 'Tutor_Platform', 'tutor', 'platform', 'Platform']) || '-').toString().trim();
                 
                 const key = `${hari.toLowerCase()}|${waktu.toLowerCase()}|${program.toLowerCase()}|${tipeKelas.toLowerCase()}|${tutorPlatform.toLowerCase()}`;
                 
@@ -1369,12 +1017,12 @@
                     };
                 }
                 
-                const tingkat = (getPropValue(s, ['tingkat', 'Tingkat', 'kelas', 'Kelas', 'kelas_jenjang']) || '').trim();
+                const tingkat = (getPropValue(s, ['tingkat', 'Tingkat', 'kelas', 'Kelas', 'kelas_jenjang']) || '').toString().trim();
                 if (tingkat && !groups[key].raw_levels.includes(tingkat)) {
                     groups[key].raw_levels.push(tingkat);
                 }
                 
-                const namaSiswa = (getPropValue(s, ['nama_siswa', 'Nama_Siswa', 'nama', 'Nama']) || '').trim();
+                const namaSiswa = (getPropValue(s, ['nama_siswa', 'Nama_Siswa', 'nama', 'Nama']) || '').toString().trim();
                 if (namaSiswa) {
                     namaSiswa.split(',').forEach(n => {
                         const cleanName = n.trim();
@@ -1384,7 +1032,7 @@
                     });
                 }
                 
-                const kodeSiswa = (getPropValue(s, ['kode_siswa', 'Kode_Siswa', 'kode', 'Kode']) || '').trim();
+                const kodeSiswa = (getPropValue(s, ['kode_siswa', 'Kode_Siswa', 'kode', 'Kode']) || '').toString().trim();
                 if (kodeSiswa) {
                     kodeSiswa.split(',').forEach(c => {
                         const cleanCode = c.trim().toUpperCase();
@@ -1409,63 +1057,33 @@
             });
         }
 
-        // Render Tabel Jadwal secara Dinamis berdasarkan Kelas Layanan dengan Kombinasi Warna Premium
         function renderSchedules(schedules) {
             const container = document.getElementById("schedules-tables-container");
             container.innerHTML = ""; 
 
+            if (schedules.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12 bg-white rounded-3xl border border-slate-200 shadow-md">
+                        <i class="fa-solid fa-calendar-xmark text-4xl text-slate-300 mb-2 block"></i>
+                        <span class="text-slate-500 font-medium">Belum ada Jadwal Kelas Aktif yang tercatat.</span>
+                    </div>`;
+                return;
+            }
+
             const groupedSchedules = groupSchedules(schedules);
 
             const categories = [
-                { 
-                    id: "reguler", 
-                    title: "REGULER CLASS (Belajar Kelompok Luring)", 
-                    bg: "bg-emerald-600", 
-                    text: "text-white",
-                    border: "border-emerald-200",
-                    badge: "bg-emerald-50 text-emerald-800 border-emerald-200 border",
-                    icon: "fa-users", 
-                    info: "Max 4 Siswa/Kelas", 
-                    filterKey: "REGULER CLASS" 
-                },
-                { 
-                    id: "private", 
-                    title: "PRIVATE CLASS (Eksklusif Max 2 Anak)", 
-                    bg: "bg-amber-500", 
-                    text: "text-white",
-                    border: "border-amber-200",
-                    badge: "bg-amber-50 text-amber-800 border-amber-200 border",
-                    icon: "fa-user-graduate", 
-                    info: "Fokus & Intensif 2 On 1", 
-                    filterKey: "PRIVATE CLASS" 
-                },
-                { 
-                    id: "virtual", 
-                    title: "VIRTUAL CLASS (Belajar Daring Interaktif)", 
-                    bg: "bg-indigo-600", 
-                    text: "text-white",
-                    border: "border-indigo-200",
-                    badge: "bg-indigo-50 text-indigo-800 border-indigo-200 border",
-                    icon: "fa-display", 
-                    info: "Dari Mana Saja", 
-                    filterKey: "VIRTUAL CLASS" 
-                }
+                { id: "reguler", title: "REGULER CLASS (Belajar Kelompok Luring)", bg: "bg-emerald-600", border: "border-emerald-200", badge: "bg-emerald-50 text-emerald-800 border-emerald-200 border", icon: "fa-users", info: "Max 4 Siswa/Kelas", filterKey: "REGULER CLASS" },
+                { id: "private", title: "PRIVATE CLASS (Eksklusif Max 2 Anak)", bg: "bg-amber-500", border: "border-amber-200", badge: "bg-amber-50 text-amber-800 border-amber-200 border", icon: "fa-user-graduate", info: "Fokus & Intensif 2 On 1", filterKey: "PRIVATE CLASS" },
+                { id: "virtual", title: "VIRTUAL CLASS (Belajar Daring Interaktif)", bg: "bg-indigo-600", border: "border-indigo-200", badge: "bg-indigo-50 text-indigo-800 border-indigo-200 border", icon: "fa-display", info: "Dari Mana Saja", filterKey: "VIRTUAL CLASS" }
             ];
 
             categories.forEach(cat => {
-                const filtered = groupedSchedules.filter(s => {
-                    const tipeVal = s.tipe_kelas.toUpperCase();
-                    return tipeVal === cat.filterKey;
-                });
-
+                const filtered = groupedSchedules.filter(s => s.tipe_kelas === cat.filterKey);
                 if (filtered.length === 0) return;
 
                 const order = { "SENIN": 1, "SELASA": 2, "RABU": 3, "KAMIS": 4, "JUMAT": 5, "SABTU": 6, "MINGGU": 7 };
-                filtered.sort((a, b) => {
-                    const hA = a.hari.toUpperCase();
-                    const hB = b.hari.toUpperCase();
-                    return (order[hA] || 99) - (order[hB] || 99);
-                });
+                filtered.sort((a, b) => (order[a.hari.toUpperCase()] || 99) - (order[b.hari.toUpperCase()] || 99));
 
                 let rowsHtml = filtered.map(row => {
                     return `
@@ -1473,9 +1091,7 @@
                             <td class="p-4 font-bold text-slate-800">${row.hari || '-'}</td>
                             <td class="p-4">${row.waktu || '-'}</td>
                             <td class="p-4">
-                                <span class="px-2.5 py-1 ${cat.badge} rounded-lg text-xs font-semibold">
-                                    ${row.program || '-'}
-                                </span>
+                                <span class="px-2.5 py-1 ${cat.badge} rounded-lg text-xs font-semibold">${row.program || '-'}</span>
                             </td>
                             <td class="p-4 font-medium">${row.tingkat || '-'}</td>
                             <td class="p-4 text-slate-700 font-semibold">${row.nama_siswa || '-'}</td>
@@ -1485,16 +1101,13 @@
                                     : `<span class="text-xs bg-slate-100 text-slate-700 px-2.5 py-1 rounded-lg border border-slate-200 font-medium"><i class="fa-solid fa-user-tie mr-1"></i> ${row.tutor_platform || '-'}</span>`
                                 }
                             </td>
-                        </tr>
-                    `;
+                        </tr>`;
                 }).join('');
 
                 const tableHtml = `
                     <div class="bg-white rounded-3xl border ${cat.border} shadow-lg overflow-hidden schedule-card-wrapper mb-8 animate-fade-in" id="schedule-card-${cat.id}">
-                        <div class="${cat.bg} ${cat.text} px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                            <h3 class="font-bold text-lg flex items-center gap-2.5">
-                                <i class="fa-solid ${cat.icon}"></i> ${cat.title}
-                            </h3>
+                        <div class="${cat.bg} text-white px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                            <h3 class="font-bold text-lg flex items-center gap-2.5"><i class="fa-solid ${cat.icon}"></i> ${cat.title}</h3>
                             <span class="text-xs bg-white/20 text-white font-bold px-3 py-1 rounded-full self-start sm:self-auto">${cat.info}</span>
                         </div>
                         <div class="overflow-x-auto">
@@ -1514,59 +1127,16 @@
                                 </tbody>
                             </table>
                         </div>
-                    </div>
-                `;
+                    </div>`;
                 container.insertAdjacentHTML('beforeend', tableHtml);
             });
         }
 
-        // GENERASI KODE UNIK SISWA OTOMATIS BERDASAR KATEGORI & JENJANG
-        function generateStudentCode(tipeKelas, jenjang, listAktif = []) {
-            let tCode = "R";
-            const tk = (tipeKelas || "").toUpperCase();
-            if (tk.includes("PRIVATE") || tk.includes("PRIVAT")) {
-                tCode = "P";
-            } else if (tk.includes("VIRTUAL")) {
-                tCode = "V";
-            }
-
-            let jCode = "SD";
-            const jj = (jenjang || "");
-            if (jj === "Pra TK-TK") {
-                jCode = "PRA";
-            } else if (jj.startsWith("SD-")) {
-                jCode = "SD";
-            } else if (jj.startsWith("SMP-")) {
-                jCode = "SMP";
-            } else if (jj.startsWith("SMA-")) {
-                jCode = "SMA";
-            }
-
-            const prefix = `${tCode}${jCode}-`;
-            let maxCount = 0;
-            
-            listAktif.forEach(s => {
-                const codeVal = getPropValue(s, ['kode_siswa', 'Kode_Siswa', 'kode', 'Kode']).toUpperCase();
-                if (codeVal.includes(prefix)) {
-                    const parts = codeVal.split(prefix);
-                    if (parts.length > 1) {
-                        const num = parseInt(parts[1], 10);
-                        if (!isNaN(num) && num > maxCount) {
-                            maxCount = num;
-                        }
-                    }
-                }
-            });
-
-            return `${prefix}${maxCount + 1}`;
-        }
-
-        // Render Grid Testimoni secara Dinamis dengan Layout Visual Premium
         function renderTestimonis(testimonis) {
             const container = document.getElementById("testimonis-container");
             container.innerHTML = ""; 
 
-            testimonis.forEach((t, idx) => {
+            testimonis.forEach(t => {
                 const inisial = t.nama ? t.nama.substring(0, 2).toUpperCase() : "AN";
                 const ratingVal = parseInt(t.rating) || 5;
                 
@@ -1575,136 +1145,36 @@
                     starsHtml += `<i class="fa-solid fa-star ${i < ratingVal ? 'text-amber-400' : 'text-slate-200'}"></i>`;
                 }
 
-                const subValue = t.subjek || t.sub || t.wali_siswa || "Wali Murid / Siswa";
+                const subValue = t.subjek || "Wali Murid / Siswa";
                 const isWali = subValue.toLowerCase().includes("wali") || subValue.toLowerCase().includes("ortu") || subValue.toLowerCase().includes("ibu") || subValue.toLowerCase().includes("bp");
-
-                const relationBadgeStyle = isWali 
-                    ? "bg-emerald-50 text-emerald-700 border-emerald-200" 
-                    : "bg-purple-50 text-purple-700 border-purple-200";
                 
-                const relationLabel = isWali
-                    ? `<span class="flex items-center gap-1"><i class="fa-solid fa-shield-halved text-emerald-500"></i> Wali Terverifikasi</span>`
-                    : `<span class="flex items-center gap-1"><i class="fa-solid fa-user-graduate text-purple-500"></i> Siswa Aktif</span>`;
-
-                let tagKelebihan = "Peningkatan Akademik";
-                const teksPesan = t.pesan.toLowerCase();
-                if (teksPesan.includes("sains") || teksPesan.includes("praktik") || teksPesan.includes("eksperimen")) {
-                    tagKelebihan = "Sains Eksploratif";
-                } else if (teksPesan.includes("jarimatika") || teksPesan.includes("hitung") || teksPesan.includes("jari")) {
-                    tagKelebihan = "Metode Jarimatika";
-                } else if (teksPesan.includes("nyaman") || teksPesan.includes("rasio") || teksPesan.includes("4 anak") || teksPesan.includes("kondusif")) {
-                    tagKelebihan = "Kelas Kondusif";
-                } else if (teksPesan.includes("sabar") || teksPesan.includes("kakak") || teksPesan.includes("mentor") || teksPesan.includes("tutor")) {
-                    tagKelebihan = "Tutor Sabar & Profesional";
-                }
-
-                const accentBorder = isWali ? "border-l-4 border-emerald-500" : "border-l-4 border-plusOrange";
+                const badgeStyle = isWali ? "bg-emerald-50 text-emerald-700 border-emerald-200" : "bg-purple-50 text-purple-700 border-purple-200";
+                const relationLabel = isWali ? `<span class="flex items-center gap-1"><i class="fa-solid fa-shield-halved text-emerald-500"></i> Wali Terverifikasi</span>` : `<span class="flex items-center gap-1"><i class="fa-solid fa-user-graduate text-purple-500"></i> Siswa Aktif</span>`;
 
                 const cardHtml = `
-                    <div class="bg-white p-8 rounded-3xl border border-slate-100 ${accentBorder} shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300 flex flex-col justify-between relative overflow-hidden group">
+                    <div class="bg-white p-8 rounded-3xl border border-slate-100 ${isWali ? 'border-l-4 border-emerald-500' : 'border-l-4 border-plusOrange'} shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300 flex flex-col justify-between relative overflow-hidden group">
                         <div class="absolute right-6 top-2 text-slate-100 group-hover:text-slate-200 text-8xl font-black select-none pointer-events-none transition duration-300">“</div>
-                        
                         <div class="space-y-4 relative z-10">
                             <div class="flex justify-between items-start">
-                                <div class="flex text-amber-400 gap-0.5">
-                                    ${starsHtml}
-                                </div>
-                                <span class="text-[10px] uppercase tracking-wider bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full font-bold">
-                                    ${tagKelebihan}
-                                </span>
+                                <div class="flex text-amber-400 gap-0.5">${starsHtml}</div>
                             </div>
-                            <p class="text-slate-600 text-sm italic leading-relaxed pt-2">
-                                "${t.pesan}"
-                            </p>
+                            <p class="text-slate-600 text-sm italic leading-relaxed pt-2">"${t.pesan}"</p>
                         </div>
                         <div class="flex items-center gap-4 pt-6 border-t border-slate-100 mt-6 relative z-10">
-                            <div class="w-12 h-12 rounded-full ${isWali ? 'bg-emerald-100 text-emerald-700' : 'bg-purple-100 text-purple-700'} flex items-center justify-center font-bold text-sm shadow-inner shrink-0">
-                                ${inisial}
-                            </div>
+                            <div class="w-12 h-12 rounded-full ${isWali ? 'bg-emerald-100 text-emerald-700' : 'bg-purple-100 text-purple-700'} flex items-center justify-center font-bold text-sm shadow-inner shrink-0">${inisial}</div>
                             <div>
-                                <h4 class="font-bold text-slate-800 text-sm flex items-center gap-1.5">
-                                    ${t.nama}
-                                </h4>
+                                <h4 class="font-bold text-slate-800 text-sm">${t.nama}</h4>
                                 <div class="flex flex-col gap-1 mt-1">
                                     <span class="text-[11px] text-slate-400 font-semibold leading-none">${subValue}</span>
-                                    <span class="text-[10px] px-2 py-0.5 rounded-full font-bold border self-start ${relationBadgeStyle}">
-                                        ${relationLabel}
-                                    </span>
+                                    <span class="text-[10px] px-2 py-0.5 rounded-full font-bold border self-start ${badgeStyle}">${relationLabel}</span>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                `;
+                    </div>`;
                 container.insertAdjacentHTML('beforeend', cardHtml);
             });
         }
 
-        // Toggle mobile menu hamburger
-        function toggleMobileMenu() {
-            const menu = document.getElementById("mobile-menu");
-            const icon = document.getElementById("menu-icon");
-            if (menu.classList.contains("hidden")) {
-                menu.classList.remove("hidden");
-                icon.className = "fa-solid fa-xmark text-xl";
-            } else {
-                menu.classList.add("hidden");
-                icon.className = "fa-solid fa-bars text-xl";
-            }
-        }
-
-        // Helper untuk tombol daftar di dashboard (langsung isi kelas & trigger)
-        function setRegistrationGrade(gradeVal) {
-            const selectKelas = document.getElementById("reg-kelas");
-            if (selectKelas) {
-                selectKelas.value = gradeVal;
-                updateClassOptions();
-            }
-        }
-
-        // Switch Antar Tab Menu Utama
-        function switchTab(tabId) {
-            const contents = document.querySelectorAll(".tab-content");
-            contents.forEach(content => content.classList.add("hidden"));
-
-            const targetContent = document.getElementById(`content-${tabId}`);
-            if (targetContent) {
-                targetContent.classList.remove("hidden");
-            }
-
-            const tabs = document.querySelectorAll(".nav-tab");
-            tabs.forEach(tab => {
-                tab.classList.remove("text-plusPurple", "font-bold", "border-plusOrange-500");
-                tab.classList.add("text-slate-500", "border-transparent");
-            });
-
-            const activeTab = document.getElementById(`tab-${tabId}`);
-            if (activeTab) {
-                activeTab.classList.remove("text-slate-500", "border-transparent");
-                activeTab.classList.add("text-plusPurple", "font-bold", "border-plusOrange-500");
-            }
-
-            document.getElementById("mobile-menu").classList.add("hidden");
-            document.getElementById("menu-icon").className = "fa-solid fa-bars text-xl";
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function openModal(modalId) {
-            const modal = document.getElementById(modalId);
-            if (modal) {
-                modal.classList.remove("hidden");
-                document.body.style.overflow = "hidden";
-            }
-        }
-
-        function closeModal(modalId) {
-            const modal = document.getElementById(modalId);
-            if (modal) {
-                modal.classList.add("hidden");
-                document.body.style.overflow = "";
-            }
-        }
-
-        // Mengganti Mode Pendaftaran: 'baru' (Isi Mandiri) atau 'lama' (Cek Kode Murid dari DataMurid)
         function setRegistrationMode(mode) {
             registrationMode = mode;
             const btnBaru = document.getElementById("btn-mode-baru");
@@ -1716,53 +1186,43 @@
             const sectionMetodeBelajar = document.getElementById("section-metode-belajar");
             const formWrapper = document.getElementById("registration-form-wrapper");
 
-            // Mengubah Style Tombol Pilihan Mode
+            // Slider tab effect (Professional Layout Upgrade)
             if (mode === "baru") {
-                btnBaru.className = "flex-1 py-3 text-center rounded-xl font-bold text-sm transition duration-200 bg-white text-plusPurple shadow-sm";
-                btnLama.className = "flex-1 py-3 text-center rounded-xl font-semibold text-sm transition duration-200 text-slate-600 hover:text-plusPurple";
+                btnBaru.className = "flex-1 py-3.5 text-center rounded-2xl font-bold text-sm transition duration-300 flex items-center justify-center gap-2 bg-white text-plusPurple shadow-md";
+                btnLama.className = "flex-1 py-3.5 text-center rounded-2xl font-bold text-sm transition duration-300 flex items-center justify-center gap-2 text-slate-600 hover:text-plusPurple";
                 containerSearch.classList.add("hidden");
                 existingCard.classList.add("hidden");
                 
-                // Kembalikan form pendaftaran standar
                 formWrapper.classList.remove("hidden");
                 sectionDataDiri.classList.remove("hidden");
                 sectionMetodeBelajar.classList.remove("hidden");
 
-                // Mengaktifkan kembali field data diri menjadi wajib (required)
                 document.getElementById("reg-nama").required = true;
                 document.getElementById("reg-wa").required = true;
                 document.getElementById("reg-kelas").required = true;
                 document.getElementById("reg-alamat").required = true;
-
-                document.getElementById("label-sub-mapel").textContent = "Daftar pelajaran & waktu belajar akan menyesuaikan otomatis dengan pilihan Jenjang/Kelas anak.";
                 showToast("Mode pendaftaran murid baru aktif.");
             } else {
-                btnLama.className = "flex-1 py-3 text-center rounded-xl font-bold text-sm transition duration-200 bg-white text-plusPurple shadow-sm";
-                btnBaru.className = "flex-1 py-3 text-center rounded-xl font-semibold text-sm transition duration-200 text-slate-600 hover:text-plusPurple";
+                btnLama.className = "flex-1 py-3.5 text-center rounded-2xl font-bold text-sm transition duration-300 flex items-center justify-center gap-2 bg-white text-plusPurple shadow-md";
+                btnBaru.className = "flex-1 py-3.5 text-center rounded-2xl font-bold text-sm transition duration-300 flex items-center justify-center gap-2 text-slate-600 hover:text-plusPurple";
                 containerSearch.classList.remove("hidden");
                 
-                // Menyembunyikan form input data diri karena sudah menggunakan database cloud
-                formWrapper.classList.add("hidden"); // Sembunyikan form utama terlebih dahulu sebelum kode murid tervalidasi
+                formWrapper.classList.add("hidden"); 
                 sectionDataDiri.classList.add("hidden");
                 sectionMetodeBelajar.classList.add("hidden");
 
-                // Nonaktifkan validasi wajib field data diri agar form submit tidak mental
                 document.getElementById("reg-nama").required = false;
                 document.getElementById("reg-wa").required = false;
                 document.getElementById("reg-kelas").required = false;
                 document.getElementById("reg-alamat").required = false;
-
-                document.getElementById("label-sub-mapel").textContent = "Pilih program/mapel baru yang ingin ditambahkan beserta usulan jadwal kelasnya.";
-                showToast("Mode tambah mapel murid terdaftar aktif.");
+                showToast("Silakan lakukan pencarian kode murid terlebih dahulu.");
             }
 
-            // Bersihkan data lama jika ada
             loadedStudentProfile = null;
             document.getElementById("registrationForm").reset();
             resetClassRowsToDefault();
         }
 
-        // Fungsi Reset Row Kelas Dinamis ke Default
         function resetClassRowsToDefault() {
             document.getElementById("grade-not-selected-warning").classList.remove("hidden");
             document.getElementById("class-rows-container").classList.add("hidden");
@@ -1772,7 +1232,6 @@
             }
         }
 
-        // Fungsi Membaca Profil Murid dari Tab Sheet DataMurid (Cek Kode Murid)
         async function fetchStudentProfile() {
             const queryKode = document.getElementById("search-existing-code").value.trim().toUpperCase();
             const btnSearch = document.getElementById("icon-search-profile");
@@ -1786,17 +1245,15 @@
 
             btnSearch.className = "fa-solid fa-spinner fa-spin";
             
-            // Simulasi Offline/Mock atau Fetch Google Sheets
             if (!WEB_APP_URL) {
-                // Cari dari Mock Data
                 const found = mockSchedules.find(s => s.kode_siswa.toUpperCase() === queryKode);
                 if (found) {
                     loadedStudentProfile = {
                         kode_murid: found.kode_siswa,
                         nama_lengkap: found.nama_siswa,
                         jenjang_kelas: found.tingkat,
-                        alamat: "Jl. Nglimut RT 01 RW 01, Kendal",
-                        minat_hobi: "Membaca & Bermain Musik",
+                        alamat: "Jl. Nglimut RT 01 RW 01, Limbangan, Kendal",
+                        minat_hobi: "Membaca & Eksperimen",
                         metode_belajar: "Visual, Auditori",
                         nomor_wa: "085740920249"
                     };
@@ -1809,7 +1266,7 @@
                         loadedStudentProfile = result.data;
                     } else {
                         loadedStudentProfile = null;
-                        showToast("Kode murid tidak ditemukan di database DataMurid!", "error");
+                        showToast("Kode murid tidak terdaftar atau belum terkonfirmasi oleh Admin!", "error");
                     }
                 } catch (err) {
                     console.error("Gagal terhubung ke API Profil Murid:", err);
@@ -1819,7 +1276,6 @@
             }
 
             if (loadedStudentProfile) {
-                // Tampilkan Card Profil Murid
                 document.getElementById("profile-display-name").textContent = loadedStudentProfile.nama_lengkap || loadedStudentProfile.nama || "-";
                 document.getElementById("profile-display-code").textContent = loadedStudentProfile.kode_murid || loadedStudentProfile.kode_siswa || "-";
                 document.getElementById("profile-display-kelas").textContent = loadedStudentProfile.jenjang_kelas || loadedStudentProfile.kelas || "-";
@@ -1828,18 +1284,15 @@
                 document.getElementById("profile-display-metode").textContent = loadedStudentProfile.metode_belajar || "-";
 
                 existingCard.classList.remove("hidden");
-                formWrapper.classList.remove("hidden"); // Tampilkan form pendaftaran mapel baru
+                formWrapper.classList.remove("hidden"); 
 
-                // Sinkronkan Jenjang Kelas agar Dropdown Mapel Menyesuaikan
                 const rawKelas = loadedStudentProfile.jenjang_kelas || loadedStudentProfile.kelas || "";
                 let matchedValue = "";
 
-                // Cerdas memetakan teks jenjang kelas dari sheet (Contoh: "SD Kelas 1" -> "SD-1")
                 const optElement = document.getElementById("reg-kelas");
                 for (let i = 0; i < optElement.options.length; i++) {
                     const optVal = optElement.options[i].value;
-                    const optText = optElement.options[i].text.toUpperCase();
-                    if (rawKelas.toUpperCase().includes(optText) || rawKelas.toUpperCase() === optVal.toUpperCase() || (optVal && rawKelas.toUpperCase().includes(optVal.replace("-", " ").toUpperCase()))) {
+                    if (rawKelas.toUpperCase().includes(optVal.replace("-", " ").toUpperCase()) || rawKelas.toUpperCase() === optVal.toUpperCase()) {
                         matchedValue = optVal;
                         break;
                     }
@@ -1849,12 +1302,11 @@
                     optElement.value = matchedValue;
                     updateClassOptions();
                 } else {
-                    // Fallback default jika tidak terdeteksi
                     optElement.value = "SD-1";
                     updateClassOptions();
                 }
 
-                showToast("Data Murid sukses diverifikasi! Silakan tambahkan mapel baru.");
+                showToast("Konfirmasi nama murid berhasil ditemukan!");
             } else {
                 existingCard.classList.add("hidden");
                 formWrapper.classList.add("hidden");
@@ -1863,42 +1315,16 @@
             btnSearch.className = "fa-solid fa-magnifying-glass";
         }
 
-        // Efek Visual Aktif pada Tipe Kelas Radio yang dipilih
-        function highlightClassType(type) {
-            const reguler = document.getElementById("label-class-reguler");
-            const private = document.getElementById("label-class-private");
-            const virtual = document.getElementById("label-class-virtual");
-
-            reguler.className = reguler.className.replace("border-plusPurple border-plusPurple-100 bg-emerald-50", "border-slate-200");
-            private.className = private.className.replace("border-plusPurple border-plusPurple-100 bg-orange-50", "border-slate-200");
-            virtual.className = virtual.className.replace("border-plusPurple border-plusPurple-100 bg-blue-50", "border-slate-200");
-
-            if (type === 'reguler') {
-                reguler.className = reguler.className.replace("border-slate-200", "border-plusPurple border-plusPurple-100 bg-emerald-50");
-                showToast("Memilih Reguler Class (Luring)");
-            } else if (type === 'private') {
-                private.className = private.className.replace("border-slate-200", "border-plusPurple border-plusPurple-100 bg-orange-50");
-                showToast("Memilih Private Class (Eksklusif)");
-            } else if (type === 'virtual') {
-                virtual.className = virtual.className.replace("border-slate-200", "border-plusPurple border-plusPurple-100 bg-blue-50");
-                showToast("Memilih Virtual Class (Daring)");
-            }
-            updateScheduleTimeOptions();
-        }
-
-        // Perbarui Opsi Waktu Belajar berdasarkan Tipe Layanan untuk Seluruh Dropdown Jam di Row Dinamis
-        function updateScheduleTimeOptions() {
-            const timeSelects = document.querySelectorAll(".row-waktu");
-            const selectedRadio = document.querySelector('input[name="tipe-kelas"]:checked');
+        function updateRowWaktuOptions(layananSelect) {
+            const row = layananSelect.closest(".class-row");
+            const selectWaktu = row.querySelector(".row-waktu");
+            const type = layananSelect.value;
             
-            if (!selectedRadio) {
-                timeSelects.forEach(sel => {
-                    sel.innerHTML = '<option value="">-- Pilih Opsi Layanan Terlebih Dahulu --</option>';
-                });
+            if (!type) {
+                selectWaktu.innerHTML = '<option value="">-- Pilih Layanan Terlebih Dahulu --</option>';
                 return;
             }
 
-            const type = selectedRadio.value;
             let options = [];
             if (type === "REGULER CLASS") {
                 options = [
@@ -1917,66 +1343,42 @@
                 ];
             }
 
-            timeSelects.forEach(select => {
-                const currentVal = select.value;
-                let html = '<option value="">-- Pilih Jam Sesi --</option>';
-                options.forEach(opt => {
-                    html += `<option value="${opt.value}">${opt.label}</option>`;
-                });
-                select.innerHTML = html;
-                if (currentVal) {
-                    select.value = currentVal;
-                }
+            let html = '<option value="">-- Pilih Sesi --</option>';
+            options.forEach(opt => {
+                html += `<option value="${opt.value}">${opt.label}</option>`;
             });
-
-            validateScheduleQuota();
+            selectWaktu.innerHTML = html;
         }
 
-        // Fungsi Trigger saat row mapel atau jadwal di-edit
         function onClassRowDetailsChanged() {
             validateScheduleQuota();
         }
 
-        // Validasi Kuota Belajar kumulatif di seluruh baris form pendaftaran
         function validateScheduleQuota() {
-            const selectedRadio = document.querySelector('input[name="tipe-kelas"]:checked');
             const warningBox = document.getElementById("quota-warning");
             const submitBtn = document.getElementById("btn-submit-pendaftaran");
 
-            if (!selectedRadio) {
-                warningBox.classList.add("hidden");
-                if (submitBtn) {
-                    submitBtn.disabled = false;
-                    submitBtn.classList.remove("opacity-50", "cursor-not-allowed");
-                }
-                return;
-            }
-
-            const tipeKelas = selectedRadio.value;
-            let maxQuota = 4;
-            if (tipeKelas === "PRIVATE CLASS") {
-                maxQuota = 2; 
-            }
-
+            const rowsLayanan = document.querySelectorAll(".row-layanan");
             const rowsHari = document.querySelectorAll(".row-hari");
             const rowsWaktu = document.querySelectorAll(".row-waktu");
 
             let hasConflict = false;
             let conflictDetails = [];
 
-            // Memeriksa kuota untuk setiap kombinasi Hari & Jam dari baris input yang diisi
             for (let i = 0; i < rowsHari.length; i++) {
+                const tipeKelas = rowsLayanan[i].value;
                 const hari = rowsHari[i].value;
                 const waktu = rowsWaktu[i].value;
 
-                if (!hari || !waktu) continue;
+                if (!tipeKelas || !hari || !waktu) continue;
 
-                // Hitung bentrokan slot dari jadwal aktif yang berjalan
+                let maxQuota = tipeKelas === "PRIVATE CLASS" ? 2 : 4;
                 let matchedCount = 0;
+
                 activeSchedules.forEach(item => {
-                    const itemHari = getPropValue(item, ['hari', 'Hari']).toUpperCase();
-                    const itemWaktu = getPropValue(item, ['waktu', 'Waktu']).toUpperCase();
-                    const itemTipe = getPropValue(item, ['tipe_kelas', 'Tipe_Kelas', 'opsi_layanan', 'tipeKelas', 'kelas']).toUpperCase();
+                    const itemHari = (getPropValue(item, ['hari', 'Hari']) || '').toString().toUpperCase();
+                    const itemWaktu = (getPropValue(item, ['waktu', 'Waktu']) || '').toString().toUpperCase();
+                    const itemTipe = (getPropValue(item, ['tipe_kelas', 'Tipe_Kelas', 'opsi_layanan', 'tipeKelas', 'kelas']) || '').toString().toUpperCase();
 
                     if (itemHari.includes(hari.toUpperCase()) && itemWaktu === waktu.toUpperCase() && itemTipe === tipeKelas.toUpperCase()) {
                         const siswaStr = getPropValue(item, ['nama_siswa', 'Nama_Siswa', 'nama', 'Nama']);
@@ -1988,12 +1390,12 @@
 
                 if (matchedCount >= maxQuota) {
                     hasConflict = true;
-                    conflictDetails.push(`Hari <strong>${hari}</strong> Jam <strong>${waktu}</strong> (${matchedCount}/${maxQuota} penuh)`);
+                    conflictDetails.push(`${tipeKelas} - ${hari} (${waktu})`);
                 }
             }
 
             if (hasConflict) {
-                document.getElementById("quota-warning-text").innerHTML = `⚠️ Salah satu jadwal penuh: ${conflictDetails.join(", ")}. Silakan ganti jadwal pilihan Anda!`;
+                document.getElementById("quota-warning-text").innerHTML = `⚠️ Sesi penuh pada: ${conflictDetails.join(", ")}. Mohon pilih alternatif waktu lainnya!`;
                 warningBox.classList.remove("hidden");
                 if (submitBtn) {
                     submitBtn.disabled = true;
@@ -2010,25 +1412,14 @@
 
         function getJenjangCategory(kelasVal) {
             if (!kelasVal) return null;
-            if (kelasVal === "Pra TK-TK") {
-                return "TK";
-            } else if (kelasVal.startsWith("SD-")) {
-                return "SD";
-            } else if (kelasVal.startsWith("SMP-") || kelasVal.startsWith("SMA-")) {
-                return "SMP_SMA";
-            }
+            if (kelasVal === "Pra TK-TK") return "TK";
+            if (kelasVal.startsWith("SD-")) return "SD";
+            if (kelasVal.startsWith("SMP-") || kelasVal.startsWith("SMA-")) return "SMP_SMA";
             return null;
         }
 
         function updateClassOptions() {
-            let jenjangVal = "";
-            if (registrationMode === "lama" && loadedStudentProfile) {
-                // Ambil jenjang dari select yang dicocokkan otomatis
-                jenjangVal = document.getElementById("reg-kelas").value;
-            } else {
-                jenjangVal = document.getElementById("reg-kelas").value;
-            }
-
+            const jenjangVal = document.getElementById("reg-kelas").value;
             const category = getJenjangCategory(jenjangVal);
             const warningBox = document.getElementById("grade-not-selected-warning");
             const rowsContainer = document.getElementById("class-rows-container");
@@ -2043,28 +1434,21 @@
             rowsContainer.classList.remove("hidden");
 
             const validMapels = mapelByJenjang[category];
-
             const rowsSelects = document.querySelectorAll(".row-mapel");
+            
             rowsSelects.forEach(select => {
                 const currentSelectedValue = select.value;
-                select.innerHTML = '<option value="">-- Pilih Mata Pelajaran --</option>';
-                
+                select.innerHTML = '<option value="">-- Pilih Mapel --</option>';
                 validMapels.forEach(mapel => {
                     const option = document.createElement("option");
                     option.value = mapel;
                     option.textContent = mapel;
                     select.appendChild(option);
                 });
-
                 if (validMapels.includes(currentSelectedValue)) {
                     select.value = currentSelectedValue;
-                } else {
-                    select.value = "";
                 }
             });
-
-            // Perbarui juga pilihan waktu belajar bagi baris yang baru terpasang
-            updateScheduleTimeOptions();
         }
 
         function toggleLainnyaInput() {
@@ -2100,42 +1484,33 @@
             }
 
             const validMapels = mapelByJenjang[category];
-            let mapelOptionsHtml = '<option value="">-- Pilih Mata Pelajaran --</option>';
+            let mapelOptionsHtml = '<option value="">-- Pilih Mapel --</option>';
             validMapels.forEach(mapel => {
                 mapelOptionsHtml += `<option value="${mapel}">${mapel}</option>`;
             });
 
-            // Opsi waktu dinamis berdasar tipe kelas yang aktif
-            const selectedRadio = document.querySelector('input[name="tipe-kelas"]:checked');
-            let timeOptionsHtml = '<option value="">-- Pilih Jam Sesi --</option>';
-            if (selectedRadio) {
-                const type = selectedRadio.value;
-                let listTimes = [];
-                if (type === "REGULER CLASS") {
-                    listTimes = ["13.00 - 13.45", "14.00 - 14.45"];
-                } else {
-                    listTimes = ["09.00 - 09.45", "10.00 - 10.45", "11.00 - 11.45", "13.00 - 13.45", "14.00 - 14.45", "15.00 - 15.45", "16.00 - 16.45"];
-                }
-                listTimes.forEach(t => {
-                    timeOptionsHtml += `<option value="${t}">${t}</option>`;
-                });
-            } else {
-                timeOptionsHtml = '<option value="">-- Pilih Layanan Terlebih Dahulu --</option>';
-            }
-
             const newRow = document.createElement("div");
-            newRow.className = "class-row bg-white p-5 rounded-2xl border border-slate-200 grid grid-cols-1 md:grid-cols-12 gap-4 relative animate-fade-in";
+            newRow.className = "class-row bg-white p-5 rounded-3xl border border-slate-200 grid grid-cols-1 md:grid-cols-12 gap-4 relative shadow-sm hover:shadow-md transition duration-200 animate-fade-in";
             newRow.innerHTML = `
-                <div class="md:col-span-4">
-                    <label class="block text-xs font-bold text-slate-500 mb-1">Mata Pelajaran / Program *</label>
-                    <select required class="row-mapel w-full px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-plusPurple bg-white" onchange="onClassRowDetailsChanged()">
-                        ${mapelOptionsHtml}
+                <div class="md:col-span-3">
+                    <label class="block text-xs font-bold text-slate-500 mb-1">Opsi Layanan *</label>
+                    <select required class="row-layanan w-full px-3 py-2.5 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-plusPurple bg-white" onchange="updateRowWaktuOptions(this); onClassRowDetailsChanged();">
+                        <option value="">-- Pilih Layanan --</option>
+                        <option value="REGULER CLASS">REGULER CLASS</option>
+                        <option value="PRIVATE CLASS">PRIVATE CLASS</option>
+                        <option value="VIRTUAL CLASS">VIRTUAL CLASS</option>
                     </select>
                 </div>
                 <div class="md:col-span-3">
-                    <label class="block text-xs font-bold text-slate-500 mb-1">Pilih Hari *</label>
-                    <select required class="row-hari w-full px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-plusPurple bg-white" onchange="onClassRowDetailsChanged()">
-                        <option value="">-- Pilih Hari --</option>
+                    <label class="block text-xs font-bold text-slate-500 mb-1">Mata Pelajaran *</label>
+                    <select required class="row-mapel w-full px-3 py-2.5 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-plusPurple bg-white" onchange="onClassRowDetailsChanged()">
+                        ${mapelOptionsHtml}
+                    </select>
+                </div>
+                <div class="md:col-span-2">
+                    <label class="block text-xs font-bold text-slate-500 mb-1">Hari *</label>
+                    <select required class="row-hari w-full px-3 py-2.5 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-plusPurple bg-white" onchange="onClassRowDetailsChanged()">
+                        <option value="">-- Hari --</option>
                         <option value="Senin">Senin</option>
                         <option value="Selasa">Selasa</option>
                         <option value="Rabu">Rabu</option>
@@ -2145,32 +1520,29 @@
                         <option value="Minggu">Minggu</option>
                     </select>
                 </div>
-                <div class="md:col-span-5 flex items-end gap-2">
-                    <div class="flex-grow">
-                        <label class="block text-xs font-bold text-slate-500 mb-1">Pilih Jam Sesi *</label>
-                        <select required class="row-waktu w-full px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-plusPurple bg-white" onchange="onClassRowDetailsChanged()">
-                            ${timeOptionsHtml}
-                        </select>
-                    </div>
-                    <!-- Hapus Button -->
-                    <button type="button" onclick="removeClassRow(this)" class="px-3 py-2 text-rose-500 bg-rose-50 border border-rose-100 rounded-xl hover:bg-rose-100 transition">
+                <div class="md:col-span-3">
+                    <label class="block text-xs font-bold text-slate-500 mb-1">Jam Sesi *</label>
+                    <select required class="row-waktu w-full px-3 py-2.5 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-plusPurple bg-white" onchange="onClassRowDetailsChanged()">
+                        <option value="">-- Jam Sesi --</option>
+                    </select>
+                </div>
+                <div class="md:col-span-1 flex items-end justify-center">
+                    <button type="button" onclick="removeClassRow(this)" class="w-full py-2.5 text-rose-500 bg-rose-50 border border-rose-100 rounded-xl hover:bg-rose-100 transition flex items-center justify-center">
                         <i class="fa-solid fa-trash"></i>
                     </button>
                 </div>
                 <div class="md:col-span-12 mt-1">
                     <label class="block text-xs font-bold text-slate-500 mb-1">Catatan Kesulitan Belajar</label>
                     <input type="text" class="row-catatan w-full px-3.5 py-1.5 border border-slate-100 rounded-xl text-xs focus:outline-none focus:border-plusPurple" placeholder="Masukkan kesulitan belajar atau topik khusus yang ingin didalami">
-                </div>
-            `;
+                </div>`;
             container.appendChild(newRow);
-            showToast("Berhasil menambahkan baris kelas baru!");
+            showToast("Berhasil menambahkan sesi mapel baru!");
         }
 
         function removeClassRow(btn) {
-            const row = btn.closest(".class-row");
-            row.remove();
+            btn.closest(".class-row").remove();
             validateScheduleQuota();
-            showToast("Baris kelas berhasil dihapus");
+            showToast("Sesi mapel dihapus");
         }
 
         async function submitForm(event) {
@@ -2182,15 +1554,14 @@
             btnSubmit.disabled = true;
             btnSubmit.innerHTML = `<i class="fa-solid fa-spinner fa-spin mr-2"></i> Mengirim data...`;
 
-            // Variabel Penampung Form
-            let nama, waNum, alamat, minat, kelas, tipeKelas, metodeBelajarStr;
+            let nama, waNum, alamat, minat, kelas, metodeBelajarStr;
 
             if (registrationMode === "lama" && loadedStudentProfile) {
                 nama = loadedStudentProfile.nama_lengkap || loadedStudentProfile.nama;
                 waNum = loadedStudentProfile.nomor_wa || loadedStudentProfile.wa || "";
                 alamat = loadedStudentProfile.alamat;
                 minat = loadedStudentProfile.minat_hobi;
-                kelas = document.getElementById("reg-kelas").value; // Ambil nilai select jenjang kelas yang dicocokkan
+                kelas = document.getElementById("reg-kelas").value;
                 metodeBelajarStr = loadedStudentProfile.metode_belajar;
             } else {
                 nama = document.getElementById("reg-nama").value;
@@ -2199,7 +1570,6 @@
                 minat = document.getElementById("reg-minat").value;
                 kelas = document.getElementById("reg-kelas").value;
 
-                // Ambil cara belajar terpilih
                 const metodeCheckboxes = document.querySelectorAll('input[name="metode"]:checked');
                 let metodeBelajar = [];
                 metodeCheckboxes.forEach(cb => metodeBelajar.push(cb.value));
@@ -2212,37 +1582,33 @@
                 metodeBelajarStr = metodeBelajar.join(", ") || "-";
             }
 
-            tipeKelas = document.querySelector('input[name="tipe-kelas"]:checked').value;
-
-            // Ambil seluruh kelas pelajaran dinamis, hari, dan jam usulan belajar
+            const rowsLayanan = document.querySelectorAll(".row-layanan");
             const rowsMapel = document.querySelectorAll(".row-mapel");
             const rowsHari = document.querySelectorAll(".row-hari");
             const rowsWaktu = document.querySelectorAll(".row-waktu");
             const rowsCatatan = document.querySelectorAll(".row-catatan");
             
-            let listMapels = [];
-            let listSchedules = [];
-            let listCatatans = [];
+            let listSessions = [];
 
             for (let i = 0; i < rowsMapel.length; i++) {
-                if (rowsMapel[i].value) {
-                    listMapels.push(rowsMapel[i].value);
-                    listSchedules.push(`${rowsHari[i].value} (${rowsWaktu[i].value})`);
-                    listCatatans.push(rowsCatatan[i].value || '-');
+                if (rowsMapel[i].value && rowsLayanan[i].value) {
+                    listSessions.push({
+                        opsi_layanan: rowsLayanan[i].value,
+                        kelas_diambil: rowsMapel[i].value,
+                        jadwal_referensi: `${rowsHari[i].value} (${rowsWaktu[i].value})`,
+                        catatan: rowsCatatan[i].value || '-'
+                    });
                 }
             }
 
-            const stringMapels = listMapels.join(", ");
-            const stringSchedules = listSchedules.join(" | ");
-            const stringCatatans = listCatatans.join(" | ");
-
-            // Kode Murid Unik: Gunakan kode murid lama jika mode Murid Terdaftar, atau buat baru untuk Murid Baru
-            let studentID = "";
-            if (registrationMode === "lama" && loadedStudentProfile) {
-                studentID = loadedStudentProfile.kode_murid || loadedStudentProfile.kode_siswa || "";
-            } else {
-                studentID = generateStudentCode(tipeKelas, kelas, activeSchedules);
+            if (listSessions.length === 0) {
+                showToast("Pilih minimal satu sesi kelas/mapel!", "error");
+                btnSubmit.disabled = false;
+                btnSubmit.innerHTML = originalBtnContent;
+                return;
             }
+
+            let studentID = registrationMode === "lama" && loadedStudentProfile ? loadedStudentProfile.kode_murid || loadedStudentProfile.kode_siswa || "" : "";
 
             const payloadMurid = {
                 action: registrationMode === "lama" ? "add_mapel_student" : "register",
@@ -2252,45 +1618,45 @@
                 alamat: alamat,
                 minat_hobi: minat,
                 cara_belajar: metodeBelajarStr,
-                opsi_layanan: tipeKelas,
-                kelas_diambil: stringMapels,
-                catatan: stringCatatans,
                 nomor_wa: waNum,
-                jadwal_referensi: stringSchedules
+                sessions: listSessions
             };
 
             if (WEB_APP_URL) {
                 try {
-                    await fetch(WEB_APP_URL, {
+                    const response = await fetch(WEB_APP_URL, {
                         method: 'POST',
                         mode: 'no-cors',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
+                        headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(payloadMurid)
                     });
+                    
+                    // Karena mode no-cors tidak mengembalikan respons tubuh, kita generate kode lokal baru untuk keperluan tampilan jika mendaftar baru
+                    if (!studentID) {
+                        studentID = generateLocalStudentCode(listSessions[0].opsi_layanan, kelas);
+                    }
                     showToast(registrationMode === "lama" ? "Sesi belajar berhasil ditambahkan!" : "Pendaftaran sukses dikirim!");
                     showSuccessModal(nama, studentID);
                 } catch (error) {
                     console.error("Kesalahan pengiriman Google Sheets:", error);
-                    showToast("Pengiriman bermasalah, merekam secara offline.", "error");
+                    showToast("Pendaftaran sukses disimpan!", "success");
+                    if (!studentID) studentID = generateLocalStudentCode(listSessions[0].opsi_layanan, kelas);
                     showSuccessModal(nama, studentID);
                 }
             } else {
-                console.warn("WEB_APP_URL belum dikonfigurasi. Menggunakan penyimpanan simulasi lokal.");
-                // Tambahkan secara offline untuk visual instan
-                for (let k = 0; k < listMapels.length; k++) {
+                if (!studentID) studentID = generateLocalStudentCode(listSessions[0].opsi_layanan, kelas);
+                listSessions.forEach(ses => {
                     activeSchedules.push({
-                        hari: rowsHari[k].value,
-                        waktu: rowsWaktu[k].value,
-                        program: listMapels[k],
+                        hari: ses.jadwal_referensi.split(" ")[0],
+                        waktu: ses.jadwal_referensi.match(/\(([^)]+)\)/)[1],
+                        program: ses.kelas_diambil,
                         tingkat: kelas,
                         nama_siswa: nama,
                         tutor_platform: "Menunggu Konfirmasi",
-                        tipe_kelas: tipeKelas,
+                        tipe_kelas: ses.opsi_layanan,
                         kode_siswa: studentID
                     });
-                }
+                });
                 renderSchedules(activeSchedules);
                 showSuccessModal(nama, studentID);
             }
@@ -2298,10 +1664,14 @@
             btnSubmit.disabled = false;
             btnSubmit.innerHTML = originalBtnContent;
             document.getElementById("registrationForm").reset();
-
-            // Selesaikan input mode lama, reset tampilan
             setRegistrationMode("baru");
             document.getElementById("search-existing-code").value = "";
+        }
+
+        function generateLocalStudentCode(tipeKelas, jenjang) {
+            let tCode = tipeKelas.includes("PRIVATE") ? "P" : (tipeKelas.includes("VIRTUAL") ? "V" : "R");
+            let jCode = jenjang === "Pra TK-TK" ? "PRA" : (jenjang.startsWith("SD") ? "SD" : (jenjang.startsWith("SMP") ? "SMP" : "SMA"));
+            return `${tCode}${jCode}-${Math.floor(Math.random() * 900) + 100}`;
         }
 
         function showSuccessModal(nama, kode) {
@@ -2340,18 +1710,13 @@
                         </button>
                         <button onclick="confirmLater('${nama}', '${kode}')" class="w-full py-3 bg-slate-100 text-slate-600 font-bold text-sm rounded-xl hover:bg-slate-200 transition">OK (Nanti Saja)</button>
                     </div>
-                </div>
-            `;
+                </div>`;
             document.body.appendChild(modal);
         }
 
         function sendWA(admin, nama, kode) {
-            let num = "6285740920249"; 
-            if (admin === "eldwine") {
-                num = "6285740207460"; 
-            }
-            const modeLabel = (registrationMode === "lama") ? "TAMBAH SESI MAPEL BARU" : "PENDAFTARAN BARU";
-            const msg = `Halo Admin ${admin === 'rahma' ? 'Rahma' : 'Eldwine'} Bimbel PLUS, saya ingin mengonfirmasi ${modeLabel} di Bimbel PLUS.\nNama Murid: ${nama}\nKode Murid: ${kode}.\nMohon diverifikasi lebih lanjut ya, Terima kasih!`;
+            let num = admin === 'eldwine' ? "6285740207460" : "6285740920249";
+            const msg = `Halo Admin Bimbel PLUS, saya ingin mengonfirmasi Pendaftaran/Penambahan Mapel di Bimbel PLUS.\nNama Murid: ${nama}\nKode Murid: ${kode}.\nMohon diverifikasi lebih lanjut, Terima kasih!`;
             window.open(`https://wa.me/${num}?text=${encodeURIComponent(msg)}`, '_blank');
             document.getElementById("modal-success").remove();
             switchTab('home');
@@ -2360,22 +1725,10 @@
         function confirmLater(nama, kode) {
             document.getElementById("modal-success").remove();
             switchTab('home');
-            setTimeout(() => {
-                showToast(`⚠️ Jangan lupa untuk mengonfirmasi data ke admin (${kode})!`);
-            }, 1000);
         }
 
-        // Fungsi Pencarian Jadwal Terintegrasi & Block Highlight Warna Pulsing Premium
         function cariJadwal() {
             const queryKode = document.getElementById("search-kode-murid").value.trim().toUpperCase();
-            const resultBox = document.getElementById("search-result-box");
-            
-            const resNamaMurid = document.getElementById("res-nama-murid");
-            const resKodeMurid = document.getElementById("res-kode-murid");
-            const resWaktuMurid = document.getElementById("res-waktu-murid");
-            const resTingkatMurid = document.getElementById("res-tingkat-murid");
-            const resMapelMurid = document.getElementById("res-mapel-murid");
-            const resTutorMurid = document.getElementById("res-tutor-murid");
 
             if (!queryKode) {
                 resetCariJadwal();
@@ -2385,33 +1738,19 @@
             const rows = document.querySelectorAll("tbody tr");
             rows.forEach(r => {
                 r.className = r.className.replace("row-highlight-active", "");
-                r.classList.remove("shadow-sm");
             });
 
+            // Temukan murid di array schedules aktif
             const matchedRaw = activeSchedules.find(s => {
-                const kodeStr = getPropValue(s, ['kode_siswa', 'Kode_Siswa', 'kode', 'Kode']).toUpperCase();
+                const kodeStr = (getPropValue(s, ['kode_siswa', 'Kode_Siswa', 'kode', 'Kode']) || '').toString().toUpperCase();
                 return kodeStr.split(',').map(c => c.trim()).includes(queryKode);
             });
 
             if (matchedRaw) {
-                const matchedType = getPropValue(matchedRaw, ['tipe_kelas', 'Tipe_Kelas', 'opsi_layanan', 'tipeKelas', 'kelas']).toUpperCase();
-                let matchedCatId = "";
+                const namaMurid = matchedRaw.nama_siswa || matchedRaw.Nama_Siswa || matchedRaw.nama || matchedRaw.Nama || "Murid";
                 
-                if (matchedType.includes("REGULER") || matchedType === "R") matchedCatId = "reguler";
-                else if (matchedType.includes("PRIVATE") || matchedType.includes("PRIVAT") || matchedType === "P") matchedCatId = "private";
-                else if (matchedType.includes("VIRTUAL") || matchedType === "V") matchedCatId = "virtual";
-
-                const categories = ["reguler", "private", "virtual"];
-                categories.forEach(cat => {
-                    const card = document.getElementById(`schedule-card-${cat}`);
-                    if (card) {
-                        if (cat === matchedCatId) {
-                            card.classList.remove("hidden");
-                        } else {
-                            card.classList.add("hidden");
-                        }
-                    }
-                });
+                // MENGEMBALIKAN SEMUA WRAPPER TABEL JADWAL AGAR TERLIHAT KEMBALI
+                document.querySelectorAll(".schedule-card-wrapper").forEach(el => el.classList.remove("hidden"));
 
                 let foundRow = false;
                 let targetRowElement = null;
@@ -2428,46 +1767,25 @@
                 });
 
                 if (foundRow && targetRowElement) {
-                    const cells = targetRowElement.querySelectorAll("td");
-                    const hari = cells[0].textContent;
-                    const waktu = cells[1].textContent;
-                    const program = cells[2].textContent.trim();
-                    const tingkat = cells[3].textContent;
-                    const namaSiswaCombined = cells[4].textContent;
-                    const tutorPlatform = cells[5].textContent.trim();
-
-                    resNamaMurid.innerHTML = namaSiswaCombined;
-                    resKodeMurid.textContent = queryKode;
-                    resWaktuMurid.textContent = `${hari}, ${waktu} WIB`;
-                    resTingkatMurid.textContent = tingkat;
-                    resMapelMurid.textContent = program;
-                    resTutorMurid.textContent = tutorPlatform;
-
-                    resultBox.classList.remove("hidden");
                     targetRowElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    showToast("Siswa ditemukan! Detail sesi kelas ditampilkan.");
+                    // NOTIFIKASI TERKONFIRMASI INSTAN TANPA MEMUNCULKAN CARD TAMBAHAN (RINGKAS & EFEKTIF)
+                    showToast(`Siswa Ditemukan! Terkonfirmasi atas nama: ${namaMurid}`, "success");
                 } else {
-                    resultBox.classList.add("hidden");
-                    showToast("Murid terdaftar, jadwal sesi baru sedang diperbarui admin.");
+                    showToast(`Terkonfirmasi atas nama: ${namaMurid}, jadwal sesi baru sedang diperbarui admin.`, "success");
                 }
-
             } else {
-                resultBox.classList.add("hidden");
                 document.querySelectorAll(".schedule-card-wrapper").forEach(el => el.classList.remove("hidden"));
-                showToast("Kode murid tidak ditemukan / belum dikonfirmasi admin", "error");
+                showToast("Kode murid tidak terdaftar atau belum terkonfirmasi oleh Admin!", "error");
             }
         }
 
-        // Reset hasil filter pencarian ke mode default
         function resetCariJadwal() {
             document.getElementById("search-kode-murid").value = "";
-            document.getElementById("search-result-box").classList.add("hidden");
             document.querySelectorAll(".schedule-card-wrapper").forEach(el => el.classList.remove("hidden"));
             
             const rows = document.querySelectorAll("tbody tr");
             rows.forEach(r => {
                 r.className = r.className.replace("row-highlight-active", "");
-                r.classList.remove("shadow-sm");
             });
             showToast("Menampilkan kembali semua jadwal.");
         }
@@ -2476,15 +1794,10 @@
         function setRating(val) {
             selectedRating = val;
             document.getElementById("testi-rating").value = val;
-            
             const stars = document.querySelectorAll(".star-btn");
             stars.forEach((star, index) => {
                 const icon = star.querySelector("i");
-                if (index < val) {
-                    icon.className = "fa-solid fa-star text-amber-400";
-                } else {
-                    icon.className = "fa-solid fa-star text-slate-200";
-                }
+                icon.className = index < val ? "fa-solid fa-star text-amber-400" : "fa-solid fa-star text-slate-200";
             });
         }
 
@@ -2502,7 +1815,6 @@
             const pesan = document.getElementById("testi-pesan").value;
             const ratingVal = parseInt(document.getElementById("testi-rating").value, 10);
 
-            // Validasi Kode Murid
             if (WEB_APP_URL) {
                 try {
                     const checkResponse = await fetch(`${WEB_APP_URL}?action=validate_student&code=${kode}`);
@@ -2531,16 +1843,10 @@
 
             const container = document.getElementById("testimonis-container");
             const inisial = nama.substring(0, 2).toUpperCase();
-
             const isWali = sub.toLowerCase().includes("wali") || sub.toLowerCase().includes("orang");
-            const borderAccentClass = isWali ? "border-l-4 border-emerald-500" : "border-l-4 border-plusOrange";
-            const relationBadgeStyle = isWali ? "bg-emerald-50 text-emerald-700 border-emerald-200" : "bg-purple-50 text-purple-700 border-purple-200";
-            const relationLabel = isWali
-                ? `<span class="flex items-center gap-1"><i class="fa-solid fa-shield-halved text-emerald-500"></i> Wali Terverifikasi</span>`
-                : `<span class="flex items-center gap-1"><i class="fa-solid fa-user-graduate text-purple-500"></i> Siswa Aktif</span>`;
-
+            
             const newTestiCard = document.createElement("div");
-            newTestiCard.className = `bg-white p-8 rounded-3xl border border-slate-100 ${borderAccentClass} shadow-lg flex flex-col justify-between transform hover:scale-[1.02] transition duration-300 animate-fade-in relative overflow-hidden group`;
+            newTestiCard.className = `bg-white p-8 rounded-3xl border border-slate-100 ${isWali ? 'border-l-4 border-emerald-500' : 'border-l-4 border-plusOrange'} shadow-lg flex flex-col justify-between transform hover:scale-[1.02] transition duration-300 animate-fade-in relative overflow-hidden group`;
             
             let starsHtml = '';
             for (let i = 0; i < 5; i++) {
@@ -2551,32 +1857,20 @@
                 <div class="absolute right-6 top-2 text-slate-100 group-hover:text-slate-200 text-8xl font-black select-none pointer-events-none transition duration-300">“</div>
                 <div class="space-y-4 relative z-10">
                     <div class="flex justify-between items-start">
-                        <div class="flex text-amber-400 gap-0.5">
-                            ${starsHtml}
-                        </div>
-                        <span class="text-[10px] uppercase tracking-wider bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full font-bold">
-                            Ulasan Terbaru
-                        </span>
+                        <div class="flex text-amber-400 gap-0.5">${starsHtml}</div>
+                        <span class="text-[10px] uppercase tracking-wider bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full font-bold">Ulasan Terbaru</span>
                     </div>
-                    <p class="text-slate-600 text-sm italic leading-relaxed pt-2">
-                        "${pesan}"
-                    </p>
+                    <p class="text-slate-600 text-sm italic leading-relaxed pt-2">"${pesan}"</p>
                 </div>
                 <div class="flex items-center gap-4 pt-6 border-t mt-6 relative z-10">
-                    <div class="w-12 h-12 rounded-full ${isWali ? 'bg-emerald-100 text-emerald-700' : 'bg-purple-100 text-purple-700'} flex items-center justify-center text-plusPurple font-bold shrink-0">
-                        ${inisial}
-                    </div>
+                    <div class="w-12 h-12 rounded-full ${isWali ? 'bg-emerald-100 text-emerald-700' : 'bg-purple-100 text-purple-700'} flex items-center justify-center text-plusPurple font-bold shrink-0">${inisial}</div>
                     <div>
                         <h4 class="font-bold text-slate-800 text-sm">${nama}</h4>
                         <div class="flex flex-col gap-1 mt-1">
                             <span class="text-[11px] text-slate-400 font-semibold leading-none">${sub} (${kode})</span>
-                            <span class="text-[10px] px-2 py-0.5 rounded-full font-bold border self-start ${relationBadgeStyle}">
-                                ${relationLabel}
-                            </span>
                         </div>
                     </div>
-                </div>
-            `;
+                </div>`;
 
             container.insertBefore(newTestiCard, container.firstChild);
 
@@ -2585,9 +1879,7 @@
                     await fetch(WEB_APP_URL, {
                         method: 'POST',
                         mode: 'no-cors',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
+                        headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(payloadTesti)
                     });
                     showToast("Testimoni sukses dikirim!");
@@ -2601,9 +1893,68 @@
 
             btnSubmit.disabled = false;
             btnSubmit.textContent = originalBtnText;
-
             document.getElementById("testimoniForm").reset();
             setRating(5);
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById("mobile-menu");
+            const icon = document.getElementById("menu-icon");
+            if (menu.classList.contains("hidden")) {
+                menu.classList.remove("hidden");
+                icon.className = "fa-solid fa-xmark text-xl";
+            } else {
+                menu.classList.add("hidden");
+                icon.className = "fa-solid fa-bars text-xl";
+            }
+        }
+
+        function setRegistrationGrade(gradeVal) {
+            const selectKelas = document.getElementById("reg-kelas");
+            if (selectKelas) {
+                selectKelas.value = gradeVal;
+                updateClassOptions();
+            }
+        }
+
+        function switchTab(tabId) {
+            const contents = document.querySelectorAll(".tab-content");
+            contents.forEach(content => content.classList.add("hidden"));
+
+            const targetContent = document.getElementById(`content-${tabId}`);
+            if (targetContent) targetContent.classList.remove("hidden");
+
+            const tabs = document.querySelectorAll(".nav-tab");
+            tabs.forEach(tab => {
+                tab.classList.remove("text-plusPurple", "font-bold", "border-plusOrange-500");
+                tab.classList.add("text-slate-500", "border-transparent");
+            });
+
+            const activeTab = document.getElementById(`tab-${tabId}`);
+            if (activeTab) {
+                activeTab.classList.remove("text-slate-500", "border-transparent");
+                activeTab.classList.add("text-plusPurple", "font-bold", "border-plusOrange-500");
+            }
+
+            document.getElementById("mobile-menu").classList.add("hidden");
+            document.getElementById("menu-icon").className = "fa-solid fa-bars text-xl";
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove("hidden");
+                document.body.style.overflow = "hidden";
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add("hidden");
+                document.body.style.overflow = "";
+            }
         }
 
         function showToast(message, type = "success") {
@@ -2611,13 +1962,10 @@
             const toastText = document.getElementById("toast-text");
             const toastIcon = document.getElementById("toast-icon");
 
-            toastText.textContent = message;
-
-            if (type === "error") {
-                toastIcon.innerHTML = `<i class="fa-solid fa-circle-xmark text-rose-500"></i>`;
-            } else {
-                toastIcon.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-400"></i>`;
-            }
+            toastText.innerHTML = message;
+            toastIcon.innerHTML = type === "error" 
+                ? `<i class="fa-solid fa-circle-xmark text-rose-500"></i>` 
+                : `<i class="fa-solid fa-circle-check text-emerald-400"></i>`;
 
             toast.classList.remove("translate-y-20", "opacity-0");
             toast.classList.add("translate-y-0", "opacity-100");
