@@ -141,7 +141,7 @@
 
     <script>
         // Masukkan URL Web App Google Apps Script Anda hasil deploy di sini
-        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyc56YcSRqKTiUxE6AnMfnfOSFOd6Bo4AVLzBG8TrSrGFxPcyA53CGSEEIcNRGOHlcD8Q/exec"; 
+        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyQtIITpth_UHuF67iID6SjoPOiJOnwR8dcuTrAMi25OPNtW6D0uXxirgqNFww8MTVyBQ/exec"; 
     </script>
 
     <!-- HEADER / NAVIGATION -->
@@ -181,7 +181,7 @@
                 </div>
 
                 <!-- Desktop Navigation Menu -->
-                <nav class="hidden md:flex space-x-8 h-full">
+                <nav class="hidden md:flex space-x-8 h-full items-center">
                     <button onclick="switchTab('home')" id="tab-home" class="nav-tab h-full px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-slate-500 hover:text-plusPurple hover:border-plusPurple transition duration-150 ease-in-out focus:outline-none flex items-center gap-2">
                         <i class="fa-solid fa-house"></i> Dashboard
                     </button>
@@ -194,11 +194,18 @@
                     <button onclick="switchTab('testimoni')" id="tab-testimoni" class="nav-tab h-full px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-slate-500 hover:text-plusPurple hover:border-plusPurple transition duration-150 ease-in-out focus:outline-none flex items-center gap-2">
                         <i class="fa-solid fa-comments"></i> Testimoni
                     </button>
+                    <!-- Tombol Control Panel Admin Rahasia -->
+                    <button onclick="openAdminModal()" class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-plusPurple rounded-xl transition duration-150 flex items-center gap-2 text-xs font-bold shadow-sm" title="Panel Control Admin">
+                        <i class="fa-solid fa-lock"></i> Admin
+                    </button>
                 </nav>
 
                 <!-- Mobile Menu Button -->
-                <div class="flex items-center md:hidden">
-                    <button onclick="toggleMobileMenu()" class="inline-flex items-center justify-center p-2 rounded-md text-slate-400 hover:text-plusPurple hover:bg-slate-100 focus:outline-none focus:bg-slate-100 focus:text-plusPurple transition duration-150 ease-in-out">
+                <div class="flex items-center gap-2 md:hidden">
+                    <button onclick="openAdminModal()" class="p-2 text-slate-400 hover:text-plusPurple" title="Panel Control Admin">
+                        <i class="fa-solid fa-lock"></i>
+                    </button>
+                    <button onclick="toggleMobileMenu()" class="inline-flex items-center justify-center p-2 rounded-md text-slate-400 hover:text-plusPurple hover:bg-slate-100 focus:outline-none">
                         <i id="menu-icon" class="fa-solid fa-bars text-xl"></i>
                     </button>
                 </div>
@@ -309,6 +316,7 @@
                 </div>
             </div>
 
+            <!-- Keunggulan Section -->
             <div id="keunggulan" class="bg-white py-16 border-t border-slate-100">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
@@ -626,7 +634,7 @@
                             </div>
                         </div>
 
-                        <!-- SEKSI DINAMIS: SESI KELAS & REFERENSI JADWAL + PILIHAN LAYANAN PER ROW -->
+                        <!-- SEKSI DINAMIS: SESI KELAS & REFERENSI JADWAL -->
                         <div class="space-y-6 bg-slate-50 p-6 rounded-2xl border border-slate-100" id="section-mapel-pendaftaran">
                             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
                                 <div>
@@ -693,7 +701,7 @@
                                         </button>
                                     </div>
 
-                                    <!-- CHECKBOX SESI 2 OPSIONAL (Fungsionalitas Baru Premium) -->
+                                    <!-- CHECKBOX SESI 2 OPSIONAL -->
                                     <div class="md:col-span-12 mt-2">
                                         <label class="inline-flex items-center cursor-pointer select-none">
                                             <input type="checkbox" class="row-has-sesi2 text-plusPurple focus:ring-plusPurple rounded-lg mr-2.5 w-4 h-4 transition border-slate-300" onchange="toggleSesi2(this)">
@@ -703,7 +711,7 @@
                                         </label>
                                     </div>
 
-                                    <!-- WADAH FORM SESI 2 (TERSEMBUNYI SECARA DEFAULT) -->
+                                    <!-- WADAH FORM SESI 2 -->
                                     <div class="row-sesi2-container hidden md:col-span-12 grid grid-cols-1 md:grid-cols-12 gap-4 mt-2 pt-3 border-t border-dashed border-slate-100 animate-fade-in">
                                         <div class="md:col-span-6">
                                             <label class="block text-xs font-bold text-slate-500 mb-1">Hari Sesi 2 *</label>
@@ -798,7 +806,7 @@
                     <p class="text-[11px] text-slate-400 mt-2">Pencarian jadwal otomatis menandai dan mengarahkan Anda ke baris tabel kelas aktif.</p>
                 </div>
 
-                <!-- JADWAL TABEL KELAS (DINAMIS & DIKELOMPOKKAN SECARA OTOMATIS) -->
+                <!-- JADWAL TABEL KELAS -->
                 <div class="space-y-8" id="schedules-tables-container">
                     <div class="text-center py-8 text-slate-400" id="schedule-loading-text">
                         <i class="fa-solid fa-spinner fa-spin mr-2"></i> Mengambil data jadwal dari Google Sheets...
@@ -962,8 +970,11 @@
                 </div>
             </div>
 
-            <div class="pt-8 border-t border-slate-800 text-center text-xs text-slate-500">
+            <div class="pt-8 border-t border-slate-800 text-center text-xs text-slate-500 flex flex-col sm:flex-row justify-between items-center gap-4">
                 <p>&copy; 2026 Bimbel by PLUS. All Rights Reserved. Potensimu Layak Dapat "PLUS".</p>
+                <button onclick="openAdminModal()" class="text-[10px] text-slate-600 hover:text-plusOrange uppercase tracking-widest font-black flex items-center gap-1.5 focus:outline-none">
+                    <i class="fa-solid fa-shield"></i> Portal Admin
+                </button>
             </div>
         </div>
     </footer>
@@ -999,6 +1010,97 @@
         </div>
     </div>
 
+    <!-- POPUP MODAL: PORTAL CONTROL ADMIN (BARU & PREMIUM) -->
+    <div id="modal-admin-panel" class="fixed inset-0 bg-black bg-opacity-75 z-[9999] flex items-center justify-center p-4 hidden">
+        <div class="bg-white w-full max-w-md rounded-3xl overflow-hidden shadow-2xl transition duration-300 border border-slate-200">
+            <!-- HEADER MODAL -->
+            <div class="bg-slate-900 p-6 text-white flex justify-between items-center">
+                <h3 class="font-bold text-lg flex items-center gap-2"><i class="fa-solid fa-lock text-plusOrange"></i> Portal Admin Bimbel PLUS</h3>
+                <button onclick="closeModal('modal-admin-panel')" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            
+            <div id="admin-pin-container" class="p-8 space-y-4">
+                <div class="text-center space-y-2">
+                    <i class="fa-solid fa-shield-halved text-5xl text-plusPurple animate-pulse"></i>
+                    <h4 class="font-bold text-slate-800 text-lg">Autentikasi Admin</h4>
+                    <p class="text-xs text-slate-500">Masukkan Username dan Password untuk mengakses panel manajemen.</p>
+                </div>
+                <div class="space-y-3 pt-2">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 mb-1">Username</label>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400"><i class="fa-solid fa-user text-xs"></i></span>
+                            <input type="text" id="admin-username-input" class="w-full pl-9 pr-4 py-2.5 border border-slate-200 rounded-2xl focus:outline-none focus:border-plusPurple transition text-sm" placeholder="Username Anda">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 mb-1">Password</label>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400"><i class="fa-solid fa-key text-xs"></i></span>
+                            <input type="password" id="admin-password-input" class="w-full pl-9 pr-4 py-2.5 border border-slate-200 rounded-2xl focus:outline-none focus:border-plusPurple transition text-sm" placeholder="Password Anda">
+                        </div>
+                    </div>
+                </div>
+                <button onclick="verifyAdminLogin()" class="w-full mt-4 py-3 bg-plusPurple text-white font-bold text-sm rounded-2xl hover:bg-plusPurple-700 transition flex items-center justify-center gap-2 shadow-md">
+                    <i class="fa-solid fa-right-to-bracket"></i> Masuk Panel
+                </button>
+            </div>
+
+            <!-- SEKSI KONTROL PANEL (TERBUKA SETELAH LOGIN BENAR) -->
+            <div id="admin-controls-container" class="p-8 space-y-6 hidden max-h-[80vh] overflow-y-auto">
+                <div class="flex items-center gap-3 bg-emerald-50 text-emerald-800 p-4 rounded-2xl border border-emerald-100 text-xs">
+                    <i class="fa-solid fa-circle-check text-lg shrink-0"></i>
+                    <span>Autentikasi Berhasil! Anda sekarang berada di menu kontrol Admin.</span>
+                </div>
+
+                <div class="space-y-4">
+                    <h4 class="font-bold text-slate-800 text-xs uppercase tracking-wider border-b pb-1.5 flex items-center gap-1.5"><i class="fa-solid fa-calendar-check text-plusOrange"></i> Pengaturan Event Kelas</h4>
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl flex items-center justify-between gap-4">
+                        <div class="space-y-1">
+                            <span class="block font-bold text-slate-800 text-sm">Opsi Kelas Khusus</span>
+                            <span class="block text-xs text-slate-400 leading-snug">Menampilkan "Kelas Khusus (Event)" di seluruh jenjang kelas (TK, SD, SMP, SMA).</span>
+                        </div>
+                        <!-- Slider Toggle Switch -->
+                        <label class="relative inline-flex items-center cursor-pointer select-none shrink-0">
+                            <input type="checkbox" id="toggle-event-class" class="sr-only peer" onchange="onToggleEventStatusChanged(this)">
+                            <div class="w-14 h-8 bg-slate-200 rounded-full peer peer-focus:ring-2 peer-focus:ring-plusPurple peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-1 after:left-1 after:bg-white after:border-slate-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-plusOrange"></div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="space-y-4 border-t pt-4 border-slate-100">
+                    <h4 class="font-bold text-slate-800 text-xs uppercase tracking-wider border-b pb-1.5 flex items-center gap-1.5"><i class="fa-solid fa-user-gear text-plusPurple"></i> Pengaturan Kredensial Admin</h4>
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">Username Baru *</label>
+                            <input type="text" id="admin-new-username" class="w-full px-4 py-2 border border-slate-200 rounded-xl focus:outline-none focus:border-plusPurple transition text-xs" placeholder="Username Baru">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">Password Baru *</label>
+                            <input type="password" id="admin-new-password" class="w-full px-4 py-2 border border-slate-200 rounded-xl focus:outline-none focus:border-plusPurple transition text-xs" placeholder="Password Baru">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">Konfirmasi Password Baru *</label>
+                            <input type="password" id="admin-confirm-password" class="w-full px-4 py-2 border border-slate-200 rounded-xl focus:outline-none focus:border-plusPurple transition text-xs" placeholder="Konfirmasi Password">
+                        </div>
+                        <button onclick="updateAdminCredentials()" class="w-full py-2.5 bg-plusOrange text-white font-bold text-xs rounded-xl hover:bg-plusOrange-500 transition flex items-center justify-center gap-1.5 shadow-sm">
+                            <i class="fa-solid fa-floppy-disk"></i> Simpan Perubahan Akun
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 p-4 rounded-2xl border border-amber-200 text-amber-800 text-xs flex items-start gap-2.5">
+                    <i class="fa-solid fa-circle-info text-base shrink-0 mt-0.5"></i>
+                    <span>Tindakan mengubah status atau kredensial akan merubah data login Anda di sheet Admin secara real-time.</span>
+                </div>
+
+                <div class="pt-4 border-t border-slate-100 flex justify-end">
+                    <button onclick="closeModal('modal-admin-panel')" class="px-6 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold rounded-xl transition text-xs">Keluar Panel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- TOAST MESSAGE / POPUP NOTIFICATION -->
     <div id="toast-message" class="fixed bottom-6 right-6 bg-slate-900 text-white py-4 px-6 rounded-2xl shadow-2xl z-[100] flex items-center gap-3 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none max-w-sm">
         <span id="toast-icon" class="text-emerald-400 text-lg"><i class="fa-solid fa-circle-check"></i></span>
@@ -1007,7 +1109,7 @@
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
-        const mapelByJenjang = {
+        const baseMapelByJenjang = {
             "TK": [
                 "Sains Dasar Sehari-hari",
                 "Jarimatika Dasar",
@@ -1028,6 +1130,9 @@
             ]
         };
 
+        // Salinan dinamis untuk dimodifikasi status Kelas Khusus
+        let mapelByJenjang = JSON.parse(JSON.stringify(baseMapelByJenjang));
+
         const mockSchedules = [
             { hari: "Senin", waktu: "13.00 - 13.45", program: "Jarimatika Dasar-Mahir", tingkat: "SD Kelas 1", nama_siswa: "Aira", tutor_platform: "Kak Dian", tipe_kelas: "REGULER CLASS", kode_siswa: "RSD-1" },
             { hari: "Senin", waktu: "13.00 - 13.45", program: "Jarimatika Dasar-Mahir", tingkat: "SD Kelas 2", nama_siswa: "Rayyan", tutor_platform: "Kak Dian", tipe_kelas: "REGULER CLASS", kode_siswa: "RSD-2" },
@@ -1046,6 +1151,7 @@
         let activeTestimonis = [];
         let registrationMode = "baru"; 
         let loadedStudentProfile = null; 
+        let eventKelasKhususStatus = "NONAKTIF"; // Default: non-aktif
 
         async function loadInitialData() {
             const refreshBtnSchedules = document.getElementById("btn-refresh-schedules");
@@ -1053,6 +1159,23 @@
             
             if (refreshBtnSchedules) refreshBtnSchedules.classList.add("fa-spin");
             if (refreshBtnTestimonis) refreshBtnTestimonis.classList.add("fa-spin");
+
+            // Ambil Status Event Sesi Kelas Khusus terlebih dahulu
+            if (WEB_APP_URL) {
+                try {
+                    const res = await fetch(`${WEB_APP_URL}?action=get_settings`);
+                    const result = await res.json();
+                    if (result.status === "success") {
+                        eventKelasKhususStatus = result.event_kelas_khusus || "NONAKTIF";
+                        updateDynamicMapelOptions(eventKelasKhususStatus);
+                    }
+                } catch (err) {
+                    console.error("Gagal membaca pengaturan dari database:", err);
+                    updateDynamicMapelOptions("NONAKTIF");
+                }
+            } else {
+                updateDynamicMapelOptions("NONAKTIF");
+            }
 
             if (!WEB_APP_URL) {
                 activeSchedules = mockSchedules;
@@ -1099,6 +1222,162 @@
 
             if (refreshBtnSchedules) refreshBtnSchedules.classList.remove("fa-spin");
             if (refreshBtnTestimonis) refreshBtnTestimonis.classList.remove("fa-spin");
+        }
+
+        /**
+         * Update mapel list berdasarkan status AKTIF atau NONAKTIF-nya Event Kelas Khusus
+         */
+        function updateDynamicMapelOptions(status) {
+            eventKelasKhususStatus = status;
+            mapelByJenjang = JSON.parse(JSON.stringify(baseMapelByJenjang));
+
+            if (status === "AKTIF") {
+                Object.keys(mapelByJenjang).forEach(key => {
+                    if (!mapelByJenjang[key].includes("Kelas Khusus (Event)")) {
+                        mapelByJenjang[key].push("Kelas Khusus (Event)");
+                    }
+                });
+            } else {
+                Object.keys(mapelByJenjang).forEach(key => {
+                    mapelByJenjang[key] = mapelByJenjang[key].filter(item => item !== "Kelas Khusus (Event)");
+                });
+            }
+            updateClassOptions();
+        }
+
+        async function verifyAdminLogin() {
+            const userVal = document.getElementById("admin-username-input").value.trim();
+            const passVal = document.getElementById("admin-password-input").value.trim();
+
+            if (!userVal || !passVal) {
+                showToast("⚠️ Username & Password wajib diisi!", "error");
+                return;
+            }
+
+            showToast("Memverifikasi kredensial admin...");
+
+            if (!WEB_APP_URL) {
+                // Mocking Fallback Offline mode
+                if (userVal.toLowerCase() === "admin" && passVal === "admin2026") {
+                    document.getElementById("admin-pin-container").classList.add("hidden");
+                    document.getElementById("admin-controls-container").classList.remove("hidden");
+                    const toggle = document.getElementById("toggle-event-class");
+                    toggle.checked = (eventKelasKhususStatus === "AKTIF");
+                    showToast("Otorisasi Admin Berhasil (Offline Mock)!");
+                } else {
+                    showToast("⚠️ Username atau Password salah!", "error");
+                }
+                return;
+            }
+
+            try {
+                const res = await fetch(`${WEB_APP_URL}?action=login_admin&username=${encodeURIComponent(userVal)}&password=${encodeURIComponent(passVal)}`);
+                const result = await res.json();
+                
+                if (result.status === "success") {
+                    document.getElementById("admin-pin-container").classList.add("hidden");
+                    document.getElementById("admin-controls-container").classList.remove("hidden");
+                    
+                    const toggle = document.getElementById("toggle-event-class");
+                    toggle.checked = (eventKelasKhususStatus === "AKTIF");
+                    showToast("Autentikasi Admin Berhasil!");
+                } else {
+                    showToast(`⚠️ ${result.message}`, "error");
+                }
+            } catch (err) {
+                console.error("Login Error:", err);
+                showToast("⚠️ Gagal terhubung ke server cloud!", "error");
+            }
+        }
+
+        async function updateAdminCredentials() {
+            const newUsername = document.getElementById("admin-new-username").value.trim();
+            const newPassword = document.getElementById("admin-new-password").value.trim();
+            const confirmPassword = document.getElementById("admin-confirm-password").value.trim();
+
+            if (!newUsername || !newPassword || !confirmPassword) {
+                showToast("⚠️ Mohon isi seluruh data kredensial baru!", "error");
+                return;
+            }
+
+            if (newPassword !== confirmPassword) {
+                showToast("⚠️ Password baru & konfirmasi tidak cocok!", "error");
+                return;
+            }
+
+            showToast("Sedang memperbarui kredensial di cloud...");
+
+            if (!WEB_APP_URL) {
+                showToast("Kredensial berhasil diperbarui (Offline Mode)!");
+                clearCredentialForm();
+                return;
+            }
+
+            try {
+                const res = await fetch(`${WEB_APP_URL}?action=update_admin_credentials&new_username=${encodeURIComponent(newUsername)}&new_password=${encodeURIComponent(newPassword)}`);
+                const result = await res.json();
+
+                if (result.status === "success") {
+                    showToast("Username & Password Admin sukses diperbarui!");
+                    clearCredentialForm();
+                } else {
+                    showToast(`⚠️ ${result.message}`, "error");
+                }
+            } catch (err) {
+                console.error("Gagal update kredensial:", err);
+                showToast("⚠️ Gagal memperbarui data di cloud!", "error");
+            }
+        }
+
+        function clearCredentialForm() {
+            document.getElementById("admin-new-username").value = "";
+            document.getElementById("admin-new-password").value = "";
+            document.getElementById("admin-confirm-password").value = "";
+        }
+
+        /**
+         * Mengubah status Event Kelas Khusus lewat toggle switch admin
+         */
+        async function onToggleEventStatusChanged(checkbox) {
+            const nextStatus = checkbox.checked ? "AKTIF" : "NONAKTIF";
+            showToast(`Sedang memperbarui konfigurasi di cloud...`);
+
+            if (WEB_APP_URL) {
+                try {
+                    const response = await fetch(WEB_APP_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            action: "update_setting",
+                            key: "Event_Kelas_Khusus",
+                            value: nextStatus
+                        })
+                    });
+                    
+                    eventKelasKhususStatus = nextStatus;
+                    updateDynamicMapelOptions(nextStatus);
+                    showToast(`Opsi Kelas Khusus berhasil ${nextStatus === 'AKTIF' ? 'DIMUNCULKAN' : 'DISEMBUNYIKAN'}!`);
+                } catch (err) {
+                    console.error("Gagal memperbarui konfigurasi event:", err);
+                    showToast("⚠️ Gagal terhubung ke server cloud!", "error");
+                }
+            } else {
+                eventKelasKhususStatus = nextStatus;
+                updateDynamicMapelOptions(nextStatus);
+                showToast(`[Mock] Opsi Kelas Khusus berhasil ${nextStatus === 'AKTIF' ? 'DIMUNCULKAN' : 'DISEMBUNYIKAN'}!`);
+            }
+        }
+
+        function openAdminModal() {
+            // Bersihkan input login modal sebelumnya
+            document.getElementById("admin-username-input").value = "";
+            document.getElementById("admin-password-input").value = "";
+            clearCredentialForm();
+
+            document.getElementById("admin-pin-container").classList.remove("hidden");
+            document.getElementById("admin-controls-container").classList.add("hidden");
+            openModal("modal-admin-panel");
         }
 
         function getPropValue(obj, keys) {
@@ -1215,7 +1494,6 @@
                 const filtered = groupedSchedules.filter(s => s.tipe_kelas === cat.filterKey);
                 if (filtered.length === 0) return;
 
-                // URUTKAN BERDASARKAN HARI ➡️ WAKTU ➡️ PROGRAM/MAPEL ➡️ TINGKAT KELAS
                 const order = { "SENIN": 1, "SELASA": 2, "RABU": 3, "KAMIS": 4, "JUMAT": 5, "SABTU": 6, "MINGGU": 7 };
                 filtered.sort((a, b) => {
                     const dayA = order[a.hari.toUpperCase()] || 99;
@@ -1464,7 +1742,6 @@
             btnSearch.className = "fa-solid fa-magnifying-glass";
         }
 
-        // TAMPILKAN ATAU SEMBUNYIKAN FORM SESI KE-2
         function toggleSesi2(checkbox) {
             const row = checkbox.closest(".class-row");
             const containerSesi2 = row.querySelector(".row-sesi2-container");
@@ -1549,7 +1826,6 @@
 
                 let maxQuota = tipeKelas === "PRIVATE CLASS" ? 2 : 4;
 
-                // 1. Validasi Sesi 1
                 if (hari1 && waktu1) {
                     let matchedCount1 = 0;
                     activeSchedules.forEach(item => {
@@ -1571,7 +1847,6 @@
                     }
                 }
 
-                // 2. Validasi Sesi 2 (Jika diaktifkan)
                 const hasSesi2 = row.querySelector(".row-has-sesi2")?.checked;
                 if (hasSesi2) {
                     const hari2 = row.querySelector(".row-hari2").value;
@@ -1639,7 +1914,7 @@
             warningBox.classList.add("hidden");
             rowsContainer.classList.remove("hidden");
 
-            const validMapels = mapelByJenjang[category];
+            const validMapels = mapelByJenjang[category] || [];
             const rowsSelects = document.querySelectorAll(".row-mapel");
             
             rowsSelects.forEach(select => {
@@ -1689,7 +1964,7 @@
                 return;
             }
 
-            const validMapels = mapelByJenjang[category];
+            const validMapels = mapelByJenjang[category] || [];
             let mapelOptionsHtml = '<option value="">-- Pilih Mapel --</option>';
             validMapels.forEach(mapel => {
                 mapelOptionsHtml += `<option value="${mapel}">${mapel}</option>`;
@@ -1833,10 +2108,8 @@
                 const catatan = row.querySelector(".row-catatan").value || '-';
 
                 if (layanan && mapel && hari1 && waktu1) {
-                    // Gabungkan jadwal Sesi 1 ke string referensi
                     let jadwalStr = `${hari1} (${waktu1})`;
 
-                    // Gabungkan jadwal Sesi 2 jika checkbox dicentang dan diisi lengkap
                     const hasSesi2 = row.querySelector(".row-has-sesi2")?.checked;
                     if (hasSesi2) {
                         const hari2 = row.querySelector(".row-hari2").value;
@@ -2233,7 +2506,6 @@
             }, 3500);
         }
 
-        // Jalankan sinkronisasi awal saat halaman dimuat
         window.onload = function() {
             loadInitialData();
         };
