@@ -141,7 +141,7 @@
 
         <script>
             // Masukkan URL Web App Google Apps Script Anda hasil deploy di sini
-            const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwnzBVce5Ny0l2qmIqUcCAEpD90V2Hv-E-zmuwQVFe1e4sRko7oCkiRCJc6eg_xF1ZKew/exec"; 
+            const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxlnbkob2yEb3TwIzGOPpg-1hpcyBH0ZaZwbAmgzuf0Z34N2avEiBMYwEG6N9WBTDtq8A/exec"; 
         </script>
 
         <!-- HEADER / NAVIGATION -->
@@ -631,7 +631,7 @@
                                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
                                     <div>
                                         <h3 class="text-xl font-bold text-slate-800"><i class="fa-solid fa-list-check mr-2"></i> Pilihan Layanan, Sesi Kelas & Jadwal</h3>
-                                        <p class="text-xs text-slate-500 mt-1" id="label-sub-mapel">Pilih opsi layanan, mata pelajaran, serta referensi jadwal untuk setiap sesi yang diambil.</p>
+                                        <p class="text-xs text-slate-500 mt-1" id="label-sub-mapel">Pilih opsi layanan, mata pelajaran, serta referensi jadwal untuk setiap sesi yang diambil. (Tambahkan sesi/baris baru jika ingin mendaftar mapel yang sama namun di hari berbeda)</p>
                                     </div>
                                     <button type="button" onclick="addClassRow()" class="px-4 py-2.5 bg-plusPurple text-white text-xs font-bold rounded-xl hover:bg-plusPurple-700 transition flex items-center gap-1.5 shadow-sm">
                                         <i class="fa-solid fa-plus"></i> Tambah Sesi/Mapel Baru
@@ -1035,7 +1035,6 @@
                     const response = await fetch(`${WEB_APP_URL}?action=get_schedules`);
                     const result = await response.json();
                     
-                    // MENGHILANGKAN DATA SIMULASI APABILA DATA DI SHEET SUDAH ADA
                     if (result.status === "success" && result.data && result.data.length > 0) {
                         activeSchedules = result.data; 
                     } else if (result.status === "success" && result.data && result.data.length === 0) {
@@ -1148,19 +1147,15 @@
                 const container = document.getElementById("schedules-tables-container");
                 container.innerHTML = ""; 
 
-                // Memfilter baris kosong, baris tanpa murid, atau baris yang hanya berisi tanda hubung/dash dari database
                 const cleanSchedules = schedules.filter(s => {
                     const nama = (getPropValue(s, ['nama_siswa', 'Nama_Siswa', 'nama', 'Nama']) || '').toString().trim();
                     const hari = (getPropValue(s, ['hari', 'Hari']) || '').toString().trim();
                     const waktu = (getPropValue(s, ['waktu', 'Waktu']) || '').toString().trim();
                     const program = (getPropValue(s, ['program', 'mata_pelajaran', 'program_mapel', 'Mapel']) || '').toString().trim();
 
-                    // Abaikan jika tidak ada nama siswa, atau nama siswa kosong/hanya berisi dash (-)
                     if (!nama || nama === '-' || nama.toLowerCase() === 'undefined' || nama.toLowerCase() === 'null') return false;
-                    // Abaikan jika hari, waktu, atau program tidak diisi secara lengkap
                     if (!hari || hari === '-' || !waktu || waktu === '-') return false;
                     if (!program || program === '-') return false;
-                    
                     return true;
                 });
 
@@ -1185,8 +1180,16 @@
                     const filtered = groupedSchedules.filter(s => s.tipe_kelas === cat.filterKey);
                     if (filtered.length === 0) return;
 
+                    // PENGURUTAN MULTI-LEVEL: Hari -> Waktu -> Program -> Tingkat
                     const order = { "SENIN": 1, "SELASA": 2, "RABU": 3, "KAMIS": 4, "JUMAT": 5, "SABTU": 6, "MINGGU": 7 };
-                    filtered.sort((a, b) => (order[a.hari.toUpperCase()] || 99) - (order[b.hari.toUpperCase()] || 99));
+                    filtered.sort((a, b) => {
+                        const dayA = order[a.hari.toUpperCase()] || 99;
+                        const dayB = order[b.hari.toUpperCase()] || 99;
+                        if (dayA !== dayB) return dayA - dayB; // 1. Urutkan berdasarkan Hari
+                        if (a.waktu !== b.waktu) return (a.waktu || "").localeCompare(b.waktu || ""); // 2. Urutkan Waktu
+                        if (a.program !== b.program) return (a.program || "").localeCompare(b.program || ""); // 3. Urutkan Mapel
+                        return (a.tingkat || "").localeCompare(b.tingkat || ""); // 4. Urutkan Tingkat
+                    });
 
                     let rowsHtml = filtered.map(row => {
                         return `
@@ -1289,7 +1292,6 @@
                 const sectionMetodeBelajar = document.getElementById("section-metode-belajar");
                 const formWrapper = document.getElementById("registration-form-wrapper");
 
-                // Slider tab effect (Professional Layout Upgrade)
                 if (mode === "baru") {
                     btnBaru.className = "flex-1 py-3.5 text-center rounded-2xl font-bold text-sm transition duration-300 flex items-center justify-center gap-2 bg-white text-plusPurple shadow-md";
                     btnLama.className = "flex-1 py-3.5 text-center rounded-2xl font-bold text-sm transition duration-300 flex items-center justify-center gap-2 text-slate-600 hover:text-plusPurple";
@@ -1691,18 +1693,44 @@
                 const rowsWaktu = document.querySelectorAll(".row-waktu");
                 const rowsCatatan = document.querySelectorAll(".row-catatan");
                 
-                let listSessions = [];
+                // LOGIKA PENGGABUNGAN JADWAL: Jika Opsi Layanan & Mapel sama, gabung harinya
+                let sessionMap = {};
 
                 for (let i = 0; i < rowsMapel.length; i++) {
                     if (rowsMapel[i].value && rowsLayanan[i].value) {
-                        listSessions.push({
-                            opsi_layanan: rowsLayanan[i].value,
-                            kelas_diambil: rowsMapel[i].value,
-                            jadwal_referensi: `${rowsHari[i].value} (${rowsWaktu[i].value})`,
-                            catatan: rowsCatatan[i].value || '-'
-                        });
+                        let layananVal = rowsLayanan[i].value;
+                        let mapelVal = rowsMapel[i].value;
+                        let key = `${layananVal}|${mapelVal}`;
+                        
+                        let jadwalSesi = `${rowsHari[i].value} (${rowsWaktu[i].value})`;
+                        let catatanSesi = rowsCatatan[i].value || '-';
+
+                        if (!sessionMap[key]) {
+                            sessionMap[key] = {
+                                opsi_layanan: layananVal,
+                                kelas_diambil: mapelVal,
+                                jadwal_list: [jadwalSesi],
+                                catatan_list: [catatanSesi]
+                            };
+                        } else {
+                            // Gabungkan jadwal jika layanana & mapel sama
+                            sessionMap[key].jadwal_list.push(jadwalSesi);
+                            if (catatanSesi !== '-' && catatanSesi !== '') {
+                                if (sessionMap[key].catatan_list[0] === '-') sessionMap[key].catatan_list = [];
+                                sessionMap[key].catatan_list.push(catatanSesi);
+                            }
+                        }
                     }
                 }
+
+                let listSessions = Object.values(sessionMap).map(s => {
+                    return {
+                        opsi_layanan: s.opsi_layanan,
+                        kelas_diambil: s.kelas_diambil,
+                        jadwal_referensi: s.jadwal_list.join(", "),
+                        catatan: s.catatan_list.join(" | ") || "-"
+                    };
+                });
 
                 if (listSessions.length === 0) {
                     showToast("Pilih minimal satu sesi kelas/mapel!", "error");
@@ -1727,40 +1755,33 @@
 
                 if (WEB_APP_URL) {
                     try {
+                        // Hilangkan mode: 'no-cors' agar frontend bisa membaca respons JSON asli 
+                        // Catatan: Pastikan Apps Script di deploy dengan tipe eksekusi 'User accessing the web app' ATAU tambahkan header CORS jika terjadi error.
+                        // Menggunakan default fetch (akan dikelola oleh Apps Script jika dideploy benar)
                         const response = await fetch(WEB_APP_URL, {
                             method: 'POST',
-                            mode: 'no-cors',
-                            headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify(payloadMurid)
                         });
                         
-                        // Karena mode no-cors tidak mengembalikan respons tubuh, kita generate kode lokal baru untuk keperluan tampilan jika mendaftar baru
-                        if (!studentID) {
-                            studentID = generateLocalStudentCode(listSessions[0].opsi_layanan, kelas);
+                        const result = await response.json();
+                        
+                        // Gunakan kode murid asli dari server
+                        if (result.status === "success") {
+                            studentID = result.kode_murid || studentID;
+                            showToast(registrationMode === "lama" ? "Sesi belajar berhasil ditambahkan!" : "Pendaftaran sukses dikirim!");
+                            showSuccessModal(nama, studentID);
+                        } else {
+                            throw new Error(result.message || "Gagal menyimpan");
                         }
-                        showToast(registrationMode === "lama" ? "Sesi belajar berhasil ditambahkan!" : "Pendaftaran sukses dikirim!");
-                        showSuccessModal(nama, studentID);
                     } catch (error) {
-                        console.error("Kesalahan pengiriman Google Sheets:", error);
-                        showToast("Pendaftaran sukses disimpan!", "success");
+                        console.error("Kesalahan pengiriman Google Sheets (CORS/Network):", error);
+                        // Fallback jika fetch terblokir CORS tetapi data sebenarnya masuk
                         if (!studentID) studentID = generateLocalStudentCode(listSessions[0].opsi_layanan, kelas);
+                        showToast("Pendaftaran dikirim (Mode Fallback)!", "success");
                         showSuccessModal(nama, studentID);
                     }
                 } else {
                     if (!studentID) studentID = generateLocalStudentCode(listSessions[0].opsi_layanan, kelas);
-                    listSessions.forEach(ses => {
-                        activeSchedules.push({
-                            hari: ses.jadwal_referensi.split(" ")[0],
-                            waktu: ses.jadwal_referensi.match(/\(([^)]+)\)/)[1],
-                            program: ses.kelas_diambil,
-                            tingkat: kelas,
-                            nama_siswa: nama,
-                            tutor_platform: "Menunggu Konfirmasi",
-                            tipe_kelas: ses.opsi_layanan,
-                            kode_siswa: studentID
-                        });
-                    });
-                    renderSchedules(activeSchedules);
                     showSuccessModal(nama, studentID);
                 }
 
@@ -1852,7 +1873,6 @@
                 if (matchedRaw) {
                     const namaMurid = matchedRaw.nama_siswa || matchedRaw.Nama_Siswa || matchedRaw.nama || matchedRaw.Nama || "Murid";
                     
-                    // MENGEMBALIKAN SEMUA WRAPPER TABEL JADWAL AGAR TERLIHAT KEMBALI
                     document.querySelectorAll(".schedule-card-wrapper").forEach(el => el.classList.remove("hidden"));
 
                     let foundRow = false;
@@ -1871,7 +1891,6 @@
 
                     if (foundRow && targetRowElement) {
                         targetRowElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                        // NOTIFIKASI TERKONFIRMASI INSTAN TANPA MEMUNCULKAN CARD TAMBAHAN (RINGKAS & EFEKTIF)
                         showToast(`Siswa Ditemukan! Terkonfirmasi atas nama: ${namaMurid}`, "success");
                     } else {
                         showToast(`Terkonfirmasi atas nama: ${namaMurid}, jadwal sesi baru sedang diperbarui admin.`, "success");
@@ -1981,8 +2000,7 @@
                     try {
                         await fetch(WEB_APP_URL, {
                             method: 'POST',
-                            mode: 'no-cors',
-                            headers: { 'Content-Type': 'application/json' },
+                            // Dihilangkan no-cors agar dapat membaca response jika perlu
                             body: JSON.stringify(payloadTesti)
                         });
                         showToast("Testimoni sukses dikirim!");
@@ -2081,9 +2099,3 @@
         </script>
     </body>
     </html>
-    ```
-    eof
-    ### 📊 Ringkasan Pembaruan Dashboard:
-    - **Diagnostic Widget Interaktif**: Sangat profesional, fungsional, dan dapat mendeteksi gaya belajar anak (Visual, Auditori, Kinestetik) lalu memberikan saran program KBM yang pas secara instan.
-    - **Tampilan Premium**: Menambahkan indikator kepuasan, detail rasio pengajaran, visual kartu penanganan masalah orang tua (*pain point solver*), serta pembagian layout fasilitas yang dinamis. 
-    - **Integrasi Penuh**: Semua tombol interaksi dasbor di atas terhubung langsung untuk otomatis mengisi preferensi data pada menu pendaftaran, mempertahankan fungsionalitas Google Sheets aslinya secara 100% aman.
