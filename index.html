@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bimbel PLUS - Karena Potensimu Layak Dapat PLUS</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='25' fill='%235d51a0'/%3E%3Cpath d='M 50 18 L 22 78 L 38 78 L 50 53 L 62 78 L 78 78 Z' fill='%23f08a5d' stroke='%23f08a5d' stroke-width='2' stroke-linejoin='round'/%3E%3Crect x='41' y='50' width='18' height='6' fill='%23f08a5d'/%3E%3Ccircle cx='41' cy='42' r='8' stroke='%231e293b' stroke-width='2.5' fill='white'/%3E%3Ccircle cx='59' cy='42' r='8' stroke='%231e293b' stroke-width='2.5' fill='white'/%3E%3Ccircle cx='41' cy='42' r='3' fill='%231e293b'/%3E%3Ccircle cx='59' cy='42' r='3' fill='%231e293b'/%3E%3Cpath d='M 45 61 Q 50 66 55 61' stroke='%231e293b' stroke-width='2' stroke-linecap='round' fill='none'/%3E%3C/svg%3E">
+    <link class="favicon" rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='25' fill='%235d51a0'/%3E%3Cpath d='M 50 18 L 22 78 L 38 78 L 50 53 L 62 78 L 78 78 Z' fill='%23f08a5d' stroke='%23f08a5d' stroke-width='2' stroke-linejoin='round'/%3E%3Crect x='41' y='50' width='18' height='6' fill='%23f08a5d'/%3E%3Ccircle cx='41' cy='42' r='8' stroke='%231e293b' stroke-width='2.5' fill='white'/%3E%3Ccircle cx='59' cy='42' r='8' stroke='%231e293b' stroke-width='2.5' fill='white'/%3E%3Ccircle cx='41' cy='42' r='3' fill='%231e293b'/%3E%3Ccircle cx='59' cy='42' r='3' fill='%231e293b'/%3E%3Cpath d='M 45 61 Q 50 66 55 61' stroke='%231e293b' stroke-width='2' stroke-linecap='round' fill='none'/%3E%3C/svg%3E">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Quicksand:wght@400..700&display=swap" rel="stylesheet">
@@ -126,7 +126,7 @@
 <body class="text-slate-700 min-h-screen flex flex-col">
 
     <script>
-        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyB9s5YqBVwCHKxWkVr27eHlPgj1vUADQD3o6_LzN_1P4bKlb3fQs0uWlduswwUd5h2wA/exec"; 
+        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzLwQ1o-jKVg6tDJ3Cz5pe6z_0ClwGzHM6muMPnLbgCSoyS01mRqaZq_uJQulabpETOcA/exec"; 
     </script>
 
     <header class="bg-white shadow-md sticky top-0 z-50">
@@ -937,7 +937,7 @@
 
                     <div class="p-4 bg-blue-50 rounded-2xl border border-blue-100">
                         <span class="px-2.5 py-1 bg-blue-600 text-white font-bold text-[10px] rounded uppercase">VIRTUAL CLASS</span>
-                        <p class="text-xs text-slate-600 mt-2 leading-relaxed"><strong>Deskripsi:</strong> Sesi bimbingan jarak jauh interaktif via konferensi video digital. Ortu diwajibkan menyediakan sarana virtual mandiri di rumah.</p>
+                        <p class="text-xs text-slate-600 mt-2 leading-relaxed"><strong>Deskripsi:</strong> Sesi bimbingan jarak jauh interaktif via konferensi video digital. Ortu diwajibkan menyediakan sarana virtual mandini di rumah.</p>
                     </div>
                 </div>
             </div>
@@ -1087,6 +1087,62 @@
             username: "",
             password: ""
         };
+
+        // Palet warna khusus bertema untuk memisahkan highlight Program / Mapel
+        const programThemes = {
+            "jarimatika": {
+                bg: "bg-purple-50",
+                border: "border-purple-200",
+                text: "text-purple-700",
+                badge: "bg-purple-100 text-purple-800 border-purple-200",
+                icon: "fa-calculator"
+            },
+            "matematika": {
+                bg: "bg-blue-50",
+                border: "border-blue-200",
+                text: "text-blue-700",
+                badge: "bg-blue-100 text-blue-800 border-blue-200",
+                icon: "fa-square-root-variable"
+            },
+            "bahasa inggris": {
+                bg: "bg-amber-50",
+                border: "border-amber-200",
+                text: "text-amber-700",
+                badge: "bg-amber-100 text-amber-800 border-amber-200",
+                icon: "fa-language"
+            },
+            "sains": {
+                bg: "bg-emerald-50",
+                border: "border-emerald-200",
+                text: "text-emerald-700",
+                badge: "bg-emerald-100 text-emerald-800 border-emerald-200",
+                icon: "fa-flask"
+            },
+            "event": {
+                bg: "bg-rose-50",
+                border: "border-rose-200",
+                text: "text-rose-700",
+                badge: "bg-rose-100 text-rose-800 border-rose-200",
+                icon: "fa-award"
+            },
+            "default": {
+                bg: "bg-slate-50",
+                border: "border-slate-200",
+                text: "text-slate-700",
+                badge: "bg-slate-100 text-slate-800 border-slate-200",
+                icon: "fa-book"
+            }
+        };
+
+        function getProgramTheme(programName) {
+            const prog = (programName || "").toLowerCase();
+            if (prog.includes("jarimatika")) return programThemes["jarimatika"];
+            if (prog.includes("matematika")) return programThemes["matematika"];
+            if (prog.includes("inggris") || prog.includes("speaking")) return programThemes["bahasa inggris"];
+            if (prog.includes("sains")) return programThemes["sains"];
+            if (prog.includes("event") || prog.includes("khusus")) return programThemes["event"];
+            return programThemes["default"];
+        }
 
         function escapeHTML(str) {
             if (!str) return '';
@@ -1460,70 +1516,102 @@
                 { id: "virtual", title: "VIRTUAL CLASS (Belajar Daring Interaktif)", bg: "bg-indigo-600", border: "border-indigo-200", badge: "bg-indigo-50 text-indigo-800 border-indigo-200 border", icon: "fa-display", info: "Dari Mana Saja", filterKey: "VIRTUAL CLASS" }
             ];
 
+            const order = { "SENIN": 1, "SELASA": 2, "RABU": 3, "KAMIS": 4, "JUMAT": 5, "SABTU": 6, "MINGGU": 7 };
+
             categories.forEach(cat => {
                 const filtered = groupedSchedules.filter(s => s.tipe_kelas === cat.filterKey);
                 if (filtered.length === 0) return;
 
-                const order = { "SENIN": 1, "SELASA": 2, "RABU": 3, "KAMIS": 4, "JUMAT": 5, "SABTU": 6, "MINGGU": 7 };
-                filtered.sort((a, b) => {
-                    const dayA = order[a.hari.toUpperCase()] || 99;
-                    const dayB = order[b.hari.toUpperCase()] || 99;
-                    if (dayA !== dayB) return dayA - dayB;
-
-                    const timeA = a.waktu || "";
-                    const timeB = b.waktu || "";
-                    if (timeA !== timeB) return timeA.localeCompare(timeB);
-
-                    const progA = a.program || "";
-                    const progB = b.program || "";
-                    if (progA !== progB) return progA.localeCompare(progB);
-
-                    const tingA = a.tingkat || "";
-                    const tingB = b.tingkat || "";
-                    return tingA.localeCompare(tingB);
+                // Pisahkan & kelompokkan data per Program / Mapel secara modular
+                const schedulesByProgram = {};
+                filtered.forEach(s => {
+                    const progName = s.program || "Umum";
+                    if (!schedulesByProgram[progName]) {
+                        schedulesByProgram[progName] = [];
+                    }
+                    schedulesByProgram[progName].push(s);
                 });
 
-                let rowsHtml = filtered.map(row => {
-                    return `
-                        <tr class="hover:bg-slate-50 transition duration-150 border-b border-slate-100" data-siswa-ids="${escapeHTML(row.kode_siswa)}">
-                            <td class="p-4 font-bold text-slate-800">${escapeHTML(row.hari || '-')}</td>
-                            <td class="p-4">${escapeHTML(row.waktu || '-')}</td>
-                            <td class="p-4">
-                                <span class="px-2.5 py-1 ${cat.badge} rounded-lg text-xs font-semibold">${escapeHTML(row.program || '-')}</span>
-                            </td>
-                            <td class="p-4 font-medium">${escapeHTML(row.tingkat || '-')}</td>
-                            <td class="p-4 text-slate-700 font-semibold">${escapeHTML(row.nama_siswa || '-')}</td>
-                            <td class="p-4">
-                                ${cat.id === 'virtual' 
-                                    ? `<span class="text-xs bg-indigo-50 text-indigo-700 px-2.5 py-1 rounded-lg border border-indigo-100 font-medium"><i class="fa-solid fa-video mr-1"></i> ${escapeHTML(row.tutor_platform || '-')}</span>`
-                                    : `<span class="text-xs bg-slate-100 text-slate-700 px-2.5 py-1 rounded-lg border border-slate-200 font-medium"><i class="fa-solid fa-user-tie mr-1"></i> ${escapeHTML(row.tutor_platform || '-')}</span>`
-                                }
-                            </td>
-                        </tr>`;
-                }).join('');
+                let programBlocksHtml = "";
 
+                // Susun dan urutkan setiap program secara spesifik
+                Object.keys(schedulesByProgram).forEach(progName => {
+                    const progSchedules = schedulesByProgram[progName];
+                    const theme = getProgramTheme(progName);
+
+                    // Lakukan pengurutan: HARI -> JAM -> TINGKAT -> TUTOR
+                    progSchedules.sort((a, b) => {
+                        const dayA = order[a.hari.toUpperCase()] || 99;
+                        const dayB = order[b.hari.toUpperCase()] || 99;
+                        if (dayA !== dayB) return dayA - dayB;
+
+                        const timeA = a.waktu || "";
+                        const timeB = b.waktu || "";
+                        if (timeA !== timeB) return timeA.localeCompare(timeB);
+
+                        const tingA = a.tingkat || "";
+                        const tingB = b.tingkat || "";
+                        if (tingA !== tingB) return tingA.localeCompare(tingB);
+
+                        const tutorA = a.tutor_platform || "";
+                        const tutorB = b.tutor_platform || "";
+                        return tutorA.localeCompare(tutorB);
+                    });
+
+                    // Generate baris tabel untuk setiap blok program
+                    let rowsHtml = progSchedules.map(row => {
+                        return `
+                            <tr class="hover:bg-slate-50/80 transition duration-150 border-b border-slate-100" data-siswa-ids="${escapeHTML(row.kode_siswa)}">
+                                <td class="p-4 font-bold text-slate-800">${escapeHTML(row.hari || '-')}</td>
+                                <td class="p-4 font-semibold text-slate-700">${escapeHTML(row.waktu || '-')}</td>
+                                <td class="p-4 font-medium text-slate-600">${escapeHTML(row.tingkat || '-')}</td>
+                                <td class="p-4 text-slate-700 font-semibold">${escapeHTML(row.nama_siswa || '-')}</td>
+                                <td class="p-4">
+                                    ${cat.id === 'virtual' 
+                                        ? `<span class="text-xs bg-indigo-50 text-indigo-700 px-2.5 py-1 rounded-lg border border-indigo-100 font-medium flex items-center gap-1.5 w-max"><i class="fa-solid fa-video"></i> ${escapeHTML(row.tutor_platform || '-')}</span>`
+                                        : `<span class="text-xs bg-slate-100 text-slate-700 px-2.5 py-1 rounded-lg border border-slate-200 font-medium flex items-center gap-1.5 w-max"><i class="fa-solid fa-user-tie"></i> ${escapeHTML(row.tutor_platform || '-')}</span>`
+                                    }
+                                </td>
+                            </tr>`;
+                    }).join('');
+
+                    // Rangkai blok tabel program bertema
+                    programBlocksHtml += `
+                        <div class="rounded-2xl border ${theme.border} ${theme.bg} overflow-hidden shadow-sm hover:shadow-md transition duration-200">
+                            <div class="px-5 py-3.5 border-b ${theme.border} flex flex-col sm:flex-row sm:items-center justify-between gap-2 bg-gradient-to-r from-white to-transparent">
+                                <span class="text-sm font-bold ${theme.text} flex items-center gap-2">
+                                    <i class="fa-solid ${theme.icon} text-base"></i> ${escapeHTML(progName)}
+                                </span>
+                                <span class="text-[10px] px-2.5 py-1 rounded-full font-bold uppercase self-start sm:self-auto ${theme.badge}">${progSchedules.length} Sesi Aktif</span>
+                            </div>
+                            <div class="overflow-x-auto bg-white">
+                                <table class="w-full text-left border-collapse">
+                                    <thead>
+                                        <tr class="bg-slate-50 border-b border-slate-100 text-slate-500 text-xs font-bold uppercase tracking-wider">
+                                            <th class="p-4 w-1/6">Hari</th>
+                                            <th class="p-4 w-1/5">Waktu (WIB)</th>
+                                            <th class="p-4 w-1/5">Tingkat</th>
+                                            <th class="p-4 w-1/4">Nama Siswa</th>
+                                            <th class="p-4">Tutor / Media</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-slate-100 text-sm text-slate-600">
+                                        ${rowsHtml}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>`;
+                });
+
+                // Bungkus seluruh blok program ke dalam kartu kategori utama
                 const tableHtml = `
                     <div class="bg-white rounded-3xl border ${cat.border} shadow-lg overflow-hidden schedule-card-wrapper mb-8 animate-fade-in" id="schedule-card-${cat.id}">
                         <div class="${cat.bg} text-white px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                             <h3 class="font-bold text-lg flex items-center gap-2.5"><i class="fa-solid ${cat.icon}"></i> ${escapeHTML(cat.title)}</h3>
                             <span class="text-xs bg-white/20 text-white font-bold px-3 py-1 rounded-full self-start sm:self-auto">${escapeHTML(cat.info)}</span>
                         </div>
-                        <div class="overflow-x-auto">
-                            <table class="w-full text-left border-collapse">
-                                <thead>
-                                    <tr class="bg-slate-50 border-b border-slate-100 text-slate-500 text-xs font-bold uppercase">
-                                        <th class="p-4">Hari</th>
-                                        <th class="p-4">Waktu (WIB)</th>
-                                        <th class="p-4">Program / Mapel</th>
-                                        <th class="p-4">Tingkat</th>
-                                        <th class="p-4">Nama Siswa</th>
-                                        <th class="p-4">${cat.id === 'virtual' ? 'Media Online' : 'Tutor Pengajar'}</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="divide-y divide-slate-100 text-sm text-slate-600">
-                                    ${rowsHtml}
-                                </tbody>
-                            </table>
+                        <div class="p-6 space-y-6">
+                            ${programBlocksHtml}
                         </div>
                     </div>`;
                 container.insertAdjacentHTML('beforeend', tableHtml);
